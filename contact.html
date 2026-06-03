@@ -283,6 +283,17 @@
         outline-offset: 4px;
       }
 
+      .form-status {
+        margin: 1rem 0 0;
+        color: var(--muted-foreground);
+        font-size: 0.82rem;
+        line-height: 1.6;
+      }
+
+      .form-status a {
+        border-bottom: 1px solid currentColor;
+      }
+
       .footer {
         border-top: 1px solid var(--border);
         background: var(--background);
@@ -384,37 +395,38 @@
           </p>
         </div>
 
-        <form class="contact-form" action="#" method="post">
+        <form class="contact-form" id="contactForm">
           <div class="form-grid">
             <div class="field">
               <label for="name">Name</label>
-              <input id="name" name="name" type="text" autocomplete="name" />
+              <input id="name" name="name" type="text" autocomplete="name" required />
             </div>
 
             <div class="field">
               <label for="email">Email</label>
-              <input id="email" name="email" type="email" autocomplete="email" />
+              <input id="email" name="email" type="email" autocomplete="email" required />
             </div>
 
             <div class="field full">
               <label for="reason">Reason For Contacting</label>
-              <select id="reason" name="reason">
+              <select id="reason" name="reason" required>
                 <option value="">Select a reason</option>
                 <option>Question about my result</option>
                 <option>Report a bug</option>
                 <option>Suggest A new heroine</option>
-                <option>Partnership/PressInquiry</option>
+                <option>Partnership/Press Inquiry</option>
                 <option>I simply had to write</option>
               </select>
             </div>
 
             <div class="field full">
               <label for="message">Your Message</label>
-              <textarea id="message" name="message"></textarea>
+              <textarea id="message" name="message" required></textarea>
             </div>
           </div>
 
           <button class="send-button" type="submit">Send Letter</button>
+          <p class="form-status" id="formStatus" aria-live="polite"></p>
         </form>
       </section>
     </main>
@@ -429,6 +441,33 @@
     <script>
       document.getElementById("footerYear").textContent =
         `© ${new Date().getFullYear()} · A love letter to the women on the page`;
+
+      document.getElementById("contactForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const form = event.currentTarget;
+        const status = document.getElementById("formStatus");
+        const data = new FormData(form);
+        const name = data.get("name").trim();
+        const email = data.get("email").trim();
+        const reason = data.get("reason");
+        const message = data.get("message").trim();
+        const recipient = "hello@literaryheroines.com";
+        const subject = `Literary Heroines: ${reason}`;
+        const body = [
+          `Name: ${name}`,
+          `Email: ${email}`,
+          `Reason: ${reason}`,
+          "",
+          message,
+        ].join("\n");
+
+        window.location.href =
+          `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+        status.innerHTML =
+          `Your email app should open in a moment. If it does not, write directly to <a href="mailto:${recipient}">${recipient}</a>.`;
+      });
     </script>
   </body>
 </html>
