@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shop Preview - Literary Heroines</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Poppins:wght@200;300;400;500&display=swap"
+    />
+    <style>
+      :root {
+        --paper: oklch(0.965 0.012 80);
+        --ink: oklch(0.28 0.025 95);
+        --ink-soft: oklch(0.42 0.028 95);
+        --muted-foreground: oklch(0.48 0.025 95);
+        --border: oklch(0.86 0.018 90);
+        --sage-deep: oklch(0.55 0.035 130);
+        --tan: oklch(0.7 0.07 60);
+        --font-serif: "Newsreader", serif;
+        --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 10% 0%, rgb(122 139 99 / 0.18), transparent 28rem),
+          radial-gradient(circle at 90% 8%, rgb(196 122 42 / 0.12), transparent 24rem),
+          linear-gradient(180deg, rgb(250 247 240), rgb(239 230 211));
+        color: var(--ink);
+        font-family: var(--font-sans);
+        font-weight: 300;
+        letter-spacing: 0.01em;
+      }
+
+      a,
+      button {
+        color: inherit;
+        font: inherit;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .site-nav {
+        position: relative;
+        z-index: 3;
+      }
+
+      .nav-inner {
+        width: min(100%, 88rem);
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        padding: 1.45rem 1.5rem;
+      }
+
+      .brand {
+        display: block;
+        line-height: 1.12;
+      }
+
+      .brand-main {
+        display: block;
+        font-family: var(--font-serif);
+        font-size: 1.1rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+      }
+
+      .brand-sub {
+        display: block;
+        margin-top: 0.08rem;
+        color: var(--sage-deep);
+        font-family: var(--font-serif);
+        font-size: 0.85rem;
+        font-style: italic;
+        letter-spacing: 0.18em;
+      }
+
+      .nav-links {
+        display: none;
+        align-items: center;
+        gap: clamp(1.4rem, 4vw, 3rem);
+      }
+
+      .nav-link {
+        color: var(--ink-soft);
+        font-size: 0.68rem;
+        font-weight: 400;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+      }
+
+      .shop-hero {
+        width: min(100%, 88rem);
+        margin: 0 auto;
+        padding: clamp(3rem, 8vw, 7rem) 1.5rem clamp(2.5rem, 5vw, 4rem);
+      }
+
+      .shop-hero-layout {
+        display: grid;
+        gap: clamp(2rem, 6vw, 5rem);
+        align-items: end;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: var(--sage-deep);
+        font-size: 0.72rem;
+        font-weight: 400;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+      }
+
+      .shop-title {
+        max-width: 48rem;
+        margin: 1.2rem 0 0;
+        font-family: var(--font-serif);
+        font-size: clamp(4rem, 10vw, 8rem);
+        font-weight: 300;
+        line-height: 0.88;
+      }
+
+      .shop-title em {
+        display: block;
+        color: rgb(123 83 68);
+        font-style: italic;
+      }
+
+      .shop-copy {
+        max-width: 39rem;
+        margin: 1.75rem 0 0;
+        color: var(--muted-foreground);
+        font-family: var(--font-serif);
+        font-size: clamp(1.05rem, 1.45vw, 1.22rem);
+        line-height: 1.75;
+      }
+
+      .featured-card {
+        border: 1px solid rgb(77 62 42 / 0.12);
+        background: rgb(255 252 245 / 0.72);
+        padding: clamp(1rem, 2vw, 1.3rem);
+      }
+
+      .featured-art {
+        aspect-ratio: 4 / 5;
+        background:
+          linear-gradient(rgb(255 255 255 / 0.28), rgb(236 224 204 / 0.52)),
+          rgb(241 228 198 / 0.8);
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+      }
+
+      .featured-art img {
+        width: 82%;
+        height: 82%;
+        object-fit: contain;
+        filter: saturate(0.9);
+      }
+
+      .featured-label {
+        margin-top: 1rem;
+        color: var(--tan);
+        font-size: 0.68rem;
+        font-weight: 500;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+      }
+
+      .featured-title {
+        margin: 0.45rem 0 0;
+        font-family: var(--font-serif);
+        font-size: 2rem;
+        font-weight: 300;
+        line-height: 1;
+      }
+
+      .shop-toolbar {
+        width: min(100%, 88rem);
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .filter-strip {
+        display: flex;
+        gap: 0.55rem;
+        overflow-x: auto;
+        border-top: 1px solid rgb(77 62 42 / 0.12);
+        border-bottom: 1px solid rgb(77 62 42 / 0.12);
+        padding: 1rem 0;
+      }
+
+      .filter-button {
+        flex: 0 0 auto;
+        border: 1px solid rgb(77 62 42 / 0.16);
+        background: rgb(255 252 245 / 0.44);
+        padding: 0.72rem 1rem;
+        color: var(--ink-soft);
+        font-size: 0.68rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .filter-button.is-active {
+        border-color: var(--ink);
+        background: var(--ink);
+        color: var(--paper);
+      }
+
+      .shop-section {
+        width: min(100%, 88rem);
+        margin: 0 auto;
+        padding: clamp(2rem, 5vw, 4rem) 1.5rem clamp(4rem, 7vw, 7rem);
+      }
+
+      .product-grid {
+        display: grid;
+        gap: clamp(1.2rem, 3vw, 2rem);
+      }
+
+      .product-card {
+        border: 1px solid rgb(77 62 42 / 0.12);
+        background: rgb(255 252 245 / 0.68);
+        transition: border-color 180ms ease, transform 180ms ease, background-color 180ms ease;
+      }
+
+      .product-card:hover {
+        border-color: rgb(77 62 42 / 0.28);
+        background: rgb(255 252 245 / 0.92);
+        transform: translateY(-2px);
+      }
+
+      .product-image {
+        aspect-ratio: 1 / 1;
+        display: grid;
+        place-items: center;
+        background:
+          radial-gradient(circle at 50% 22%, rgb(255 255 255 / 0.7), transparent 12rem),
+          rgb(236 224 204 / 0.65);
+        padding: 1.6rem;
+      }
+
+      .shirt {
+        position: relative;
+        width: min(100%, 15rem);
+        aspect-ratio: 1 / 1.05;
+        clip-path: polygon(24% 5%, 38% 0, 62% 0, 76% 5%, 96% 24%, 82% 41%, 75% 34%, 75% 100%, 25% 100%, 25% 34%, 18% 41%, 4% 24%);
+        background: var(--shirt-color, #f7f0e3);
+        border: 1px solid rgb(77 62 42 / 0.12);
+        box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.45);
+      }
+
+      .shirt::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 38%;
+        width: 24%;
+        height: 13%;
+        border-radius: 0 0 999px 999px;
+        background: rgb(236 224 204 / 0.75);
+      }
+
+      .shirt-print {
+        position: absolute;
+        inset: 28% 22% auto;
+        min-height: 36%;
+        display: grid;
+        place-items: center;
+        color: var(--print-color, var(--ink));
+        font-family: var(--font-serif);
+        font-size: 1.35rem;
+        font-style: italic;
+        line-height: 1.02;
+        text-align: center;
+      }
+
+      .product-body {
+        padding: 1.25rem;
+      }
+
+      .product-kicker {
+        color: var(--tan);
+        font-size: 0.66rem;
+        font-weight: 500;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+      }
+
+      .product-title {
+        margin: 0.55rem 0 0;
+        font-family: var(--font-serif);
+        font-size: 2rem;
+        font-weight: 300;
+        line-height: 1;
+      }
+
+      .product-copy {
+        margin: 0.8rem 0 0;
+        color: var(--muted-foreground);
+        font-size: 0.9rem;
+        line-height: 1.65;
+      }
+
+      .product-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 1.2rem;
+      }
+
+      .price {
+        font-family: var(--font-serif);
+        font-size: 1.2rem;
+        font-style: italic;
+      }
+
+      .buy-button {
+        border-bottom: 1px solid currentColor;
+        color: var(--ink-soft);
+        font-size: 0.68rem;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .result-callout {
+        margin-top: clamp(2.5rem, 5vw, 4rem);
+        border: 1px solid rgb(77 62 42 / 0.12);
+        background: rgb(255 252 245 / 0.66);
+        padding: clamp(1.4rem, 4vw, 2.5rem);
+        text-align: center;
+      }
+
+      .result-callout h2 {
+        margin: 0;
+        font-family: var(--font-serif);
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        font-weight: 300;
+        line-height: 1;
+      }
+
+      .result-callout p {
+        width: min(100%, 35rem);
+        margin: 1rem auto 0;
+        color: var(--muted-foreground);
+        font-family: var(--font-serif);
+        font-size: 1.08rem;
+        line-height: 1.7;
+      }
+
+      .callout-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 3.8rem;
+        margin-top: 1.5rem;
+        border: 1px solid var(--ink);
+        background: var(--ink);
+        padding: 1rem 1.4rem;
+        color: var(--paper);
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+      }
+
+      @media (min-width: 760px) {
+        .nav-links {
+          display: flex;
+        }
+
+        .shop-hero-layout {
+          grid-template-columns: minmax(0, 1fr) minmax(19rem, 24rem);
+        }
+
+        .product-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-nav">
+      <div class="nav-inner">
+        <a href="index.html" class="brand">
+          <span class="brand-main">Literary</span>
+          <span class="brand-sub">Heroines</span>
+        </a>
+        <nav class="nav-links" aria-label="Shop preview navigation">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="quiz.html" class="nav-link">The Quiz</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="shop-hero">
+        <div class="shop-hero-layout">
+          <div>
+            <p class="eyebrow">The Heroines Collection</p>
+            <h1 class="shop-title">
+              Wear your
+              <em>result.</em>
+            </h1>
+            <p class="shop-copy">
+              Literary keepsakes for the women who found themselves somewhere between a
+              muddy hem, a stormy moor, a quiet letter, and a page they could not stop
+              rereading.
+            </p>
+          </div>
+
+          <aside class="featured-card">
+            <div class="featured-art">
+              <img src="assets/anne-elliot-sketch-portrait.png" alt="Anne Elliot sketch portrait" />
+            </div>
+            <p class="featured-label">Featured result</p>
+            <h2 class="featured-title">Anne Elliot Capsule</h2>
+          </aside>
+        </div>
+      </section>
+
+      <section class="shop-toolbar" aria-label="Shop filters">
+        <div class="filter-strip">
+          <button class="filter-button is-active" type="button">All</button>
+          <button class="filter-button" type="button">Elizabeth</button>
+          <button class="filter-button" type="button">Anne</button>
+          <button class="filter-button" type="button">Jane</button>
+          <button class="filter-button" type="button">Jo</button>
+          <button class="filter-button" type="button">The Brontës</button>
+          <button class="filter-button" type="button">Austen</button>
+        </div>
+      </section>
+
+      <section class="shop-section">
+        <div class="product-grid">
+          <article class="product-card">
+            <div class="product-image">
+              <div class="shirt" style="--shirt-color:#f7efe3;--print-color:#4a8aab">
+                <div class="shirt-print">loving<br />longest</div>
+              </div>
+            </div>
+            <div class="product-body">
+              <p class="product-kicker">Anne Elliot</p>
+              <h2 class="product-title">Loving Longest Tee</h2>
+              <p class="product-copy">A soft cream shirt for the quiet romantics and patient believers.</p>
+              <div class="product-footer">
+                <span class="price">$32</span>
+                <a class="buy-button" href="#">Preview Buy Link</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image">
+              <div class="shirt" style="--shirt-color:#e8efe1;--print-color:#6b9e4a">
+                <div class="shirt-print">I dearly<br />love a laugh</div>
+              </div>
+            </div>
+            <div class="product-body">
+              <p class="product-kicker">Elizabeth Bennet</p>
+              <h2 class="product-title">Dearly Love A Laugh Tee</h2>
+              <p class="product-copy">For sharp eyes, long walks, and excellent timing in conversation.</p>
+              <div class="product-footer">
+                <span class="price">$32</span>
+                <a class="buy-button" href="#">Preview Buy Link</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image">
+              <div class="shirt" style="--shirt-color:#fff8ea;--print-color:#c47a2a">
+                <div class="shirt-print">not afraid<br />of storms</div>
+              </div>
+            </div>
+            <div class="product-body">
+              <p class="product-kicker">Jo March</p>
+              <h2 class="product-title">Storms Tee</h2>
+              <p class="product-copy">An ink-stained little declaration for writers, strivers, and loyal hearts.</p>
+              <div class="product-footer">
+                <span class="price">$32</span>
+                <a class="buy-button" href="#">Preview Buy Link</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image">
+              <div class="shirt" style="--shirt-color:#f3e6eb;--print-color:#b84060">
+                <div class="shirt-print">to love<br />is to burn</div>
+              </div>
+            </div>
+            <div class="product-body">
+              <p class="product-kicker">Marianne Dashwood</p>
+              <h2 class="product-title">Burn Tee</h2>
+              <p class="product-copy">For the ones who feel the song before anyone else hears it.</p>
+              <div class="product-footer">
+                <span class="price">$32</span>
+                <a class="buy-button" href="#">Preview Buy Link</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image">
+              <div class="shirt" style="--shirt-color:#e9ece6;--print-color:#5a8a5a">
+                <div class="shirt-print">sense is<br />not coldness</div>
+              </div>
+            </div>
+            <div class="product-body">
+              <p class="product-kicker">Elinor Dashwood</p>
+              <h2 class="product-title">Quiet Strength Tee</h2>
+              <p class="product-copy">For the ones holding it together beautifully, and privately.</p>
+              <div class="product-footer">
+                <span class="price">$32</span>
+                <a class="buy-button" href="#">Preview Buy Link</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image">
+              <div class="shirt" style="--shirt-color:#eee9f4;--print-color:#6a4a9a">
+                <div class="shirt-print">more myself<br />than I am</div>
+              </div>
+            </div>
+            <div class="product-body">
+              <p class="product-kicker">Catherine Earnshaw</p>
+              <h2 class="product-title">Moors Tee</h2>
+              <p class="product-copy">For elemental feeling, wild weather, and refusing every small container.</p>
+              <div class="product-footer">
+                <span class="price">$32</span>
+                <a class="buy-button" href="#">Preview Buy Link</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <aside class="result-callout">
+          <h2>Shop by your heroine.</h2>
+          <p>
+            In the live version, this section can personalize itself from the quiz result and
+            send readers straight to their heroine's Printify collection.
+          </p>
+          <a class="callout-button" href="quiz.html">Take the Quiz</a>
+        </aside>
+      </section>
+    </main>
+  </body>
+</html>

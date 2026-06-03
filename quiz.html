@@ -1,0 +1,1369 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Literary Heroines Quiz - Find Your Match</title>
+    <meta
+      name="description"
+      content="Take the Literary Heroines quiz and discover which classic literary heroine matches your temperament."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Poppins:wght@200;300;400;500&display=swap"
+    />
+    <style>
+      :root {
+        --paper: oklch(0.965 0.012 80);
+        --ink: oklch(0.28 0.025 95);
+        --ink-soft: oklch(0.42 0.028 95);
+        --muted: oklch(0.93 0.015 85);
+        --muted-foreground: oklch(0.48 0.025 95);
+        --border: oklch(0.86 0.018 90);
+        --tan: oklch(0.7 0.07 60);
+        --sage: oklch(0.78 0.025 130);
+        --sage-deep: oklch(0.55 0.035 130);
+        --night: rgb(24 20 15);
+        --font-serif: "Newsreader", serif;
+        --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 8% 0%, rgb(122 139 99 / 0.22), transparent 27rem),
+          linear-gradient(180deg, var(--paper), rgb(239 230 211));
+        color: var(--ink);
+        font-family: var(--font-sans);
+        font-weight: 300;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .site-nav {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 20;
+        border-bottom: 1px solid transparent;
+        color: white;
+      }
+
+      .nav-inner {
+        width: min(100%, 76rem);
+        margin: 0 auto;
+        padding: 1rem 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .brand {
+        font-family: var(--font-serif);
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        line-height: 1.1;
+      }
+
+      .brand span {
+        display: block;
+        font-style: italic;
+        letter-spacing: 0.18em;
+        text-transform: none;
+        color: rgb(255 255 255 / 0.76);
+      }
+
+      .nav-link {
+        color: rgb(255 255 255 / 0.78);
+        font-size: 0.72rem;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+      }
+
+      .nav-link:hover {
+        color: white;
+      }
+
+      .quiz-hero {
+        position: relative;
+        min-height: min(48rem, 92vh);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        padding: 8rem 1.25rem 5rem;
+        background-position: center;
+        background-size: cover;
+        color: white;
+        text-align: center;
+      }
+
+      .quiz-hero::before,
+      .quiz-hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+      }
+
+      .quiz-hero::before {
+        background-image: url("assets/hero-quiz.jpg");
+        background-position: center;
+        background-size: cover;
+        transform: scale(1.01);
+      }
+
+      .quiz-hero::after {
+        background: linear-gradient(rgb(12 10 8 / 0.56), rgb(12 10 8 / 0.6));
+      }
+
+      .quiz-hero.is-result-hero::before {
+        background-image: url("assets/Literary Heroines Result Hero.png");
+        filter: blur(1.5px);
+        transform: scale(1.015);
+      }
+
+      .quiz-hero.is-result-hero::after {
+        background: linear-gradient(rgb(24 20 15 / 0.38), rgb(24 20 15 / 0.44));
+      }
+
+      .quiz-hero.is-result-hero {
+        min-height: min(28rem, 58vh);
+        padding: 7rem 1.25rem 4rem;
+      }
+
+      .quiz-hero.is-result-hero .hero-copy,
+      .quiz-hero.is-result-hero .return-banner,
+      .quiz-hero.is-result-hero .heroine-chips,
+      .quiz-hero.is-result-hero .hero-actions {
+        display: none;
+      }
+
+      .quiz-hero-inner {
+        position: relative;
+        z-index: 1;
+        width: min(100%, 64rem);
+      }
+
+      .quiz-hero .eyebrow {
+        color: rgb(255 255 255 / 0.78);
+      }
+
+      .hero-title {
+        margin: 0;
+        font-family: var(--font-serif);
+        font-size: clamp(3.25rem, 8.5vw, 6.4rem);
+        font-weight: 300;
+        line-height: 0.94;
+      }
+
+      .hero-title em {
+        display: block;
+        color: var(--sage);
+        font-style: italic;
+      }
+
+      .hero-copy {
+        width: min(100%, 48rem);
+        margin: 2rem auto 0;
+        color: rgb(255 255 255 / 0.82);
+        font-size: clamp(1rem, 1.65vw, 1.25rem);
+        line-height: 1.7;
+      }
+
+      .heroine-chips {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.6rem;
+        margin: 2rem auto 0;
+        width: min(100%, 52rem);
+      }
+
+      .heroine-chip {
+        border: 1px solid rgb(255 255 255 / 0.32);
+        background: rgb(255 255 255 / 0.04);
+        padding: 0.55rem 0.95rem;
+        color: rgb(255 255 255 / 0.86);
+        font-family: var(--font-serif);
+        font-size: 0.95rem;
+      }
+
+      .hero-actions {
+        margin-top: 2.4rem;
+      }
+
+      .hero-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        min-width: min(100%, 18rem);
+        border: 1px solid rgb(255 255 255 / 0.68);
+        background: rgb(42 31 26 / 0.72);
+        padding: 1rem 1.5rem;
+        color: white;
+        font-size: 0.72rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+      }
+
+      .hero-note {
+        margin-top: 1rem;
+        color: rgb(255 255 255 / 0.72);
+        font-family: var(--font-serif);
+        font-size: 0.95rem;
+        font-style: italic;
+      }
+
+      .return-banner {
+        display: none;
+        width: min(100%, 34rem);
+        margin: 1.25rem auto 0;
+        border: 1px solid rgb(255 255 255 / 0.28);
+        background: rgb(20 15 12 / 0.58);
+        padding: 0.85rem 1rem;
+        color: rgb(255 255 255 / 0.82);
+        font-family: var(--font-serif);
+        font-size: 1rem;
+        line-height: 1.45;
+      }
+
+      .return-banner.is-visible {
+        display: block;
+      }
+
+      .quiz-shell {
+        width: min(100%, 76rem);
+        margin: 0 auto;
+        padding: clamp(2rem, 5vw, 4rem) 1.25rem 4rem;
+        scroll-margin-top: 1rem;
+      }
+
+      .quiz-shell.is-result-mode {
+        width: min(100%, 88rem);
+      }
+
+      .quiz-layout {
+        display: grid;
+        gap: 1.25rem;
+      }
+
+      .quiz-layout.is-result-mode {
+        display: block;
+      }
+
+      .quiz-layout.is-result-mode .quiz-aside {
+        display: none;
+      }
+
+      .quiz-aside,
+      .quiz-stage,
+      .result-panel {
+        border: 1px solid rgb(77 62 42 / 0.12);
+        background: rgb(255 252 245 / 0.72);
+      }
+
+      .quiz-aside {
+        padding: 1.25rem;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: var(--sage-deep);
+        font-size: 0.72rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+      }
+
+      .quiz-title {
+        margin: 0.85rem 0 0;
+        font-family: var(--font-serif);
+        font-size: clamp(2.2rem, 6vw, 3.6rem);
+        font-weight: 300;
+        line-height: 1;
+      }
+
+      .quiz-title em {
+        color: var(--sage-deep);
+        font-style: italic;
+      }
+
+      .quiz-copy {
+        margin: 1.25rem 0 0;
+        color: var(--muted-foreground);
+        font-family: var(--font-serif);
+        font-size: 1.05rem;
+        line-height: 1.7;
+      }
+
+      .progress-block {
+        margin-top: 1.5rem;
+      }
+
+      .chapter-current {
+        margin-top: 1.2rem;
+        border-top: 1px solid rgb(77 62 42 / 0.12);
+        padding-top: 1rem;
+      }
+
+      .chapter-current-title {
+        margin: 0.4rem 0 0;
+        font-family: var(--font-serif);
+        font-size: clamp(1.6rem, 4vw, 2.25rem);
+        font-weight: 300;
+        line-height: 1.05;
+      }
+
+      .chapter-current-title em {
+        color: var(--sage-deep);
+        font-style: italic;
+      }
+
+      .chapter-current-copy {
+        margin: 0.7rem 0 0;
+        color: var(--muted-foreground);
+        font-family: var(--font-serif);
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      .progress-meta {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        color: var(--ink-soft);
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .progress-track {
+        margin-top: 0.7rem;
+        height: 0.45rem;
+        overflow: hidden;
+        background: rgb(77 62 42 / 0.12);
+      }
+
+      .progress-fill {
+        width: 0%;
+        height: 100%;
+        background: linear-gradient(90deg, var(--sage-deep), var(--tan));
+        transition: width 240ms ease;
+      }
+
+      .chapter-list {
+        display: grid;
+        gap: 0.55rem;
+        margin-top: 1.5rem;
+      }
+
+      .chapter-pill {
+        border-left: 2px solid rgb(77 62 42 / 0.18);
+        padding: 0.5rem 0 0.5rem 0.75rem;
+        color: var(--muted-foreground);
+        font-family: var(--font-serif);
+        font-size: 0.95rem;
+      }
+
+      .chapter-pill.is-active {
+        border-color: var(--sage-deep);
+        color: var(--ink);
+      }
+
+      .save-note {
+        margin-top: 1rem;
+        color: var(--muted-foreground);
+        font-size: 0.76rem;
+        line-height: 1.55;
+      }
+
+      .quiz-stage {
+        min-height: 39rem;
+        padding: clamp(1.25rem, 4vw, 2.5rem);
+      }
+
+      .question-count {
+        color: var(--muted-foreground);
+        font-size: 0.72rem;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+      }
+
+      .question-title {
+        margin: 1.25rem 0 0;
+        font-family: var(--font-serif);
+        font-size: clamp(2rem, 2vw, 3.5rem);
+        font-weight: 300;
+        line-height: 1.05;
+      }
+
+      .question-note {
+        margin-top: 0.85rem;
+        color: var(--muted-foreground);
+        font-family: var(--font-serif);
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      .answers {
+        display: grid;
+        gap: 0.8rem;
+        margin-top: 2rem;
+      }
+
+      .answer {
+        width: 100%;
+        min-height: 5rem;
+        border: 1px solid rgb(77 62 42 / 0.14);
+        background: rgb(255 255 255 / 0.42);
+        color: var(--ink);
+        padding: 1rem;
+        text-align: left;
+        cursor: pointer;
+        transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
+      }
+
+      .answer:hover,
+      .answer.is-selected {
+        border-color: color-mix(in oklch, var(--sage-deep), black 8%);
+        background: rgb(250 247 238 / 0.96);
+        transform: translateY(-0.1rem);
+      }
+
+      .answer-key {
+        display: block;
+        color: var(--tan);
+        font-size: 0.68rem;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+      }
+
+      .answer-text {
+        display: block;
+        margin-top: 0.35rem;
+        font-family: var(--font-serif);
+        font-size: 1.12rem;
+        line-height: 1.4;
+      }
+
+      .quiz-controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        margin-top: 2rem;
+      }
+
+      .control-button,
+      .restart-button,
+      .share-button {
+        border: 1px solid rgb(77 62 42 / 0.2);
+        background: transparent;
+        color: var(--ink);
+        padding: 0.85rem 1rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .control-button.primary,
+      .restart-button {
+        border-color: var(--ink);
+        background: var(--ink);
+        color: var(--paper);
+      }
+
+      .control-button:disabled {
+        cursor: not-allowed;
+        opacity: 0.42;
+      }
+
+      .result-panel {
+        display: none;
+        overflow: hidden;
+        border: 0;
+        background: transparent;
+      }
+
+      .result-panel.is-visible {
+        display: block;
+      }
+
+      .result-layout {
+        display: grid;
+        gap: clamp(2.5rem, 7vw, 6.5rem);
+        align-items: center;
+        min-height: min(52rem, calc(100vh - 8rem));
+      }
+
+      .result-copy-wrap {
+        max-width: 40rem;
+      }
+
+      .result-title {
+        margin: 1.2rem 0 0;
+        color: rgb(54 48 43);
+        font-family: var(--font-serif);
+        font-size: clamp(4rem, 9vw, 8rem);
+        font-weight: 300;
+        line-height: 0.88;
+      }
+
+      .result-title span {
+        display: block;
+      }
+
+      .result-name {
+        color: var(--result-color, var(--sage-deep));
+      }
+
+      .result-book {
+        margin-top: 1rem;
+        color: var(--muted-foreground);
+        font-family: var(--font-serif);
+        font-size: 1.1rem;
+        font-style: italic;
+      }
+
+      .result-quote {
+        margin: clamp(2rem, 4vw, 3rem) 0 0;
+        color: rgb(67 55 48);
+        font-family: var(--font-serif);
+        font-size: clamp(1.55rem, 2.6vw, 2.25rem);
+        font-style: italic;
+        line-height: 1.16;
+      }
+
+      .result-quote::before {
+        content: "“";
+        color: rgb(190 157 141 / 0.68);
+      }
+
+      .result-quote::after {
+        content: "”";
+        color: rgb(190 157 141 / 0.68);
+      }
+
+      .result-copy {
+        margin-top: 1.5rem;
+        color: var(--ink-soft);
+        font-family: var(--font-serif);
+        font-size: clamp(1rem, 1.4vw, 1.15rem);
+        line-height: 1.76;
+      }
+
+      .result-copy::first-letter {
+        float: left;
+        margin: 0.08rem 0.45rem 0 0;
+        color: var(--result-color, var(--sage-deep));
+        font-family: var(--font-serif);
+        font-size: 4.5rem;
+        line-height: 0.78;
+      }
+
+      .result-art {
+        justify-self: center;
+        width: min(100%, 38rem);
+      }
+
+      .result-art-frame {
+        position: relative;
+        background:
+          linear-gradient(180deg, rgb(255 255 255 / 0.42), rgb(235 223 204 / 0.54)),
+          rgb(255 255 255 / 0.38);
+        padding: clamp(0.7rem, 1.4vw, 1rem);
+      }
+
+      .result-art-frame::after {
+        content: "";
+        position: absolute;
+        inset: clamp(1.15rem, 2vw, 1.65rem);
+        border: 1px solid rgb(255 255 255 / 0.5);
+        pointer-events: none;
+      }
+
+      .result-art img {
+        width: 100%;
+        height: auto;
+        max-height: min(70vh, 48rem);
+        object-fit: contain;
+        background: rgb(241 228 198 / 0.64);
+      }
+
+      .result-book-flow {
+        display: grid;
+        gap: 1.5rem;
+        width: min(100%, 68rem);
+        margin-top: clamp(3rem, 8vw, 6rem);
+        margin-right: auto;
+        margin-left: auto;
+        border-top: 1px solid rgb(77 62 42 / 0.14);
+        padding-top: clamp(2rem, 5vw, 3.5rem);
+      }
+
+      .result-book-spine {
+        color: var(--muted-foreground);
+        width: min(100%, 52rem);
+      }
+
+      .result-book-spine .eyebrow {
+        color: rgb(117 75 66);
+      }
+
+      .result-book-spine p:not(.eyebrow) {
+        margin: 0.75rem 0 0;
+        font-family: var(--font-serif);
+        font-size: 1rem;
+        font-style: italic;
+        line-height: 1.6;
+      }
+
+      .result-pages {
+        display: grid;
+        gap: 1.15rem;
+      }
+
+      .result-entry {
+        margin: 0;
+        color: rgb(67 55 48);
+        font-family: var(--font-serif);
+        font-size: clamp(1.05rem, 1.25vw, 1.16rem);
+        line-height: 1.78;
+      }
+
+      .result-entry.is-paragraph {
+        break-inside: avoid;
+      }
+
+      .result-entry.is-quote {
+        margin: clamp(0.8rem, 2vw, 1.4rem) 0;
+        border-top: 1px solid rgb(77 62 42 / 0.14);
+        border-bottom: 1px solid rgb(77 62 42 / 0.14);
+        padding: clamp(1rem, 2vw, 1.35rem) 0;
+        color: var(--result-color, var(--sage-deep));
+        font-size: clamp(1.45rem, 2.4vw, 2rem);
+        font-style: italic;
+        line-height: 1.18;
+      }
+
+      .result-entry.is-quote::before {
+        content: "“";
+        color: rgb(190 157 141 / 0.68);
+      }
+
+      .result-entry.is-quote::after {
+        content: "”";
+        color: rgb(190 157 141 / 0.68);
+      }
+
+      .score-list {
+        display: grid;
+        gap: 0.7rem;
+        width: min(100%, 52rem);
+        margin: clamp(2rem, 5vw, 3.5rem) auto 0;
+        border-top: 1px solid rgb(77 62 42 / 0.14);
+        padding-top: 1.5rem;
+      }
+
+      .score-row {
+        display: grid;
+        grid-template-columns: minmax(8rem, 11rem) 1fr 3rem;
+        align-items: center;
+        gap: 0.7rem;
+        color: var(--ink-soft);
+        font-size: 0.76rem;
+      }
+
+      .score-track {
+        height: 0.4rem;
+        background: rgb(77 62 42 / 0.12);
+      }
+
+      .score-fill {
+        height: 100%;
+        background: var(--sage-deep);
+      }
+
+      .logic-note {
+        margin-top: 1.4rem;
+        border-top: 1px solid rgb(77 62 42 / 0.12);
+        padding-top: 1rem;
+        color: var(--muted-foreground);
+        font-size: 0.76rem;
+        line-height: 1.65;
+        text-align: center;
+      }
+
+      .result-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.85rem;
+        margin-top: 2rem;
+      }
+
+      .result-panel > .result-actions {
+        justify-content: center;
+      }
+
+      .chapter-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        border-bottom: 1px solid currentColor;
+        color: var(--result-color, var(--sage-deep));
+        font-size: 0.72rem;
+        font-weight: 400;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        transition: color 180ms ease, gap 180ms ease;
+      }
+
+      .chapter-link:hover {
+        gap: 1.05rem;
+        color: var(--ink);
+      }
+
+      .result-actions .share-button,
+      .result-actions .restart-button {
+        min-height: 3.8rem;
+        padding: 1rem 1.35rem;
+        letter-spacing: 0.24em;
+      }
+
+      .share-status {
+        width: 100%;
+        color: var(--muted-foreground);
+        font-size: 0.76rem;
+      }
+
+      @media (min-width: 860px) {
+        .quiz-layout {
+          grid-template-columns: minmax(16rem, 24rem) minmax(0, 1fr);
+          align-items: start;
+        }
+
+        .quiz-aside {
+          position: sticky;
+          top: 5.25rem;
+        }
+
+        .result-layout {
+          grid-template-columns: minmax(0, 0.88fr) minmax(24rem, 1fr);
+        }
+
+        .result-book-flow {
+          display: block;
+        }
+
+        .result-book-spine {
+          margin: 0 0 2rem;
+        }
+
+        .result-pages {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          column-gap: clamp(2rem, 5vw, 4rem);
+          row-gap: 1.05rem;
+        }
+
+        .result-entry.is-quote {
+          grid-column: 1 / -1;
+        }
+
+        .answers {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-nav">
+      <div class="nav-inner">
+        <a class="brand" href="index.html" aria-label="Back to Literary Heroines">
+          Literary
+          <span>Heroines</span>
+        </a>
+        <a class="nav-link" href="#test" id="heroNavLink">Take the Quiz</a>
+      </div>
+    </header>
+
+    <section class="quiz-hero" id="quizHero">
+      <div class="quiz-hero-inner">
+        <h1 class="hero-title" id="heroTitle">The Literary Heroine <em>Personality Test</em></h1>
+        <p class="hero-copy" id="heroCopy">
+          Choose the answer that feels most true, not most flattering. The result engine
+          scores every answer across all nine heroines, then normalizes the totals so the
+          final match is fair.
+        </p>
+        <p class="return-banner" id="returnBanner"></p>
+        <div class="heroine-chips" id="heroineChips" aria-label="Possible heroine results"></div>
+        <div class="hero-actions">
+          <a class="hero-button" href="#test">Begin Test <span aria-hidden="true">→</span></a>
+          <p class="hero-note">Fifty questions · About six minutes · No email required</p>
+        </div>
+      </div>
+    </section>
+
+    <main class="quiz-shell" id="test">
+      <div class="quiz-layout" id="quizApp">
+        <aside class="quiz-aside">
+          <p class="eyebrow" id="currentChapterNumber">Chapter One</p>
+          <div class="chapter-current">
+            <h2 class="chapter-current-title" id="currentChapterTitle"></h2>
+            <p class="chapter-current-copy" id="currentChapterDescription"></p>
+          </div>
+          <div class="progress-block">
+            <div class="progress-meta">
+              <span id="progressLabel">0 answered</span>
+              <span id="progressPercent">0%</span>
+            </div>
+            <div class="progress-track" aria-hidden="true">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+          </div>
+          <p class="save-note" id="saveNote">Progress saves automatically on this device.</p>
+          <div class="chapter-list" id="chapterList"></div>
+        </aside>
+
+        <section class="quiz-stage" id="quizStage" aria-live="polite">
+          <p class="question-count" id="questionCount"></p>
+          <h2 class="question-title" id="questionTitle"></h2>
+          <p class="question-note" id="questionNote"></p>
+          <div class="answers" id="answers"></div>
+          <div class="quiz-controls">
+            <button class="control-button" type="button" id="previousButton">Previous</button>
+            <button class="control-button primary" type="button" id="nextButton">Next</button>
+          </div>
+        </section>
+
+        <section class="result-panel" id="resultPanel" aria-live="polite"></section>
+      </div>
+    </main>
+
+    <script type="module">
+      import {
+        APPEARANCES,
+        CHAPTERS,
+        OPTION_NUMERALS,
+        QUESTION_ROUTES,
+        QUESTION_TEXT,
+        QUIZ_CHARACTERS,
+        TIEBREAK,
+      } from "./assets/quiz-data.js";
+      import { RESULT_DETAILS } from "./assets/result-details.js";
+
+      const RESULT_IMAGES = {
+        0: "assets/elizabeth-bennet-sketch-portrait.png",
+        1: "assets/jane-bennet-sketch-portrait.png",
+        2: "assets/emma-woodhouse-sketch-portrait.png",
+        3: "assets/anne-elliot-sketch-portrait.png",
+        4: "assets/marianne-dashwood-sketch-portrait.png",
+        5: "assets/elinor-dashwood-sketch-portrait.png",
+        6: "assets/jane-eyre-sketch-portrait.png",
+        7: "assets/catherine-earnshaw-sketch-portrait.png",
+        8: "assets/jo-march-sketch-portrait.png",
+      };
+
+      const STORAGE_KEYS = {
+        progress: "literaryHeroines.quizProgress.v1",
+        result: "literaryHeroines.quizResult.v1",
+      };
+
+      const RESULT_SLUGS = {
+        0: "elizabeth-bennet",
+        1: "jane-bennet",
+        2: "emma-woodhouse",
+        3: "anne-elliot",
+        4: "marianne-dashwood",
+        5: "elinor-dashwood",
+        6: "jane-eyre",
+        7: "catherine-earnshaw",
+        8: "jo-march",
+      };
+
+      const SLUG_TO_ID = Object.fromEntries(
+        Object.entries(RESULT_SLUGS).map(([id, slug]) => [slug, Number(id)])
+      );
+
+      const QUESTIONS = QUESTION_ROUTES.map(([chapterIndex, options], questionIndex) => ({
+        chapterIndex,
+        chapter: CHAPTERS[chapterIndex],
+        prompt: QUESTION_TEXT[questionIndex],
+        options: shuffle(options).map(([charId, text]) => ({ charId, text })),
+      }));
+
+      const state = {
+        index: 0,
+        answers: Array(QUESTIONS.length).fill(null),
+      };
+
+      const stage = document.getElementById("quizStage");
+      const quizShell = document.getElementById("test");
+      const quizApp = document.getElementById("quizApp");
+      const quizHero = document.getElementById("quizHero");
+      const heroTitle = document.getElementById("heroTitle");
+      const heroCopy = document.getElementById("heroCopy");
+      const heroNavLink = document.getElementById("heroNavLink");
+      const resultPanel = document.getElementById("resultPanel");
+      const questionCount = document.getElementById("questionCount");
+      const questionTitle = document.getElementById("questionTitle");
+      const questionNote = document.getElementById("questionNote");
+      const answersEl = document.getElementById("answers");
+      const previousButton = document.getElementById("previousButton");
+      const nextButton = document.getElementById("nextButton");
+      const progressLabel = document.getElementById("progressLabel");
+      const progressPercent = document.getElementById("progressPercent");
+      const progressFill = document.getElementById("progressFill");
+      const chapterList = document.getElementById("chapterList");
+      const currentChapterNumber = document.getElementById("currentChapterNumber");
+      const currentChapterTitle = document.getElementById("currentChapterTitle");
+      const currentChapterDescription = document.getElementById("currentChapterDescription");
+      const heroineChips = document.getElementById("heroineChips");
+      const returnBanner = document.getElementById("returnBanner");
+      const saveNote = document.getElementById("saveNote");
+
+      function shuffle(items) {
+        const copy = [...items];
+        for (let index = copy.length - 1; index > 0; index -= 1) {
+          const swapIndex = Math.floor(Math.random() * (index + 1));
+          [copy[index], copy[swapIndex]] = [copy[swapIndex], copy[index]];
+        }
+        return copy;
+      }
+
+      function readStorage(key) {
+        try {
+          return JSON.parse(localStorage.getItem(key));
+        } catch {
+          return null;
+        }
+      }
+
+      function writeStorage(key, value) {
+        localStorage.setItem(key, JSON.stringify(value));
+      }
+
+      function clearProgress() {
+        localStorage.removeItem(STORAGE_KEYS.progress);
+      }
+
+      function saveProgress() {
+        writeStorage(STORAGE_KEYS.progress, {
+          answers: state.answers,
+          index: state.index,
+          updatedAt: new Date().toISOString(),
+        });
+      }
+
+      function restoreProgress() {
+        const saved = readStorage(STORAGE_KEYS.progress);
+        if (!saved || !Array.isArray(saved.answers) || saved.answers.length !== QUESTIONS.length) return;
+        state.answers = saved.answers.map((answer) =>
+          Number.isInteger(answer) && answer >= 0 && answer < QUIZ_CHARACTERS.length ? answer : null
+        );
+        const answered = state.answers.filter((answer) => answer !== null).length;
+        state.index = Math.min(Math.max(Number(saved.index) || answered, 0), QUESTIONS.length - 1);
+      }
+
+      function saveResult(result) {
+        writeStorage(STORAGE_KEYS.result, {
+          winner: result.winner,
+          raw: result.raw,
+          normalized: result.normalized,
+          completedAt: new Date().toISOString(),
+        });
+        clearProgress();
+      }
+
+      function resultUrl(winnerId) {
+        const url = new URL(window.location.href);
+        url.search = "";
+        url.hash = "";
+        url.searchParams.set("result", RESULT_SLUGS[winnerId]);
+        return url.toString();
+      }
+
+      function sharedResultId() {
+        const value = new URLSearchParams(window.location.search).get("result");
+        if (!value) return null;
+        if (/^\d+$/.test(value)) {
+          const id = Number(value);
+          return QUIZ_CHARACTERS[id] ? id : null;
+        }
+        return SLUG_TO_ID[value] ?? null;
+      }
+
+      function renderReturnBanner() {
+        const sharedId = sharedResultId();
+        if (sharedId !== null) {
+          returnBanner.classList.add("is-visible");
+          returnBanner.textContent = `You are viewing a shared ${QUIZ_CHARACTERS[sharedId].n} result.`;
+          return;
+        }
+
+        const savedResult = readStorage(STORAGE_KEYS.result);
+        const savedProgress = readStorage(STORAGE_KEYS.progress);
+        if (savedResult && QUIZ_CHARACTERS[savedResult.winner]) {
+          returnBanner.classList.add("is-visible");
+          returnBanner.textContent = `Welcome back, ${QUIZ_CHARACTERS[savedResult.winner].n}. Your result is saved on this device.`;
+          return;
+        }
+
+        if (savedProgress?.answers?.some((answer) => answer !== null)) {
+          returnBanner.classList.add("is-visible");
+          const count = savedProgress.answers.filter((answer) => answer !== null).length;
+          returnBanner.textContent = `Welcome back. Your progress is saved on this device: ${count} of 50 answered.`;
+          return;
+        }
+
+        returnBanner.classList.remove("is-visible");
+        returnBanner.textContent = "";
+      }
+
+      function answeredCount() {
+        return state.answers.filter((answer) => answer !== null).length;
+      }
+
+      function updateProgress() {
+        const answered = answeredCount();
+        const percent = Math.round((answered / QUESTIONS.length) * 100);
+        progressLabel.textContent = answered === 1 ? "1 of 50 answered" : `${answered} of 50 answered`;
+        progressPercent.textContent = `${percent}%`;
+        progressFill.style.width = `${percent}%`;
+      }
+
+      function chapterDisplayTitle(chapter) {
+        return chapter.em ? `${chapter.title} <em>${chapter.em}</em>` : chapter.title;
+      }
+
+      function renderChapters() {
+        const activeChapterIndex = QUESTIONS[state.index]?.chapterIndex ?? 0;
+        chapterList.innerHTML = CHAPTERS.map((chapter, index) => {
+          const title = chapter.em ? `${chapter.title} ${chapter.em}` : chapter.title;
+          return `<div class="chapter-pill${index === activeChapterIndex ? " is-active" : ""}">${chapter.num}: ${title}</div>`;
+        }).join("");
+      }
+
+      function renderCurrentChapter() {
+        const chapter = QUESTIONS[state.index]?.chapter ?? CHAPTERS[0];
+        currentChapterNumber.textContent = chapter.num;
+        currentChapterTitle.innerHTML = chapterDisplayTitle(chapter);
+        currentChapterDescription.textContent = chapter.sub;
+      }
+
+      function renderHeroineChips() {
+        heroineChips.innerHTML = QUIZ_CHARACTERS.map(
+          (character) => `<span class="heroine-chip">${character.n}</span>`
+        ).join("");
+      }
+
+      function renderQuestion() {
+        const question = QUESTIONS[state.index];
+        const selectedCharId = state.answers[state.index];
+        const chapterTitle = question.chapter.em
+          ? `${question.chapter.title} ${question.chapter.em}`
+          : question.chapter.title;
+
+        quizShell.classList.remove("is-result-mode");
+        quizApp.classList.remove("is-result-mode");
+        quizHero.classList.remove("is-result-hero");
+        heroTitle.innerHTML = "The Literary Heroine <em>Personality Test</em>";
+        heroCopy.textContent =
+          "Choose the answer that feels most true, not most flattering. The result engine scores every answer across all nine heroines, then normalizes the totals so the final match is fair.";
+        heroNavLink.textContent = "Take the Quiz";
+        heroNavLink.href = "#test";
+        stage.style.display = "block";
+        resultPanel.classList.remove("is-visible");
+        questionCount.textContent = `Question ${state.index + 1} of 50 · ${chapterTitle}`;
+        questionTitle.textContent = question.prompt;
+        questionNote.textContent = question.chapter.sub;
+        answersEl.innerHTML = question.options
+          .map(
+            (option, optionIndex) => `
+              <button class="answer${selectedCharId === option.charId ? " is-selected" : ""}" type="button" data-option="${optionIndex}">
+                <span class="answer-key">${OPTION_NUMERALS[optionIndex]}</span>
+                <span class="answer-text">${option.text}</span>
+              </button>
+            `
+          )
+          .join("");
+
+        answersEl.querySelectorAll(".answer").forEach((button) => {
+          button.addEventListener("click", () => {
+            state.answers[state.index] = question.options[Number(button.dataset.option)].charId;
+            saveProgress();
+            renderQuestion();
+          });
+        });
+
+        previousButton.disabled = state.index === 0;
+        nextButton.disabled = selectedCharId === null;
+        nextButton.textContent = state.index === QUESTIONS.length - 1 ? "See Result" : "Next";
+        renderCurrentChapter();
+        renderChapters();
+        updateProgress();
+        saveNote.textContent = "Progress saves automatically on this device.";
+      }
+
+      function selectedCharacterIds() {
+        return state.answers;
+      }
+
+      function calculateResult() {
+        const raw = Array(QUIZ_CHARACTERS.length).fill(0);
+        const answerIds = selectedCharacterIds();
+        answerIds.forEach((charId) => {
+          if (charId !== null) raw[charId] += 1;
+        });
+
+        const normalized = raw.map((score, id) => (APPEARANCES[id] > 0 ? (score / APPEARANCES[id]) * 100 : 0));
+        let top = 0;
+        let second = -1;
+        normalized.forEach((value, id) => {
+          if (value > normalized[top]) {
+            second = top;
+            top = id;
+          } else if (id !== top && (second === -1 || value > normalized[second])) {
+            second = id;
+          }
+        });
+
+        let winner = top;
+        if (second > -1 && Math.abs(normalized[top] - normalized[second]) < 2) {
+          const key = `${Math.min(top, second)}-${Math.max(top, second)}`;
+          if (TIEBREAK[key]) {
+            let topTieScore = 0;
+            let secondTieScore = 0;
+            TIEBREAK[key].forEach((questionIndex) => {
+              if (answerIds[questionIndex] === top) topTieScore += 1;
+              if (answerIds[questionIndex] === second) secondTieScore += 1;
+            });
+            if (secondTieScore > topTieScore) winner = second;
+          }
+        }
+
+        const ranked = QUIZ_CHARACTERS.map((character) => ({
+          ...character,
+          raw: raw[character.id],
+          pct: normalized[character.id],
+        })).sort((a, b) => b.pct - a.pct || b.raw - a.raw || a.id - b.id);
+
+        return { winner, raw, normalized, ranked, answerIds };
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function resultDetailFor(winner) {
+        return (
+          RESULT_DETAILS[winner.id] || {
+            meta: `${winner.bk}, ${winner.yr}`,
+            heroQuote: winner.qt,
+            lead: winner.ds,
+            entries: [{ type: "paragraph", text: winner.ds }],
+          }
+        );
+      }
+
+      function renderResultEntries(detail) {
+        let skippedHeroQuote = false;
+        return detail.entries
+          .map((entry) => {
+            if (entry.type === "quote" && entry.text === detail.heroQuote && !skippedHeroQuote) {
+              skippedHeroQuote = true;
+              return "";
+            }
+
+            const text = escapeHtml(entry.text);
+            if (entry.type === "quote") {
+              return `<blockquote class="result-entry is-quote">${text}</blockquote>`;
+            }
+
+            return `<p class="result-entry is-paragraph">${text}</p>`;
+          })
+          .join("");
+      }
+
+      function renderResult(result = calculateResult(), options = {}) {
+        const persist = options.persist !== false;
+        const updateUrl = options.updateUrl !== false;
+        const isShared = options.shared === true;
+        const winner = QUIZ_CHARACTERS[result.winner];
+        const detail = resultDetailFor(winner);
+        const maxPercent = Math.max(...result.ranked.map((character) => character.pct), 1);
+
+        if (persist) saveResult(result);
+        if (updateUrl) window.history.replaceState(null, "", resultUrl(winner.id));
+
+        quizShell.classList.add("is-result-mode");
+        quizApp.classList.add("is-result-mode");
+        quizHero.classList.add("is-result-hero");
+        heroTitle.textContent = "Your Test Result";
+        heroCopy.textContent = "";
+        heroNavLink.textContent = "Home";
+        heroNavLink.href = "index.html";
+        resultPanel.style.setProperty("--result-color", winner.cl);
+        stage.style.display = "none";
+        resultPanel.classList.add("is-visible");
+        resultPanel.innerHTML = `
+          <div class="result-layout">
+            <div class="result-copy-wrap">
+              <h2 class="result-title">
+                <span>You are</span>
+                <span class="result-name">${winner.n}</span>
+              </h2>
+              <p class="result-book">${escapeHtml(detail.meta)}</p>
+              <blockquote class="result-quote">${escapeHtml(detail.heroQuote)}</blockquote>
+              <p class="result-copy">${escapeHtml(detail.summary || detail.lead)}</p>
+              <div class="result-actions">
+                <a class="chapter-link" href="#full-result">Read The Full Chapter <span aria-hidden="true">→</span></a>
+              </div>
+            </div>
+            <div class="result-art" aria-hidden="true">
+              <div class="result-art-frame">
+                <img src="${RESULT_IMAGES[winner.id]}" alt="Portrait of ${winner.n}" width="960" height="1200" />
+              </div>
+            </div>
+          </div>
+          <section class="result-book-flow" id="full-result" aria-label="Your full ${escapeHtml(winner.n)} result">
+            <div class="result-book-spine">
+              <p class="eyebrow">Full Chapter</p>
+            </div>
+            <div class="result-pages">
+              ${renderResultEntries(detail)}
+            </div>
+          </section>
+          ${
+            result.ranked.length
+              ? `<div class="score-list">
+                  ${result.ranked
+                    .map((character) => {
+                      const percent = Math.round(character.pct);
+                      const width = Math.round((character.pct / maxPercent) * 100);
+                      return `
+                        <div class="score-row">
+                          <span>${character.n}</span>
+                          <span class="score-track"><span class="score-fill" style="width:${width}%;background:${character.id === winner.id ? character.cl : "var(--sage-deep)"}"></span></span>
+                          <span>${percent}%</span>
+                        </div>
+                      `;
+                    })
+                    .join("")}
+                </div>`
+              : ""
+          }
+          <p class="logic-note">
+            ${
+              isShared
+                ? "This result was opened from a shareable URL. Take the quiz yourself to generate your full score breakdown."
+                : "Routing audit: this page uses the attached test's exact 50 question routes. Each selected option adds +1 to its fixed heroine ID, raw scores are normalized by the provided APP appearance counts, and top-two results within 2% use the provided TIEBREAK question indices."
+            }
+          </p>
+          <div class="result-actions">
+            <button class="share-button" type="button" id="shareButton">Share Result</button>
+            <button class="restart-button" type="button" id="restartButton">Retake the Quiz</button>
+            <span class="share-status" id="shareStatus"></span>
+          </div>
+        `;
+        document.getElementById("shareButton").addEventListener("click", async () => {
+          const url = resultUrl(winner.id);
+          const status = document.getElementById("shareStatus");
+          try {
+            await navigator.clipboard.writeText(url);
+            status.textContent = "Share link copied.";
+          } catch {
+            window.prompt("Copy your result link:", url);
+            status.textContent = "Share link ready.";
+          }
+        });
+        document.getElementById("restartButton").addEventListener("click", () => {
+          state.index = 0;
+          state.answers = Array(QUESTIONS.length).fill(null);
+          clearProgress();
+          localStorage.removeItem(STORAGE_KEYS.result);
+          window.history.replaceState(null, "", window.location.pathname);
+          renderReturnBanner();
+          renderQuestion();
+        });
+        updateProgress();
+        renderReturnBanner();
+      }
+
+      previousButton.addEventListener("click", () => {
+        state.index = Math.max(0, state.index - 1);
+        saveProgress();
+        renderQuestion();
+      });
+
+      nextButton.addEventListener("click", () => {
+        if (state.answers[state.index] === null) return;
+        if (state.index === QUESTIONS.length - 1) {
+          renderResult();
+          return;
+        }
+        state.index += 1;
+        saveProgress();
+        renderQuestion();
+      });
+
+      window.quizDebug = {
+        APPEARANCES,
+        CHAPTERS,
+        QUESTION_ROUTES,
+        QUESTION_TEXT,
+        QUESTIONS,
+        QUIZ_CHARACTERS,
+        TIEBREAK,
+        state,
+        calculateResult,
+      };
+
+      renderHeroineChips();
+      renderReturnBanner();
+
+      const sharedId = sharedResultId();
+      if (sharedId !== null) {
+        renderResult(
+          {
+            winner: sharedId,
+            raw: Array(QUIZ_CHARACTERS.length).fill(0),
+            normalized: Array(QUIZ_CHARACTERS.length).fill(0),
+            ranked: [],
+            answerIds: [],
+          },
+          { persist: false, updateUrl: false, shared: true }
+        );
+      } else {
+        restoreProgress();
+        renderQuestion();
+      }
+    </script>
+  </body>
+</html>

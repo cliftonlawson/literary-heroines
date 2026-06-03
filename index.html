@@ -1,0 +1,1270 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Literary Heroines - Which one are you?</title>
+    <meta
+      name="description"
+      content="A personality quiz for women, matching you to one of nine beloved heroines from classic literature - from Elizabeth Bennet to Jo March."
+    />
+    <meta property="og:title" content="Literary Heroines - Which one are you?" />
+    <meta
+      property="og:description"
+      content="Discover which literary heroine you truly are. Nine women. One of them is you."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Poppins:wght@200;300;400;500&display=swap"
+    />
+    <style>
+      :root {
+        --radius: 0.25rem;
+        --paper: oklch(0.965 0.012 80);
+        --background: oklch(0.965 0.012 80);
+        --foreground: oklch(0.28 0.025 95);
+        --ink: oklch(0.28 0.025 95);
+        --ink-soft: oklch(0.42 0.028 95);
+        --card: oklch(0.98 0.008 85);
+        --muted: oklch(0.93 0.015 85);
+        --muted-foreground: oklch(0.48 0.025 95);
+        --primary-foreground: oklch(0.965 0.012 80);
+        --border: oklch(0.86 0.018 90);
+        --tan: oklch(0.7 0.07 60);
+        --sage: oklch(0.78 0.025 130);
+        --sage-deep: oklch(0.55 0.035 130);
+        --font-serif: "Newsreader", "Cormorant Garamond", serif;
+        --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+        border-color: var(--border);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--background);
+        color: var(--foreground);
+        font-family: var(--font-sans);
+        font-weight: 300;
+        letter-spacing: 0.01em;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        font-family: var(--font-serif);
+        font-weight: 300;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      .page {
+        min-height: 100vh;
+        background: var(--background);
+        color: var(--foreground);
+      }
+
+      .site-nav {
+        position: absolute;
+        inset: 0 0 auto;
+        z-index: 30;
+      }
+
+      .nav-inner {
+        width: min(100%, 80rem);
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.75rem 1.5rem;
+      }
+
+      .brand {
+        display: block;
+        line-height: 1.15;
+      }
+
+      .brand-main {
+        display: block;
+        font-family: var(--font-serif);
+        font-size: 1.25rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: white;
+      }
+
+      .brand-sub {
+        display: block;
+        margin-top: 0.1rem;
+        font-family: var(--font-serif);
+        font-size: 0.875rem;
+        font-style: italic;
+        letter-spacing: 0.2em;
+        color: rgb(255 255 255 / 0.8);
+      }
+
+      .nav-links {
+        display: none;
+        align-items: center;
+        gap: 3rem;
+      }
+
+      .nav-link,
+      .nav-cta {
+        font-size: 0.7rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: rgb(255 255 255 / 0.8);
+        transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
+      }
+
+      .nav-link:hover {
+        color: white;
+      }
+
+      .nav-cta {
+        display: none;
+        border: 1px solid rgb(255 255 255 / 0.4);
+        border-radius: 999px;
+        padding: 0.625rem 1.5rem;
+        color: white;
+      }
+
+      .nav-cta:hover {
+        background: white;
+        color: var(--ink);
+      }
+
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        padding: 8rem 1.5rem 5rem;
+        background-image: url("assets/hero-countryside.jpg");
+        background-position: center;
+        background-size: cover;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgb(52 45 34 / 0.55);
+      }
+
+      .decor-line {
+        display: none;
+        position: absolute;
+        top: 8rem;
+        left: 50%;
+        width: 42%;
+        height: 1px;
+        background: rgb(255 255 255 / 0.3);
+        pointer-events: none;
+      }
+
+      .decor-line.left {
+        transform: translateX(-110%);
+      }
+
+      .decor-line.right {
+        transform: translateX(10%);
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        width: min(100%, 56rem);
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .eyebrow {
+        font-family: var(--font-sans);
+        font-size: 0.75rem;
+        font-weight: 300;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+      }
+
+      .hero .eyebrow {
+        color: rgb(255 255 255 / 0.8);
+      }
+
+      .hero-title {
+        margin-top: 2.5rem;
+        font-size: clamp(3.55rem, 14vw, 6rem);
+        line-height: 1.05;
+        color: white;
+      }
+
+      .hero-title em {
+        font-style: italic;
+        color: var(--sage);
+      }
+
+      .hero-copy {
+        width: min(100%, 36rem);
+        margin: 2.5rem auto 0;
+        color: rgb(255 255 255 / 0.85);
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
+      .hero-actions {
+        margin-top: 3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .hero-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        border: 1px solid rgb(255 255 255 / 0.8);
+        background: rgb(255 255 255 / 0.1);
+        padding: 1rem 2.5rem;
+        color: white;
+        font-size: 0.7rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        backdrop-filter: blur(8px);
+        transition: background-color 180ms ease, border-color 180ms ease;
+      }
+
+      .hero-button:hover {
+        border-color: white;
+        background: rgb(255 255 255 / 0.2);
+      }
+
+      .hero-button span {
+        transition: transform 180ms ease;
+      }
+
+      .hero-button:hover span {
+        transform: translateX(0.25rem);
+      }
+
+      .hero-note {
+        font-family: var(--font-serif);
+        font-size: 0.875rem;
+        font-style: italic;
+        color: rgb(255 255 255 / 0.7);
+      }
+
+      .hero-signature {
+        position: absolute;
+        left: 50%;
+        bottom: 2rem;
+        z-index: 10;
+        transform: translateX(-50%);
+        width: max-content;
+        font-family: var(--font-serif);
+        font-size: 0.75rem;
+        font-style: italic;
+        letter-spacing: 0.18em;
+        color: rgb(255 255 255 / 0.6);
+      }
+
+      .why-matters {
+        position: relative;
+        overflow: hidden;
+        background:
+          linear-gradient(180deg, rgb(250 247 240), rgb(244 236 224)),
+          var(--paper);
+        color: var(--ink);
+        padding: 4.75rem 0 5.2rem;
+      }
+
+      .why-shell {
+        position: relative;
+        z-index: 1;
+        width: min(100%, 80rem);
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .why-kicker {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        color: rgb(135 89 72);
+      }
+
+      .why-kicker::after {
+        content: "";
+        width: 3rem;
+        height: 1px;
+        background: currentColor;
+        opacity: 0.65;
+      }
+
+      .why-layout {
+        display: grid;
+        gap: clamp(2rem, 5vw, 4.75rem);
+      }
+
+      .why-visual-column {
+        display: grid;
+        gap: 2rem;
+      }
+
+      .why-heading {
+        max-width: 43rem;
+      }
+
+      .why-title {
+        margin-top: 1.1rem;
+        color: rgb(54 48 43);
+        font-size: clamp(2.35rem, 3.15vw, 3.35rem);
+        line-height: 1.04;
+      }
+
+      .why-title em {
+        display: block;
+        color: rgb(123 83 68);
+        font-style: italic;
+      }
+
+      .why-intro {
+        margin-top: 1.15rem;
+        color: rgb(86 72 63);
+        font-family: var(--font-serif);
+        font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+        line-height: 1.62;
+      }
+
+      .why-image-wrap {
+        min-height: 28rem;
+        overflow: hidden;
+        background: rgb(53 43 33);
+      }
+
+      .why-image-wrap img {
+        width: 100%;
+        height: 100%;
+        min-height: 28rem;
+        object-fit: cover;
+        object-position: 47% center;
+        filter: saturate(0.86) contrast(0.92) brightness(1.05);
+      }
+
+      .problem-grid {
+        display: grid;
+        gap: 1.7rem;
+        margin-top: 1.6rem;
+      }
+
+      .problem-card {
+        display: grid;
+        grid-template-columns: 4.6rem minmax(0, 1fr);
+        gap: 1.2rem;
+        align-items: start;
+      }
+
+      .problem-number {
+        display: block;
+        color: rgb(190 157 141 / 0.76);
+        font-family: var(--font-serif);
+        font-size: clamp(3.1rem, 7vw, 4.4rem);
+        font-style: italic;
+        line-height: 0.88;
+      }
+
+      .problem-title {
+        color: rgb(117 75 66);
+        font-family: var(--font-sans);
+        font-size: 0.95rem;
+        font-weight: 500;
+        line-height: 1.5;
+      }
+
+      .problem-copy {
+        margin-top: 0.15rem;
+        color: rgb(112 81 74);
+        font-family: var(--font-sans);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      .donation {
+        position: relative;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 50% 0%, rgb(255 255 255 / 0.56), transparent 34rem),
+          linear-gradient(180deg, rgb(244 236 224), rgb(250 247 240));
+        color: var(--ink);
+        padding: 5.75rem 1.5rem 6rem;
+        text-align: center;
+      }
+
+      .donation::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(90deg, rgb(86 72 63 / 0.045) 1px, transparent 1px),
+          linear-gradient(rgb(86 72 63 / 0.035) 1px, transparent 1px);
+        background-size: 5.5rem 5.5rem;
+        mask-image: radial-gradient(circle at center, black 0%, transparent 72%);
+        opacity: 0.45;
+        pointer-events: none;
+      }
+
+      .donation-inner {
+        position: relative;
+        z-index: 1;
+        width: min(100%, 58rem);
+        margin: 0 auto;
+      }
+
+      .donation .eyebrow {
+        color: rgb(117 75 66);
+        font-weight: 400;
+      }
+
+      .donation-title {
+        margin-top: 1.45rem;
+        color: rgb(54 48 43);
+        font-size: clamp(3rem, 3.4vw, 6.8rem);
+        line-height: 0.94;
+      }
+
+      .donation-title em {
+        display: block;
+        color: rgb(123 83 68);
+        font-style: italic;
+      }
+
+      .donation-copy {
+        width: min(100%, 43rem);
+        margin: 2.25rem auto 0;
+        color: rgb(86 72 63);
+        font-size: clamp(1rem, 1.4vw, 1.12rem);
+        line-height: 1.85;
+      }
+
+      .donation-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 4.2rem;
+        margin-top: 3rem;
+        border: 1px solid rgb(54 48 43);
+        background: rgb(54 48 43);
+        padding: 1.15rem 2.75rem;
+        color: var(--primary-foreground);
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+      }
+
+      .donation-button:hover {
+        background: transparent;
+        color: rgb(54 48 43);
+        transform: translateY(-2px);
+      }
+
+      .donation-button:focus-visible {
+        outline: 2px solid rgb(117 75 66);
+        outline-offset: 4px;
+      }
+
+      .heroines {
+        background: var(--background);
+        padding: 6rem 0;
+      }
+
+      .container {
+        width: min(100%, 80rem);
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .section-head {
+        text-align: center;
+      }
+
+      .section-title {
+        margin-top: 1.5rem;
+        font-size: clamp(3rem, 8vw, 4.5rem);
+        line-height: 1.05;
+        color: var(--foreground);
+      }
+
+      .section-title em {
+        font-family: var(--font-serif);
+        font-style: italic;
+        color: var(--sage-deep);
+      }
+
+      .section-copy {
+        width: min(100%, 36rem);
+        margin: 2rem auto 0;
+        color: var(--muted-foreground);
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
+      .carousel-desktop {
+        display: none;
+        position: relative;
+        margin-top: 4.5rem;
+      }
+
+      .cards {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        gap: clamp(2rem, 5vw, 5.5rem);
+      }
+
+      .heroine-card {
+        flex: 0 0 clamp(11rem, 16vw, 14rem);
+        max-width: 14rem;
+        opacity: 0.48;
+        transform: translateY(2.25rem) scale(0.94);
+        transition: flex-basis 500ms ease, max-width 500ms ease, opacity 500ms ease,
+          transform 500ms ease;
+      }
+
+      .heroine-card.is-active {
+        flex-basis: clamp(16rem, 23vw, 21rem);
+        max-width: 21rem;
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      .portrait {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 4 / 5;
+        background: rgb(255 255 255 / 0.38);
+        padding: clamp(0.5rem, 0.85vw, 0.8rem);
+      }
+
+      .portrait::after {
+        content: "";
+        position: absolute;
+        inset: clamp(1rem, 1.6vw, 1.5rem);
+        border: 1px solid rgb(255 255 255 / 0.45);
+        pointer-events: none;
+      }
+
+      .portrait img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 700ms ease;
+      }
+
+      .portrait img.fit-contain {
+        object-fit: contain;
+        background: rgb(241 228 198 / 0.9);
+      }
+
+      .heroine-card:hover .portrait img {
+        transform: scale(1.05);
+      }
+
+      .card-text {
+        margin-top: 1.45rem;
+        text-align: left;
+      }
+
+      .trait {
+        color: var(--tan);
+        font-weight: 500;
+      }
+
+      .heroine-name {
+        margin-top: 0.8rem;
+        font-size: clamp(1.8rem, 2.4vw, 2.45rem);
+        line-height: 0.95;
+        color: var(--foreground);
+      }
+
+      .book {
+        margin-top: 0.55rem;
+        font-family: var(--font-serif);
+        font-size: 0.875rem;
+        font-style: italic;
+        color: var(--muted-foreground);
+      }
+
+      .description {
+        margin-top: 1.25rem;
+        color: var(--ink-soft);
+        font-size: 0.875rem;
+        line-height: 1.7;
+      }
+
+      .carousel-controls {
+        margin-top: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+      }
+
+      .arrow-button {
+        display: flex;
+        width: 3rem;
+        height: 3rem;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: transparent;
+        color: var(--ink-soft);
+        cursor: pointer;
+        transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+      }
+
+      .arrow-button:hover {
+        border-color: var(--sage-deep);
+        background: var(--sage-deep);
+        color: var(--primary-foreground);
+      }
+
+      .arrow-button svg {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+
+      .dots {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .dot {
+        height: 2px;
+        width: 1.25rem;
+        border: 0;
+        background: var(--border);
+        cursor: pointer;
+        transition: width 300ms ease, background-color 300ms ease;
+      }
+
+      .dot:hover {
+        background: var(--ink-soft);
+      }
+
+      .dot.is-active {
+        width: 2.5rem;
+        background: var(--sage-deep);
+      }
+
+      .carousel-mobile {
+        margin-top: 4rem;
+      }
+
+      .carousel-mobile .heroine-card {
+        width: 100%;
+        max-width: 21rem;
+        margin: 0 auto;
+        opacity: 1;
+        transform: none;
+      }
+
+      .carousel-mobile .card-text {
+        text-align: center;
+      }
+
+      .carousel-mobile .heroine-name {
+        font-size: 2rem;
+        line-height: 1.05;
+      }
+
+      .mobile-controls {
+        margin-top: 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .carousel-cta {
+        margin: 4rem auto 0;
+        text-align: center;
+      }
+
+      .carousel-cta-copy {
+        width: min(100%, 34rem);
+        margin: 0 auto;
+        color: var(--muted-foreground);
+        font-family: var(--font-serif);
+        font-size: 1.05rem;
+        font-style: italic;
+        line-height: 1.6;
+      }
+
+      .carousel-cta-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 3.9rem;
+        margin-top: 1.35rem;
+        border: 1px solid rgb(54 48 43);
+        background: rgb(54 48 43);
+        padding: 1rem 1.75rem;
+        color: var(--primary-foreground);
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+        transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+      }
+
+      .carousel-cta-button:hover {
+        background: transparent;
+        color: rgb(54 48 43);
+        transform: translateY(-2px);
+      }
+
+      .count {
+        font-family: var(--font-serif);
+        font-size: 0.875rem;
+        font-style: italic;
+        color: var(--muted-foreground);
+      }
+
+      .footer {
+        border-top: 1px solid var(--border);
+        background: var(--background);
+      }
+
+      .footer-inner {
+        width: min(100%, 80rem);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        padding: 2.5rem 1.5rem;
+      }
+
+      .footer-brand {
+        font-family: var(--font-serif);
+        font-size: 0.875rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--foreground);
+      }
+
+      .footer-brand em {
+        font-style: italic;
+        color: var(--sage-deep);
+      }
+
+      .footer-copy {
+        color: var(--muted-foreground);
+        font-size: 0.7rem;
+        letter-spacing: 0.3em;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      @media (min-width: 768px) {
+        .nav-links {
+          display: flex;
+        }
+
+        .nav-cta {
+          display: inline-block;
+        }
+
+        .decor-line {
+          display: block;
+        }
+
+        .hero-title {
+          font-size: clamp(6rem, 9vw, 8rem);
+        }
+
+        .hero-copy {
+          font-size: 1.125rem;
+        }
+
+        .heroines {
+          padding: 8rem 0;
+        }
+
+        .why-matters {
+          padding: 6.25rem 0;
+        }
+
+        .donation {
+          padding: 7.5rem 1.5rem 7.75rem;
+        }
+
+        .why-layout {
+          grid-template-columns: minmax(19rem, 0.92fr) minmax(0, 1fr);
+          align-items: start;
+        }
+
+        .problem-grid {
+          gap: 1.35rem;
+          margin-top: 1.5rem;
+        }
+
+        .carousel-desktop {
+          display: block;
+        }
+
+        .carousel-mobile {
+          display: none;
+        }
+
+        .footer-inner {
+          flex-direction: row;
+        }
+      }
+
+      @media (min-width: 768px) and (max-width: 1023px) {
+        .heroine-card:not(.is-active) {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-nav">
+        <div class="nav-inner">
+          <a href="#" class="brand" aria-label="Literary Heroines home">
+            <span class="brand-main">Literary</span>
+            <span class="brand-sub">Heroines</span>
+          </a>
+
+          <nav class="nav-links" aria-label="Primary navigation">
+            <a href="quiz.html" class="nav-link">The Quiz</a>
+            <a href="#heroines" class="nav-link">Heroines</a>
+            <a href="#" class="nav-link">Journal</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+          </nav>
+
+          <a href="quiz.html" class="nav-cta">Take the Quiz</a>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="decor-line left" aria-hidden="true"></div>
+          <div class="decor-line right" aria-hidden="true"></div>
+
+          <div class="hero-content">
+            <p class="eyebrow">A Quiz for Women Who Read</p>
+
+            <h1 class="hero-title">
+              Which
+              <em> literary </em>
+              heroine
+              <br />
+              lives inside you?
+            </h1>
+
+            <p class="hero-copy">
+              Are you Elizabeth's sharp wit, Jane Eyre's quiet conviction, or Jo March's
+              restless pen? Answer fifty thoughtful questions and meet the heroine the
+              page has been keeping for you.
+            </p>
+
+            <div class="hero-actions">
+              <a href="quiz.html" class="hero-button">
+                Begin the Quiz
+                <span aria-hidden="true">→</span>
+              </a>
+              <p class="hero-note">Takes about four minutes · No email required</p>
+            </div>
+          </div>
+
+          <p class="hero-signature">~ est. for the bookish ~</p>
+        </section>
+
+        <section class="heroines" id="heroines">
+          <div class="container">
+            <div class="section-head">
+              <p class="eyebrow">Meet the Heroines</p>
+              <h2 class="section-title">
+                Nine women.
+                <br />
+                <em>One of them is you.</em>
+              </h2>
+              <p class="section-copy">
+                From the drawing rooms of Regency England to the windswept Yorkshire moors,
+                these are the women who taught us how to be brave, witty, and entirely
+                ourselves.
+              </p>
+            </div>
+
+            <div class="carousel-desktop">
+              <div class="cards" id="desktopCards"></div>
+
+              <div class="carousel-controls">
+                <button type="button" class="arrow-button" id="previousHeroine" aria-label="Previous heroine">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m15 18-6-6 6-6" />
+                  </svg>
+                </button>
+
+                <div class="dots" id="dots"></div>
+
+                <button type="button" class="arrow-button" id="nextHeroine" aria-label="Next heroine">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m9 18 6-6-6-6" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="carousel-mobile">
+              <article id="mobileCard"></article>
+
+              <div class="mobile-controls">
+                <button type="button" class="arrow-button" id="previousHeroineMobile" aria-label="Previous heroine">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m15 18-6-6 6-6" />
+                  </svg>
+                </button>
+                <p class="count" id="heroineCount">1 / 9</p>
+                <button type="button" class="arrow-button" id="nextHeroineMobile" aria-label="Next heroine">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m9 18 6-6-6-6" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="carousel-cta">
+              <p class="carousel-cta-copy">
+                One of them is waiting for you at the end of the questions.
+              </p>
+              <a class="carousel-cta-button" href="quiz.html">Find Out Which One You Are</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="why-matters" id="why-this-matters">
+          <div class="why-shell">
+            <div class="why-layout">
+              <div class="why-visual-column">
+                <div class="why-heading">
+                  <p class="eyebrow why-kicker">Why This Matters</p>
+                  <h2 class="why-title">
+                    The Problems With Every
+                    <em>Personality Test You’ve Taken</em>
+                  </h2>
+                  <p class="why-intro">
+                    Personality tests are popular because they work: self-knowledge genuinely
+                    helps people communicate better, choose more wisely, and understand why
+                    they move through the world the way they do. But every existing test has a
+                    serious limitation.
+                  </p>
+                </div>
+
+                <div class="why-image-wrap">
+                  <img src="assets/problem.png" alt="A shelf of classic novels for the personality test comparison section" loading="lazy" />
+                </div>
+              </div>
+
+              <div class="problem-grid">
+                <article class="problem-card">
+                  <span class="problem-number">I.</span>
+                  <div>
+                    <h3 class="problem-title">Myers-Briggs Belongs to the Boardroom.</h3>
+                    <p class="problem-copy">
+                      Designed for mid-century corporate hiring. It describes how you process
+                      information at work, not who you are when you're alone with a book at
+                      midnight. Literary Heroines asks about love, courage, grief, and freedom.
+                      Myers-Briggs has no category for any of those.
+                    </p>
+                  </div>
+                </article>
+
+                <article class="problem-card">
+                  <span class="problem-number">II.</span>
+                  <div>
+                    <h3 class="problem-title">The Enneagram Can Feel Like a Diagnosis.</h3>
+                    <p class="problem-copy">
+                      It's profound but heavy. It maps your deepest wounds. Sometimes you don't
+                      want to confront your core trauma over brunch. Sometimes you want to be
+                      celebrated for who you are, not analyzed for what broke you.
+                    </p>
+                  </div>
+                </article>
+
+                <article class="problem-card">
+                  <span class="problem-number">III.</span>
+                  <div>
+                    <h3 class="problem-title">Pop Quizzes Don’t Take You Seriously.</h3>
+                    <p class="problem-copy">
+                      Most character quizzes are six questions with obvious routing. Ours is
+                      fifty, designed to genuinely surprise you. Readers who've called
+                      themselves Elizabeth Bennet for twenty years sometimes discover they're
+                      actually Anne Elliot. The test earns that.
+                    </p>
+                  </div>
+                </article>
+
+                <article class="problem-card">
+                  <span class="problem-number">IV.</span>
+                  <div>
+                    <h3 class="problem-title">Most Tests Ask How You Behave. This One Asks What You Believe.</h3>
+                    <p class="problem-copy">
+                      What does love actually require of you? What would you never compromise?
+                      What do you reach for when your heart breaks? Those are harder questions
+                      than "are you an introvert or an extrovert," and they produce truer
+                      answers.
+                    </p>
+                  </div>
+                </article>
+
+                <article class="problem-card">
+                  <span class="problem-number">V.</span>
+                  <div>
+                    <h3 class="problem-title">These Characters Have Been Doing This Work for Two Hundred Years.</h3>
+                    <p class="problem-copy">
+                      This isn't a personality framework invented for a marketing deck. Austen,
+                      the Brontës, and Alcott created women so precisely drawn that readers have
+                      been finding themselves in them for centuries. The test draws on that
+                      literary depth rather than starting from scratch.
+                    </p>
+                  </div>
+                </article>
+
+                <article class="problem-card">
+                  <span class="problem-number">VI.</span>
+                  <div>
+                    <h3 class="problem-title">Your Result Is a Portrait, Not a Label.</h3>
+                    <p class="problem-copy">
+                      Not a four-letter code. Not a number on a circle. A heroine, a world, a
+                      wardrobe, a defining moment from her story, and a full breakdown of how
+                      much of each character lives inside you. Something you'd actually want to
+                      share.
+                    </p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="donation" aria-labelledby="donation-title">
+          <div class="donation-inner">
+            <p class="eyebrow">Always free, always will be.</p>
+            <h2 class="donation-title" id="donation-title">
+              But if you enjoyed it, buy us a
+              <em>cup of tea?</em>
+            </h2>
+            <p class="donation-copy">
+              No subscriptions. No paywalls. We built Literary Heroines because the right
+              story can make a person feel less alone. If your result surprised you,
+              delighted you, or gave you a truer name for something inside yourself, a small
+              contribution helps keep the quiz free for the next reader who needs it.
+            </p>
+            <a class="donation-button" href="#" aria-label="Donate to support Literary Heroines">
+              Donate Now
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="footer-inner">
+          <p class="footer-brand">Literary <em>Heroines</em></p>
+          <p class="footer-copy" id="footerYear">© 2026 · A love letter to the women on the page</p>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const heroines = [
+        {
+          name: "Elizabeth Bennet",
+          novel: "Pride and Prejudice",
+          author: "Jane Austen",
+          trait: "The Witty Observer",
+          description:
+            "Sharp-tongued and quick to judge, you trust your mind above all — but allow yourself to be moved when the world surprises you.",
+          image: "assets/elizabeth-bennet-sketch-portrait.png",
+        },
+        {
+          name: "Jane Bennet",
+          novel: "Pride and Prejudice",
+          author: "Jane Austen",
+          trait: "The Gentle Heart",
+          description:
+            "You see the best in everyone. Your warmth is a quiet kind of courage that holds others steady.",
+          image: "assets/jane-bennet-sketch-portrait.png",
+        },
+        {
+          name: "Catherine Earnshaw",
+          novel: "Wuthering Heights",
+          author: "Emily Brontë",
+          trait: "The Untamed Soul",
+          description:
+            "Wild, passionate, fiercely loyal. You love the moors of your own mind and refuse to be tamed by anyone's rules.",
+          image: "assets/catherine-earnshaw-sketch-portrait.png",
+        },
+        {
+          name: "Emma Woodhouse",
+          novel: "Emma",
+          author: "Jane Austen",
+          trait: "The Charming Matchmaker",
+          description:
+            "Confident, clever, and a little meddlesome. You love a project — especially when the project is someone else's happiness.",
+          image: "assets/emma-woodhouse-sketch-portrait.png",
+        },
+        {
+          name: "Anne Elliot",
+          novel: "Persuasion",
+          author: "Jane Austen",
+          trait: "The Quiet Strength",
+          description:
+            "Thoughtful and steady, you carry your feelings deeply. Your kind of love is patient — and worth the wait.",
+          image: "assets/anne-elliot-sketch-portrait.png",
+        },
+        {
+          name: "Marianne Dashwood",
+          novel: "Sense and Sensibility",
+          author: "Jane Austen",
+          trait: "The Romantic",
+          description:
+            "You feel everything fully. Music, poetry, weather — life moves through you with intensity and color.",
+          image: "assets/marianne-dashwood-sketch-portrait.png",
+        },
+        {
+          name: "Elinor Dashwood",
+          novel: "Sense and Sensibility",
+          author: "Jane Austen",
+          trait: "The Steady Mind",
+          description:
+            "Composed and considerate, you are the one others lean on. Reason is your love language — and so is sacrifice.",
+          image: "assets/elinor-dashwood-sketch-portrait.png",
+        },
+        {
+          name: "Jane Eyre",
+          novel: "Jane Eyre",
+          author: "Charlotte Brontë",
+          trait: "The Principled Spirit",
+          description:
+            "Quiet on the surface, immovable underneath. You will not bend your conscience for anyone — and that is your power.",
+          image: "assets/jane-eyre-sketch-portrait.png",
+        },
+        {
+          name: "Jo March",
+          novel: "Little Women",
+          author: "Louisa May Alcott",
+          trait: "The Restless Creator",
+          description:
+            "Ambitious, ink-stained, refusing to be small. You are writing yourself into a life that no one else has imagined for you.",
+          image: "assets/jo-march-sketch-portrait.png",
+        },
+      ];
+
+      let index = 0;
+      const total = heroines.length;
+      const desktopCards = document.getElementById("desktopCards");
+      const mobileCard = document.getElementById("mobileCard");
+      const dots = document.getElementById("dots");
+      const heroineCount = document.getElementById("heroineCount");
+
+      function cardMarkup(heroine, active) {
+        const imageClass = heroine.fit === "contain" ? "fit-contain" : "";
+        return `
+          <article class="heroine-card${active ? " is-active" : ""}">
+            <div class="portrait">
+              <img class="${imageClass}" src="${heroine.image}" alt="Portrait of ${heroine.name}" loading="lazy" width="768" height="1024" />
+            </div>
+            <div class="card-text">
+              <p class="eyebrow trait">${heroine.trait}</p>
+              <h3 class="heroine-name">${heroine.name}</h3>
+              <p class="book">${heroine.novel} · ${heroine.author}</p>
+              ${active ? `<p class="description">${heroine.description}</p>` : ""}
+            </div>
+          </article>
+        `;
+      }
+
+      function render() {
+        const visible = [-1, 0, 1].map((offset) => {
+          const heroineIndex = (index + offset + total) % total;
+          return { heroine: heroines[heroineIndex], active: offset === 0 };
+        });
+
+        desktopCards.innerHTML = visible
+          .map(({ heroine, active }) => cardMarkup(heroine, active))
+          .join("");
+
+        mobileCard.innerHTML = cardMarkup(heroines[index], true);
+        heroineCount.textContent = `${index + 1} / ${total}`;
+
+        dots.innerHTML = heroines
+          .map(
+            (_, i) =>
+              `<button type="button" class="dot${i === index ? " is-active" : ""}" aria-label="Go to heroine ${i + 1}" data-index="${i}"></button>`
+          )
+          .join("");
+
+        dots.querySelectorAll("button").forEach((button) => {
+          button.addEventListener("click", () => {
+            index = Number(button.dataset.index);
+            render();
+          });
+        });
+      }
+
+      function go(direction) {
+        index = (index + direction + total) % total;
+        render();
+      }
+
+      document.getElementById("previousHeroine").addEventListener("click", () => go(-1));
+      document.getElementById("nextHeroine").addEventListener("click", () => go(1));
+      document.getElementById("previousHeroineMobile").addEventListener("click", () => go(-1));
+      document.getElementById("nextHeroineMobile").addEventListener("click", () => go(1));
+
+      document.getElementById("footerYear").textContent =
+        `© ${new Date().getFullYear()} · A love letter to the women on the page`;
+
+      render();
+    </script>
+  </body>
+</html>

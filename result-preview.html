@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Literary Heroines - Result Preview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Poppins:wght@200;300;400;500&display=swap"
+    />
+    <style>
+      :root {
+        --paper: oklch(0.965 0.012 80);
+        --ink: oklch(0.28 0.025 95);
+        --ink-soft: oklch(0.42 0.028 95);
+        --muted-foreground: oklch(0.48 0.025 95);
+        --border: oklch(0.86 0.018 90);
+        --tan: oklch(0.7 0.07 60);
+        --sage: oklch(0.78 0.025 130);
+        --sage-deep: oklch(0.55 0.035 130);
+        --font-serif: "Newsreader", serif;
+        --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 12% 4%, rgb(122 139 99 / 0.16), transparent 27rem),
+          radial-gradient(circle at 88% 10%, rgb(196 122 42 / 0.12), transparent 24rem),
+          linear-gradient(180deg, rgb(250 247 240), rgb(239 230 211));
+        color: var(--ink);
+        font-family: var(--font-sans);
+        font-weight: 300;
+        letter-spacing: 0.01em;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .site-nav {
+        position: relative;
+        z-index: 5;
+      }
+
+      .nav-inner {
+        width: min(100%, 88rem);
+        margin: 0 auto;
+        padding: 1.45rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+      }
+
+      .brand {
+        display: block;
+        line-height: 1.12;
+      }
+
+      .brand-main {
+        display: block;
+        font-family: var(--font-serif);
+        font-size: 1.1rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+      }
+
+      .brand-sub {
+        display: block;
+        margin-top: 0.08rem;
+        color: var(--sage-deep);
+        font-family: var(--font-serif);
+        font-size: 0.85rem;
+        font-style: italic;
+        letter-spacing: 0.18em;
+      }
+
+      .nav-links {
+        display: none;
+        align-items: center;
+        gap: clamp(1.5rem, 4vw, 3rem);
+      }
+
+      .nav-link {
+        color: var(--ink-soft);
+        font-size: 0.68rem;
+        font-weight: 400;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+      }
+
+      .nav-link:hover {
+        color: var(--ink);
+      }
+
+      .result-page {
+        min-height: calc(100vh - 5rem);
+        display: flex;
+        align-items: center;
+        padding: clamp(3rem, 8vh, 7rem) 1.5rem clamp(4rem, 8vh, 6rem);
+      }
+
+      .result-shell {
+        width: min(100%, 88rem);
+        margin: 0 auto;
+      }
+
+      .result-layout {
+        display: grid;
+        gap: clamp(2.5rem, 7vw, 6.5rem);
+        align-items: center;
+      }
+
+      .result-copy {
+        max-width: 40rem;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: var(--sage-deep);
+        font-size: 0.72rem;
+        font-weight: 400;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+      }
+
+      .result-title {
+        margin: 1.2rem 0 0;
+        color: rgb(54 48 43);
+        font-family: var(--font-serif);
+        font-size: clamp(4rem, 9vw, 8rem);
+        font-weight: 300;
+        line-height: 0.88;
+      }
+
+      .result-title span {
+        display: block;
+      }
+
+      .result-name {
+        color: var(--heroine-color, var(--sage-deep));
+      }
+
+      .result-book {
+        margin-top: 1rem;
+        color: var(--muted-foreground);
+        font-family: var(--font-serif);
+        font-size: 1.1rem;
+        font-style: italic;
+      }
+
+      .pull-quote {
+        margin: clamp(2rem, 4vw, 3rem) 0 0;
+        color: rgb(67 55 48);
+        font-family: var(--font-serif);
+        font-size: clamp(1.55rem, 2.6vw, 2.25rem);
+        font-style: italic;
+        line-height: 1.16;
+      }
+
+      .pull-quote::before {
+        content: "“";
+        color: rgb(190 157 141 / 0.68);
+      }
+
+      .pull-quote::after {
+        content: "”";
+        color: rgb(190 157 141 / 0.68);
+      }
+
+      .result-description {
+        margin: 1.5rem 0 0;
+        color: var(--ink-soft);
+        font-family: var(--font-serif);
+        font-size: clamp(1rem, 1.4vw, 1.15rem);
+        line-height: 1.76;
+      }
+
+      .result-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.85rem;
+        margin-top: 2rem;
+      }
+
+      .result-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 3.8rem;
+        border: 1px solid rgb(54 48 43);
+        background: transparent;
+        padding: 1rem 1.35rem;
+        color: rgb(54 48 43);
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+      }
+
+      .result-button.primary {
+        background: rgb(54 48 43);
+        color: var(--paper);
+      }
+
+      .result-button:hover {
+        transform: translateY(-2px);
+      }
+
+      .result-button.primary:hover {
+        background: transparent;
+        color: rgb(54 48 43);
+      }
+
+      .result-art {
+        justify-self: center;
+        width: min(100%, 38rem);
+      }
+
+      .result-art-frame {
+        position: relative;
+        background:
+          linear-gradient(180deg, rgb(255 255 255 / 0.42), rgb(235 223 204 / 0.54)),
+          rgb(255 255 255 / 0.38);
+        padding: clamp(0.7rem, 1.4vw, 1rem);
+      }
+
+      .result-art-frame::after {
+        content: "";
+        position: absolute;
+        inset: clamp(1.15rem, 2vw, 1.65rem);
+        border: 1px solid rgb(255 255 255 / 0.5);
+        pointer-events: none;
+      }
+
+      .result-art img {
+        width: 100%;
+        height: auto;
+        max-height: min(70vh, 48rem);
+        object-fit: contain;
+        background: rgb(241 228 198 / 0.64);
+      }
+
+      .preview-tabs-wrap {
+        margin-top: clamp(3rem, 6vw, 5rem);
+        border-top: 1px solid rgb(77 62 42 / 0.12);
+        padding-top: 1rem;
+      }
+
+      .preview-tabs {
+        display: flex;
+        gap: 0.45rem 1.1rem;
+        flex-wrap: wrap;
+        margin-top: 0.8rem;
+      }
+
+      .preview-tab {
+        border: 0;
+        border-bottom: 1px solid transparent;
+        background: transparent;
+        padding: 0.25rem 0;
+        color: var(--muted-foreground);
+        font-family: var(--font-serif);
+        font-size: 0.98rem;
+        cursor: pointer;
+      }
+
+      .preview-tab:hover,
+      .preview-tab.is-active {
+        border-color: currentColor;
+        color: var(--ink);
+      }
+
+      @media (min-width: 780px) {
+        .nav-links {
+          display: flex;
+        }
+
+        .result-layout {
+          grid-template-columns: minmax(0, 0.88fr) minmax(24rem, 1fr);
+        }
+
+        .result-copy {
+          justify-self: end;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-nav">
+      <div class="nav-inner">
+        <a class="brand" href="index.html" aria-label="Back to Literary Heroines">
+          <span class="brand-main">Literary</span>
+          <span class="brand-sub">Heroines</span>
+        </a>
+        <nav class="nav-links" aria-label="Preview navigation">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="quiz.html" class="nav-link">The Quiz</a>
+          <a href="index.html#heroines" class="nav-link">Heroines</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="result-page">
+      <div class="result-shell">
+        <section class="result-layout" aria-live="polite">
+          <div class="result-copy">
+            <p class="eyebrow">Your Result</p>
+            <h1 class="result-title">
+              <span>You are</span>
+              <span class="result-name" id="resultName"></span>
+            </h1>
+            <p class="result-book" id="resultBook"></p>
+            <blockquote class="pull-quote" id="resultQuote"></blockquote>
+            <p class="result-description" id="resultDescription"></p>
+            <div class="result-actions">
+              <a class="result-button primary" href="quiz.html">Retake the Quiz</a>
+              <a class="result-button" href="index.html#heroines">Meet the Heroines</a>
+            </div>
+          </div>
+
+          <div class="result-art" aria-hidden="true">
+            <div class="result-art-frame">
+              <img id="resultImage" alt="" width="960" height="1200" />
+            </div>
+          </div>
+        </section>
+
+        <section class="preview-tabs-wrap" aria-label="Preview another heroine">
+          <p class="eyebrow">Preview another result</p>
+          <div class="preview-tabs" id="previewTabs"></div>
+        </section>
+      </div>
+    </main>
+
+    <script type="module">
+      import { QUIZ_CHARACTERS } from "./assets/quiz-data.js";
+
+      const resultImages = {
+        0: "assets/elizabeth-bennet-sketch-portrait.png",
+        1: "assets/jane-bennet-sketch-portrait.png",
+        2: "assets/emma-woodhouse-sketch-portrait.png",
+        3: "assets/anne-elliot-sketch-portrait.png",
+        4: "assets/marianne-dashwood-sketch-portrait.png",
+        5: "assets/elinor-dashwood-sketch-portrait.png",
+        6: "assets/jane-eyre-sketch-portrait.png",
+        7: "assets/catherine-earnshaw-sketch-portrait.png",
+        8: "assets/jo-march-sketch-portrait.png",
+      };
+
+      const tabs = document.getElementById("previewTabs");
+      const nameEl = document.getElementById("resultName");
+      const bookEl = document.getElementById("resultBook");
+      const quoteEl = document.getElementById("resultQuote");
+      const descriptionEl = document.getElementById("resultDescription");
+      const imageEl = document.getElementById("resultImage");
+
+      function renderResult(id) {
+        const heroine = QUIZ_CHARACTERS[id] || QUIZ_CHARACTERS[3];
+        document.documentElement.style.setProperty("--heroine-color", heroine.cl);
+        nameEl.textContent = heroine.n;
+        bookEl.textContent = `${heroine.bk} · ${heroine.yr}`;
+        quoteEl.textContent = heroine.qt;
+        descriptionEl.textContent = heroine.ds;
+        imageEl.src = resultImages[heroine.id];
+        imageEl.alt = `Portrait of ${heroine.n}`;
+
+        tabs.querySelectorAll(".preview-tab").forEach((button) => {
+          button.classList.toggle("is-active", Number(button.dataset.id) === heroine.id);
+        });
+      }
+
+      tabs.innerHTML = QUIZ_CHARACTERS.map(
+        (heroine) => `<button class="preview-tab" type="button" data-id="${heroine.id}">${heroine.n}</button>`
+      ).join("");
+
+      tabs.addEventListener("click", (event) => {
+        const button = event.target.closest(".preview-tab");
+        if (!button) return;
+        renderResult(Number(button.dataset.id));
+      });
+
+      renderResult(3);
+    </script>
+  </body>
+</html>
