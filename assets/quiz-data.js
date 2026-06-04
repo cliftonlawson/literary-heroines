@@ -149,7 +149,7 @@ export const QUESTION_TEXT =[
   "Something you can't get back is gone. You've grieved it in private. Now:",
   "When your heart is truly broken, you reach for:",
   "You have to tell someone you love a hard truth. You:",
-  "The loss that would change you most permanently:",
+  "Which loss would leave the deepest mark on you?",
   "A wonderful opportunity arrives at the worst possible moment. You:",
   "Here's what you know about fear that others might not:",
   "You have a difficult letter to write. You:",
