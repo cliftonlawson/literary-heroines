@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FAQ - Literary Heroines</title>
+    <meta
+      name="description"
+      content="Frequently asked questions about the Literary Heroines personality test, results, classic characters, and future plans."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Poppins:wght@200;300;400;500&display=swap"
+    />
+    <style>
+      :root {
+        --paper: oklch(0.965 0.012 80);
+        --foreground: oklch(0.28 0.025 95);
+        --ink: oklch(0.25 0.024 88);
+        --ink-soft: oklch(0.42 0.028 95);
+        --cream: rgb(250 247 240);
+        --parchment: rgb(239 230 211);
+        --sage-deep: oklch(0.55 0.035 130);
+        --rosewood: rgb(123 83 68);
+        --wine: rgb(91 48 46);
+        --gold: rgb(177 128 69);
+        --night: rgb(15 12 9);
+        --font-serif: "Newsreader", "Cormorant Garamond", serif;
+        --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--night);
+        color: rgb(255 252 245);
+        font-family: var(--font-sans);
+        font-weight: 300;
+        letter-spacing: 0.01em;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .site-nav {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 10;
+      }
+
+      .nav-inner {
+        width: min(100%, 80rem);
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        padding: 1.45rem 1.5rem;
+      }
+
+      .brand {
+        display: block;
+        line-height: 1.15;
+      }
+
+      .brand-main {
+        display: block;
+        font-family: var(--font-serif);
+        font-size: 1.15rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: rgb(255 252 245);
+        text-shadow: 0 0.1rem 0.9rem rgb(0 0 0 / 0.35);
+      }
+
+      .brand-sub {
+        display: block;
+        margin-top: 0.1rem;
+        color: rgb(230 201 156);
+        font-family: var(--font-serif);
+        font-size: 0.85rem;
+        font-style: italic;
+        letter-spacing: 0.2em;
+      }
+
+      .nav-links {
+        display: none;
+        align-items: center;
+        gap: clamp(1.1rem, 2.6vw, 2.2rem);
+      }
+
+      .nav-link,
+      .nav-cta {
+        color: rgb(255 252 245 / 0.84);
+        font-size: 0.7rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
+      }
+
+      .nav-link:hover {
+        color: rgb(255 252 245);
+      }
+
+      .nav-cta {
+        display: none;
+        border: 1px solid rgb(255 252 245 / 0.55);
+        border-radius: 999px;
+        padding: 0.625rem 1.5rem;
+        color: rgb(255 252 245);
+      }
+
+      .nav-cta:hover {
+        border-color: rgb(255 252 245);
+        background: rgb(255 252 245);
+        color: var(--ink);
+      }
+
+      .faq-hero {
+        min-height: clamp(24rem, 46vh, 34rem);
+        display: flex;
+        align-items: flex-end;
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        padding: 8rem 1.5rem clamp(2.75rem, 6vw, 4.5rem);
+      }
+
+      .faq-hero::before,
+      .faq-hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+      }
+
+      .faq-hero::before {
+        z-index: -2;
+        background-image: url("assets/Literary Heroines FAQ.png");
+        background-position: center;
+        background-size: cover;
+        filter: blur(1.1px) brightness(0.74);
+        transform: scale(1.018);
+      }
+
+      .faq-hero::after {
+        z-index: -1;
+        background:
+          linear-gradient(90deg, rgb(15 12 9 / 0.54), rgb(15 12 9 / 0.24)),
+          linear-gradient(0deg, rgb(15 12 9 / 0.44), transparent 46%);
+      }
+
+      .hero-inner {
+        width: min(100%, 80rem);
+        margin: 0 auto;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: rgb(230 201 156);
+        font-size: 0.72rem;
+        font-weight: 400;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+      }
+
+      .hero-title {
+        max-width: 45rem;
+        margin: 1rem 0 0;
+        color: rgb(255 252 245);
+        font-family: var(--font-serif);
+        font-size: clamp(3.4rem, 7vw, 7rem);
+        font-weight: 300;
+        letter-spacing: 0;
+        line-height: 0.92;
+        text-shadow: 0 0.25rem 2rem rgb(0 0 0 / 0.36);
+      }
+
+      .faq-section {
+        border-top: 1px solid rgb(177 128 69 / 0.18);
+        background:
+          radial-gradient(circle at 86% 10%, rgb(123 83 68 / 0.18), transparent 26rem),
+          linear-gradient(180deg, rgb(15 12 9), rgb(22 16 12));
+        padding: clamp(3.25rem, 7vw, 6rem) 1.5rem clamp(4rem, 8vw, 7rem);
+      }
+
+      .faq-inner {
+        width: min(100%, 64rem);
+        margin: 0 auto;
+      }
+
+      .section-title {
+        max-width: 46rem;
+        margin: 1rem 0 clamp(2.2rem, 5vw, 4rem);
+        color: rgb(255 252 245);
+        font-family: var(--font-serif);
+        font-size: clamp(2.6rem, 5vw, 5rem);
+        font-weight: 300;
+        letter-spacing: 0;
+        line-height: 0.96;
+      }
+
+      .section-title em {
+        color: rgb(211 159 87);
+        font-style: italic;
+      }
+
+      .faq-list {
+        display: grid;
+      }
+
+      .faq-item {
+        border-top: 1px solid rgb(177 128 69 / 0.18);
+      }
+
+      .faq-item:last-child {
+        border-bottom: 1px solid rgb(177 128 69 / 0.18);
+      }
+
+      .faq-question {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        min-height: 5.25rem;
+        padding: 1.35rem 0;
+        color: rgb(255 252 245 / 0.88);
+        font-family: var(--font-serif);
+        font-size: clamp(1.15rem, 2vw, 1.55rem);
+        line-height: 1.25;
+        cursor: pointer;
+        list-style: none;
+      }
+
+      .faq-question::-webkit-details-marker {
+        display: none;
+      }
+
+      .faq-question::after {
+        content: "+";
+        flex: 0 0 auto;
+        color: var(--gold);
+        font-family: var(--font-sans);
+        font-size: 1.2rem;
+        font-weight: 300;
+        line-height: 1;
+      }
+
+      .faq-item[open] .faq-question::after {
+        content: "-";
+      }
+
+      .faq-answer {
+        max-width: 45rem;
+        margin: -0.25rem 0 1.7rem;
+        color: rgb(255 252 245 / 0.68);
+        font-family: var(--font-serif);
+        font-size: clamp(1rem, 1.5vw, 1.18rem);
+        line-height: 1.7;
+      }
+
+      .footer {
+        border-top: 1px solid rgb(177 128 69 / 0.18);
+        background: rgb(15 12 9);
+      }
+
+      .footer-inner {
+        width: min(100%, 80rem);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        justify-content: space-between;
+        padding: 2rem 1.5rem;
+        color: rgb(255 252 245 / 0.72);
+      }
+
+      .footer-brand {
+        margin: 0;
+        font-family: var(--font-serif);
+        font-size: 1.25rem;
+      }
+
+      .footer-brand em {
+        color: rgb(211 159 87);
+      }
+
+      .footer-copy {
+        margin: 0;
+        color: rgb(255 252 245 / 0.58);
+        font-size: 0.82rem;
+      }
+
+      @media (min-width: 760px) {
+        .nav-links,
+        .nav-cta {
+          display: flex;
+        }
+
+        .footer-inner {
+          flex-direction: row;
+        }
+      }
+
+      @media (max-width: 759px) {
+        .faq-hero {
+          min-height: 26rem;
+          background-position: center;
+        }
+
+        .hero-title {
+          max-width: 22rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-nav">
+      <div class="nav-inner">
+        <a href="index.html" class="brand" aria-label="Literary Heroines home">
+          <span class="brand-main">Literary</span>
+          <span class="brand-sub">Heroines</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="quiz.html" class="nav-link">The Quiz</a>
+          <a href="index.html#heroines" class="nav-link">Heroines</a>
+          <a href="novels.html" class="nav-link">Novels</a>
+          <a href="faq.html" class="nav-link">FAQ</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+
+        <a href="quiz.html" class="nav-cta">Take the Quiz</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="faq-hero" aria-labelledby="faq-title">
+        <div class="hero-inner">
+          <p class="eyebrow">Frequently asked questions</p>
+          <h1 class="hero-title" id="faq-title">Frequently Asked Questions</h1>
+        </div>
+      </section>
+
+      <section class="faq-section" aria-labelledby="faq-list-title">
+        <div class="faq-inner">
+          <p class="eyebrow">Answers for the curious</p>
+          <h2 class="section-title" id="faq-list-title">
+            Everything You'd Ask
+            <em>Over A Good Cup of Tea</em>
+          </h2>
+
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary class="faq-question">What is the Literary Heroines Personality Test?</summary>
+              <p class="faq-answer">
+                It is a fifty-question personality quiz that matches you with one of nine
+                classic literary heroines. Instead of sorting you by a workplace type or a
+                clinical label, it looks at temperament, convictions, emotional patterns, and
+                the way you move through love, conflict, grief, courage, and freedom.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-question">How is this different from Myers-Briggs or the Enneagram?</summary>
+              <p class="faq-answer">
+                Myers-Briggs is often used to describe how people process information and work
+                with others. The Enneagram explores core motivations and wounds. Literary
+                Heroines is gentler and more story-shaped: it gives you a character portrait,
+                a literary world, and language for parts of yourself that can be hard to name
+                in ordinary personality frameworks.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-question">Is the test scientifically validated?</summary>
+              <p class="faq-answer">
+                No. It is not a diagnostic tool, a clinical assessment, or a scientifically
+                validated personality instrument. It is designed as a thoughtful literary quiz:
+                careful, layered, and hopefully revealing, but still meant for reflection,
+                delight, and conversation.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-question">Why are all the characters women?</summary>
+              <p class="faq-answer">
+                The project began as a love letter to the women of classic literature: Austen,
+                the Brontes, and Alcott created heroines whose inner lives still feel alive
+                centuries later. The focus is intentional. These characters give readers a
+                wide range of courage, tenderness, wit, restraint, ambition, and wildness.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-question">Can I take the test more than once?</summary>
+              <p class="faq-answer">
+                Absolutely. Your answers may change depending on your season of life, your
+                mood, or the questions you are currently carrying. Retaking the quiz can be
+                especially interesting if your first result surprised you.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-question">How does this connect to the upcoming game?</summary>
+              <p class="faq-answer">
+                The quiz is the first doorway into the larger Literary Heroines world. The
+                upcoming game is planned as a deeper, more interactive way to explore these
+                characters, choices, rooms, relationships, and story-worlds. Your result gives
+                a sense of the kind of heroine energy you bring into that world.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-question">Is the test really free?</summary>
+              <p class="faq-answer">
+                Yes. The quiz is free to take, and no email address is required. The site may
+                include optional ways to support the project, like donations or book links, but
+                the test itself is meant to stay open and easy to share.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-question">How long does the test take?</summary>
+              <p class="faq-answer">
+                Most people finish in about six minutes. There are fifty questions, and the
+                best approach is to choose the answer that feels most true rather than the one
+                that sounds most flattering.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-question">Who built this?</summary>
+              <p class="faq-answer">
+                Literary Heroines is an independent project built by readers who love classic
+                novels, personality quizzes, and the strange comfort of finding yourself in a
+                fictional woman who has been waiting on the page for two hundred years.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-question">Can I suggest a new heroine?</summary>
+              <p class="faq-answer">
+                Yes, please. Send suggestions through the contact page, especially if there is
+                a character you think belongs in a future expansion. Notes about missing
+                heroines, uncanny results, and passionate literary arguments are all welcome.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <p class="footer-brand">Literary <em>Heroines</em></p>
+        <p class="footer-copy" id="footerYear">© 2026 · A love letter to the women on the page</p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("footerYear").textContent =
+        `© ${new Date().getFullYear()} · A love letter to the women on the page`;
+    </script>
+  </body>
+</html>

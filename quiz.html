@@ -758,6 +758,38 @@
         font-size: 0.76rem;
       }
 
+      .footer {
+        border-top: 1px solid rgb(77 62 42 / 0.12);
+        background: rgb(248 242 229 / 0.72);
+      }
+
+      .footer-inner {
+        width: min(100%, 76rem);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        justify-content: space-between;
+        padding: 2rem 1.25rem;
+        color: rgb(86 72 63);
+      }
+
+      .footer-brand {
+        margin: 0;
+        font-family: var(--font-serif);
+        font-size: 1.25rem;
+      }
+
+      .footer-brand em {
+        color: rgb(123 83 68);
+      }
+
+      .footer-copy {
+        margin: 0;
+        color: rgb(86 72 63 / 0.82);
+        font-size: 0.82rem;
+      }
+
       @media (min-width: 860px) {
         .quiz-layout {
           grid-template-columns: minmax(16rem, 24rem) minmax(0, 1fr);
@@ -793,6 +825,10 @@
 
         .answers {
           grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .footer-inner {
+          flex-direction: row;
         }
       }
     </style>
@@ -860,6 +896,13 @@
         <section class="result-panel" id="resultPanel" aria-live="polite"></section>
       </div>
     </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <p class="footer-brand">Literary <em>Heroines</em></p>
+        <p class="footer-copy" id="footerYear">© 2026 · A love letter to the women on the page</p>
+      </div>
+    </footer>
 
     <script type="module">
       import {
@@ -1344,6 +1387,9 @@
         state,
         calculateResult,
       };
+
+      document.getElementById("footerYear").textContent =
+        `© ${new Date().getFullYear()} · A love letter to the women on the page`;
 
       renderHeroineChips();
       renderReturnBanner();
