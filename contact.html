@@ -278,6 +278,12 @@
         transform: translateY(-2px);
       }
 
+      .send-button:disabled {
+        cursor: wait;
+        opacity: 0.68;
+        transform: none;
+      }
+
       .send-button:focus-visible {
         outline: 2px solid rgb(117 75 66);
         outline-offset: 4px;
@@ -292,6 +298,21 @@
 
       .form-status a {
         border-bottom: 1px solid currentColor;
+      }
+
+      .form-status.is-success {
+        color: var(--sage-deep);
+      }
+
+      .form-status.is-error {
+        color: rgb(117 75 66);
+      }
+
+      .hidden-field {
+        position: absolute;
+        left: -9999px;
+        opacity: 0;
+        pointer-events: none;
       }
 
       .footer {
@@ -396,6 +417,11 @@
         </div>
 
         <form class="contact-form" id="contactForm">
+          <div class="hidden-field" aria-hidden="true">
+            <label for="company">Company</label>
+            <input id="company" name="company" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+
           <div class="form-grid">
             <div class="field">
               <label for="name">Name</label>
@@ -425,7 +451,7 @@
             </div>
           </div>
 
-          <button class="send-button" type="submit">Send Letter</button>
+          <button class="send-button" type="submit" id="sendButton">Send Letter</button>
           <p class="form-status" id="formStatus" aria-live="polite"></p>
         </form>
       </section>
@@ -442,31 +468,51 @@
       document.getElementById("footerYear").textContent =
         `© ${new Date().getFullYear()} · A love letter to the women on the page`;
 
-      document.getElementById("contactForm").addEventListener("submit", (event) => {
+      document.getElementById("contactForm").addEventListener("submit", async (event) => {
         event.preventDefault();
 
         const form = event.currentTarget;
         const status = document.getElementById("formStatus");
+        const sendButton = document.getElementById("sendButton");
         const data = new FormData(form);
-        const name = data.get("name").trim();
-        const email = data.get("email").trim();
-        const reason = data.get("reason");
-        const message = data.get("message").trim();
         const recipient = "hello@literaryheroines.com";
-        const subject = `Literary Heroines: ${reason}`;
-        const body = [
-          `Name: ${name}`,
-          `Email: ${email}`,
-          `Reason: ${reason}`,
-          "",
-          message,
-        ].join("\n");
+        const payload = {
+          name: data.get("name").trim(),
+          email: data.get("email").trim(),
+          reason: data.get("reason"),
+          message: data.get("message").trim(),
+          company: data.get("company").trim(),
+        };
 
-        window.location.href =
-          `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        status.className = "form-status";
+        status.textContent = "Sending your letter...";
+        sendButton.disabled = true;
 
-        status.innerHTML =
-          `Your email app should open in a moment. If it does not, write directly to <a href="mailto:${recipient}">${recipient}</a>.`;
+        try {
+          const response = await fetch("/api/contact", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+
+          const result = await response.json().catch(() => ({}));
+
+          if (!response.ok) {
+            throw new Error(result.error || "The letter could not be sent.");
+          }
+
+          form.reset();
+          status.className = "form-status is-success";
+          status.textContent = "Your letter has been sent. Thank you for writing.";
+        } catch (error) {
+          status.className = "form-status is-error";
+          status.innerHTML =
+            `Something kept the letter from sending. Please write directly to <a href="mailto:${recipient}">${recipient}</a>.`;
+        } finally {
+          sendButton.disabled = false;
+        }
       });
     </script>
   </body>
