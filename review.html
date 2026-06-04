@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Results Review - Literary Heroines</title>
+    <meta
+      name="description"
+      content="Review every Literary Heroines result with summary, quote, portrait, and full chapter."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Poppins:wght@200;300;400;500&display=swap"
+    />
+    <style>
+      :root {
+        --paper: oklch(0.965 0.012 80);
+        --ink: oklch(0.28 0.025 95);
+        --ink-soft: oklch(0.42 0.028 95);
+        --muted-foreground: oklch(0.48 0.025 95);
+        --border: oklch(0.86 0.018 90);
+        --sage: oklch(0.78 0.025 130);
+        --sage-deep: oklch(0.55 0.035 130);
+        --font-serif: "Newsreader", serif;
+        --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 8% 0%, rgb(122 139 99 / 0.22), transparent 27rem),
+          linear-gradient(180deg, var(--paper), rgb(239 230 211));
+        color: var(--ink);
+        font-family: var(--font-sans);
+        font-weight: 300;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .review-hero {
+        position: relative;
+        display: grid;
+        min-height: min(28rem, 58vh);
+        place-items: center;
+        overflow: hidden;
+        padding: 6.5rem 1.25rem 4rem;
+        background: rgb(24 20 15);
+        color: white;
+        text-align: center;
+      }
+
+      .review-hero::before,
+      .review-hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+      }
+
+      .review-hero::before {
+        background-image: url("assets/Literary Heroines Result Hero.png");
+        background-position: center;
+        background-size: cover;
+        filter: blur(1.5px);
+        transform: scale(1.015);
+      }
+
+      .review-hero::after {
+        background: linear-gradient(rgb(24 20 15 / 0.44), rgb(24 20 15 / 0.54));
+      }
+
+      .review-hero-inner {
+        position: relative;
+        z-index: 1;
+        width: min(100%, 64rem);
+      }
+
+      .brand {
+        display: inline-block;
+        font-family: var(--font-serif);
+        letter-spacing: 0.25em;
+        line-height: 1.1;
+        text-transform: uppercase;
+      }
+
+      .brand span {
+        display: block;
+        color: rgb(255 255 255 / 0.76);
+        font-style: italic;
+        letter-spacing: 0.18em;
+        text-transform: none;
+      }
+
+      .review-hero h1 {
+        margin: 3rem 0 0;
+        font-family: var(--font-serif);
+        font-size: clamp(3.25rem, 8.5vw, 6.4rem);
+        font-weight: 300;
+        line-height: 0.94;
+      }
+
+      .review-hero p {
+        width: min(100%, 44rem);
+        margin: 1.4rem auto 0;
+        color: rgb(255 255 255 / 0.78);
+        font-family: var(--font-serif);
+        font-size: 1.1rem;
+        line-height: 1.65;
+      }
+
+      .jump-nav {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 0.5rem;
+        overflow-x: auto;
+        border-bottom: 1px solid rgb(77 62 42 / 0.12);
+        background: rgb(250 247 240 / 0.92);
+        padding: 0.75rem 1rem;
+        backdrop-filter: blur(12px);
+      }
+
+      .jump-nav a {
+        flex: 0 0 auto;
+        border: 1px solid rgb(77 62 42 / 0.16);
+        padding: 0.45rem 0.75rem;
+        color: var(--ink-soft);
+        font-family: var(--font-serif);
+        font-size: 0.94rem;
+      }
+
+      .result-section {
+        width: min(100%, 76rem);
+        margin: 0 auto;
+        padding: clamp(3rem, 7vw, 6rem) 1.25rem;
+        border-bottom: 1px solid rgb(77 62 42 / 0.14);
+      }
+
+      .result-layout {
+        display: grid;
+        gap: clamp(2rem, 7vw, 6.5rem);
+        align-items: center;
+      }
+
+      .result-copy-wrap {
+        max-width: 40rem;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: rgb(117 75 66);
+        font-size: 0.72rem;
+        font-weight: 400;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+      }
+
+      .result-title {
+        margin: 1.2rem 0 0;
+        color: rgb(54 48 43);
+        font-family: var(--font-serif);
+        font-size: clamp(3.5rem, 13vw, 8rem);
+        font-weight: 300;
+        line-height: 0.88;
+      }
+
+      .result-title span {
+        display: block;
+      }
+
+      .result-name {
+        color: var(--result-color, var(--sage-deep));
+      }
+
+      .result-book {
+        margin: 1rem 0 0;
+        color: var(--muted-foreground);
+        font-family: var(--font-serif);
+        font-size: 1.1rem;
+        font-style: italic;
+      }
+
+      .result-quote {
+        margin: clamp(2rem, 4vw, 3rem) 0 0;
+        color: rgb(67 55 48);
+        font-family: var(--font-serif);
+        font-size: clamp(1.55rem, 6vw, 2.25rem);
+        font-style: italic;
+        line-height: 1.16;
+      }
+
+      .result-quote::before,
+      .result-entry.is-quote::before {
+        content: "“";
+        color: rgb(190 157 141 / 0.68);
+      }
+
+      .result-quote::after,
+      .result-entry.is-quote::after {
+        content: "”";
+        color: rgb(190 157 141 / 0.68);
+      }
+
+      .result-copy {
+        margin-top: 1.5rem;
+        color: var(--ink-soft);
+        font-family: var(--font-serif);
+        font-size: clamp(1rem, 4.5vw, 1.15rem);
+        line-height: 1.76;
+      }
+
+      .result-copy::first-letter {
+        float: left;
+        margin: 0.08rem 0.45rem 0 0;
+        color: var(--result-color, var(--sage-deep));
+        font-family: var(--font-serif);
+        font-size: 4.5rem;
+        line-height: 0.78;
+      }
+
+      .result-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 1.4rem;
+      }
+
+      .chapter-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        border-bottom: 1px solid currentColor;
+        color: var(--result-color, var(--sage-deep));
+        font-size: 0.72rem;
+        font-weight: 400;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+      }
+
+      .result-art {
+        justify-self: center;
+        width: min(100%, 34rem);
+      }
+
+      .result-art-frame {
+        position: relative;
+        background:
+          linear-gradient(180deg, rgb(255 255 255 / 0.42), rgb(235 223 204 / 0.54)),
+          rgb(255 255 255 / 0.38);
+        padding: clamp(0.7rem, 1.4vw, 1rem);
+      }
+
+      .result-art-frame::after {
+        content: "";
+        position: absolute;
+        inset: clamp(1.15rem, 2vw, 1.65rem);
+        border: 1px solid rgb(255 255 255 / 0.5);
+        pointer-events: none;
+      }
+
+      .result-art img {
+        width: 100%;
+        height: auto;
+        max-height: min(70vh, 48rem);
+        object-fit: contain;
+        background: rgb(241 228 198 / 0.64);
+      }
+
+      .result-book-flow {
+        display: grid;
+        gap: 1.5rem;
+        width: min(100%, 68rem);
+        margin: clamp(3rem, 8vw, 6rem) auto 0;
+        border-top: 1px solid rgb(77 62 42 / 0.14);
+        padding-top: clamp(2rem, 5vw, 3.5rem);
+      }
+
+      .result-pages {
+        display: grid;
+        gap: 1.15rem;
+      }
+
+      .result-entry {
+        margin: 0;
+        color: rgb(67 55 48);
+        font-family: var(--font-serif);
+        font-size: clamp(1.05rem, 4.5vw, 1.16rem);
+        line-height: 1.78;
+      }
+
+      .result-entry.is-quote {
+        margin: clamp(0.8rem, 2vw, 1.4rem) 0;
+        border-top: 1px solid rgb(77 62 42 / 0.14);
+        border-bottom: 1px solid rgb(77 62 42 / 0.14);
+        padding: clamp(1rem, 2vw, 1.35rem) 0;
+        color: var(--result-color, var(--sage-deep));
+        font-size: clamp(1.45rem, 6vw, 2rem);
+        font-style: italic;
+        line-height: 1.18;
+      }
+
+      @media (min-width: 820px) {
+        .jump-nav {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .result-layout {
+          grid-template-columns: minmax(0, 0.9fr) minmax(24rem, 1fr);
+          min-height: min(52rem, calc(100vh - 8rem));
+        }
+
+        .result-book-flow {
+          grid-template-columns: 12rem minmax(0, 1fr);
+        }
+
+        .result-pages {
+          columns: 2;
+          display: block;
+          column-gap: clamp(2rem, 5vw, 4rem);
+        }
+
+        .result-entry {
+          break-inside: avoid;
+          margin-bottom: 1.15rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="review-hero">
+      <div class="review-hero-inner">
+        <a class="brand" href="index.html">Literary <span>Heroines</span></a>
+        <h1>Final Results Review</h1>
+        <p>All nine result pages in one shareable place, using the current summary paragraphs, heroine quotes, portraits, and full chapter copy.</p>
+      </div>
+    </header>
+    <nav class="jump-nav" id="jumpNav" aria-label="Jump to result"></nav>
+    <main id="resultsRoot"></main>
+
+    <script type="module">
+      import { QUIZ_CHARACTERS } from "./assets/quiz-data.js";
+      import { RESULT_DETAILS } from "./assets/result-details.js";
+
+      const RESULT_IMAGES = {
+        0: "assets/elizabeth-bennet-sketch-portrait.png",
+        1: "assets/jane-bennet-sketch-portrait.png",
+        2: "assets/emma-woodhouse-sketch-portrait.png",
+        3: "assets/anne-elliot-sketch-portrait.png",
+        4: "assets/marianne-dashwood-sketch-portrait.png",
+        5: "assets/elinor-dashwood-sketch-portrait.png",
+        6: "assets/jane-eyre-sketch-portrait.png",
+        7: "assets/catherine-earnshaw-sketch-portrait.png",
+        8: "assets/jo-march-sketch-portrait.png",
+      };
+
+      const RESULT_SLUGS = {
+        0: "elizabeth-bennet",
+        1: "jane-bennet",
+        2: "emma-woodhouse",
+        3: "anne-elliot",
+        4: "marianne-dashwood",
+        5: "elinor-dashwood",
+        6: "jane-eyre",
+        7: "catherine-earnshaw",
+        8: "jo-march",
+      };
+
+      function escapeHtml(value) {
+        return String(value)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function renderEntries(detail) {
+        return detail.entries
+          .map((entry) => {
+            const text = escapeHtml(entry.text);
+            if (entry.type === "quote") {
+              return `<blockquote class="result-entry is-quote">${text}</blockquote>`;
+            }
+            return `<p class="result-entry is-paragraph">${text}</p>`;
+          })
+          .join("");
+      }
+
+      document.getElementById("jumpNav").innerHTML = QUIZ_CHARACTERS.map((heroine) => (
+        `<a href="#${RESULT_SLUGS[heroine.id]}">${escapeHtml(heroine.n)}</a>`
+      )).join("");
+
+      document.getElementById("resultsRoot").innerHTML = QUIZ_CHARACTERS.map((heroine) => {
+        const detail = RESULT_DETAILS[heroine.id];
+        const slug = RESULT_SLUGS[heroine.id];
+        return `
+          <article class="result-section" id="${slug}" style="--result-color:${heroine.cl}">
+            <div class="result-layout">
+              <div class="result-copy-wrap">
+                <p class="eyebrow">Your Test Result</p>
+                <h2 class="result-title">
+                  <span>You are</span>
+                  <span class="result-name">${escapeHtml(heroine.n)}</span>
+                </h2>
+                <p class="result-book">${escapeHtml(detail.meta)}</p>
+                <blockquote class="result-quote">${escapeHtml(detail.heroQuote)}</blockquote>
+                <p class="result-copy">${escapeHtml(detail.summary || detail.lead)}</p>
+                <div class="result-links">
+                  <a class="chapter-link" href="#${slug}-chapter">Read The Full Chapter <span aria-hidden="true">→</span></a>
+                  <a class="chapter-link" href="quiz.html?result=${slug}">Open Result Page <span aria-hidden="true">→</span></a>
+                </div>
+              </div>
+              <div class="result-art" aria-hidden="true">
+                <div class="result-art-frame">
+                  <img src="${RESULT_IMAGES[heroine.id]}" alt="Portrait of ${escapeHtml(heroine.n)}" width="960" height="1200" loading="lazy" />
+                </div>
+              </div>
+            </div>
+            <section class="result-book-flow" id="${slug}-chapter" aria-label="Full ${escapeHtml(heroine.n)} result">
+              <p class="eyebrow">Full Chapter</p>
+              <div class="result-pages">
+                ${renderEntries(detail)}
+              </div>
+            </section>
+          </article>
+        `;
+      }).join("");
+    </script>
+  </body>
+</html>
