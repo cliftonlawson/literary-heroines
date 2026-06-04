@@ -476,31 +476,33 @@
         line-height: 1.85;
       }
 
-      .donation-button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 4.2rem;
-        margin-top: 3rem;
-        border: 1px solid rgb(54 48 43);
-        background: rgb(54 48 43);
-        padding: 1.15rem 2.75rem;
-        color: var(--primary-foreground);
-        font-size: 0.72rem;
-        font-weight: 500;
-        letter-spacing: 0.32em;
+      .venmo-note {
+        margin: 2.3rem auto 0;
+        color: rgb(117 75 66);
+        font-size: 0.78rem;
+        font-weight: 400;
+        letter-spacing: 0.24em;
         text-transform: uppercase;
-        cursor: pointer;
-        transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
       }
 
-      .donation-button:hover {
-        background: transparent;
+      .venmo-link {
+        display: inline-block;
+        margin-top: 0.75rem;
+        border-bottom: 1px solid rgb(117 75 66 / 0.42);
         color: rgb(54 48 43);
-        transform: translateY(-2px);
+        font-family: var(--font-serif);
+        font-size: clamp(1.45rem, 2vw, 1.95rem);
+        font-style: italic;
+        line-height: 1.2;
+        transition: border-color 180ms ease, color 180ms ease;
       }
 
-      .donation-button:focus-visible {
+      .venmo-link:hover {
+        border-color: currentColor;
+        color: rgb(123 83 68);
+      }
+
+      .venmo-link:focus-visible {
         outline: 2px solid rgb(117 75 66);
         outline-offset: 4px;
       }
@@ -1099,8 +1101,9 @@
               delighted you, or gave you a truer name for something inside yourself, a small
               contribution helps keep the quiz free for the next reader who needs it.
             </p>
-            <a class="donation-button" href="#" aria-label="Donate to support Literary Heroines">
-              Donate Now
+            <p class="venmo-note">Venmo a cup of tea</p>
+            <a class="venmo-link" href="https://venmo.com/graceandlove" aria-label="Support Literary Heroines on Venmo at graceandlove">
+              @graceandlove
             </a>
           </div>
         </section>
