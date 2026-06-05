@@ -803,6 +803,146 @@
         text-transform: uppercase;
       }
 
+      .letter-popup {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: none;
+        place-items: center;
+        background: rgb(24 20 15 / 0.42);
+        padding: 1.5rem;
+      }
+
+      .letter-popup.is-visible {
+        display: grid;
+      }
+
+      .letter-modal {
+        position: relative;
+        width: min(100%, 54rem);
+        display: grid;
+        background: rgb(255 252 245);
+        box-shadow: 0 1.4rem 4rem rgb(24 20 15 / 0.28);
+      }
+
+      .letter-art {
+        display: none;
+        min-height: 28rem;
+        overflow: hidden;
+        background: rgb(233 221 198);
+      }
+
+      .letter-art img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 18%;
+      }
+
+      .letter-content {
+        display: grid;
+        align-content: center;
+        gap: 1.25rem;
+        padding: clamp(2.25rem, 6vw, 4rem);
+        text-align: center;
+      }
+
+      .letter-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 2.25rem;
+        height: 2.25rem;
+        display: grid;
+        place-items: center;
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--ink);
+        cursor: pointer;
+        font-size: 1.35rem;
+        line-height: 1;
+      }
+
+      .letter-close:hover {
+        background: rgb(54 48 43 / 0.08);
+      }
+
+      .letter-title {
+        color: rgb(54 48 43);
+        font-family: var(--font-serif);
+        font-size: clamp(2.6rem, 5vw, 4.75rem);
+        font-weight: 300;
+        letter-spacing: 0;
+        line-height: 0.92;
+      }
+
+      .letter-copy {
+        max-width: 25rem;
+        margin: 0 auto;
+        color: rgb(86 72 63);
+        font-family: var(--font-serif);
+        font-size: clamp(1rem, 1.5vw, 1.15rem);
+        line-height: 1.55;
+      }
+
+      .letter-form {
+        display: grid;
+        gap: 0.9rem;
+        margin-top: 0.4rem;
+      }
+
+      .letter-hidden-field {
+        position: absolute;
+        left: -9999px;
+      }
+
+      .letter-input {
+        width: 100%;
+        min-height: 3.35rem;
+        border: 1px solid rgb(77 62 42 / 0.2);
+        border-radius: 0;
+        background: white;
+        color: var(--ink);
+        padding: 0.9rem 1rem;
+        font-family: var(--font-sans);
+        font-size: 0.95rem;
+      }
+
+      .letter-input:focus {
+        outline: 1px solid rgb(123 83 68 / 0.55);
+        outline-offset: 2px;
+      }
+
+      .letter-submit {
+        min-height: 3.35rem;
+        border: 0;
+        border-radius: 0;
+        background: rgb(54 65 49);
+        color: white;
+        cursor: pointer;
+        font-size: 0.72rem;
+        font-weight: 400;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .letter-submit:hover {
+        background: rgb(42 51 38);
+      }
+
+      .letter-submit:disabled {
+        cursor: progress;
+        opacity: 0.68;
+      }
+
+      .letter-status {
+        min-height: 1.2rem;
+        color: var(--muted-foreground);
+        font-size: 0.78rem;
+        line-height: 1.45;
+      }
+
       @media (min-width: 768px) {
         .nav-links {
           display: flex;
@@ -856,6 +996,14 @@
 
         .footer-inner {
           flex-direction: row;
+        }
+
+        .letter-modal {
+          grid-template-columns: minmax(18rem, 0.95fr) minmax(22rem, 1fr);
+        }
+
+        .letter-art {
+          display: block;
         }
       }
 
@@ -914,7 +1062,7 @@
                 Begin the Quiz
                 <span aria-hidden="true">→</span>
               </a>
-              <p class="hero-note">Takes about four minutes · No email required</p>
+              <p class="hero-note">Takes about 10-15 minutes · No email required</p>
             </div>
           </div>
 
@@ -1116,6 +1264,32 @@
           <p class="footer-copy" id="footerYear">© 2026 · A love letter to the women on the page</p>
         </div>
       </footer>
+
+      <div class="letter-popup" id="letterPopup" role="dialog" aria-modal="true" aria-labelledby="letterTitle" aria-hidden="true">
+        <div class="letter-modal">
+          <button class="letter-close" type="button" id="letterClose" aria-label="Close letter signup">×</button>
+          <div class="letter-art" aria-hidden="true">
+            <img src="assets/Literary Heroines - Elizabeth Bennet.png" alt="" loading="lazy" />
+          </div>
+          <div class="letter-content">
+            <h2 class="letter-title" id="letterTitle">Want your next literary letter?</h2>
+            <p class="letter-copy">
+              Join the Literary Heroines list for quiz updates, new heroine additions, new
+              items in our online shop, and the first word on the upcoming game.
+            </p>
+            <form class="letter-form" id="letterForm">
+              <div class="letter-hidden-field" aria-hidden="true">
+                <label for="letterCompany">Company</label>
+                <input id="letterCompany" name="company" type="text" tabindex="-1" autocomplete="off" />
+              </div>
+              <input class="letter-input" id="letterEmail" name="email" type="email" placeholder="Email address" autocomplete="email" required />
+              <input class="letter-input" id="letterFirstName" name="firstName" type="text" placeholder="First name" autocomplete="given-name" />
+              <button class="letter-submit" type="submit" id="letterSubmit">Send Me Letters</button>
+              <p class="letter-status" id="letterStatus" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script>
@@ -1267,6 +1441,110 @@
 
       document.getElementById("footerYear").textContent =
         `© ${new Date().getFullYear()} · A love letter to the women on the page`;
+
+      const letterPopup = document.getElementById("letterPopup");
+      const letterClose = document.getElementById("letterClose");
+      const letterForm = document.getElementById("letterForm");
+      const letterStatus = document.getElementById("letterStatus");
+      const letterSubmit = document.getElementById("letterSubmit");
+      const letterStorageKey = "literaryHeroines.letterPopupDismissed.v1";
+      const letterSessionKey = "literaryHeroines.letterPopupShown.v1";
+      const letterCooldown = 7 * 24 * 60 * 60 * 1000;
+      const letterDelay =
+        window.location.hostname === "localhost" && window.location.search.includes("popup-test")
+          ? 300
+          : 30000;
+
+      function readLetterStorage(storage, key) {
+        try {
+          return storage.getItem(key);
+        } catch {
+          return null;
+        }
+      }
+
+      function writeLetterStorage(storage, key, value) {
+        try {
+          storage.setItem(key, value);
+        } catch {
+          return;
+        }
+      }
+
+      function letterRecentlyDismissed() {
+        const dismissedAt = Number(readLetterStorage(localStorage, letterStorageKey));
+        return Number.isFinite(dismissedAt) && Date.now() - dismissedAt < letterCooldown;
+      }
+
+      function showLetterPopup() {
+        if (letterRecentlyDismissed() || readLetterStorage(sessionStorage, letterSessionKey)) return;
+        writeLetterStorage(sessionStorage, letterSessionKey, "true");
+        letterPopup.classList.add("is-visible");
+        letterPopup.setAttribute("aria-hidden", "false");
+        document.getElementById("letterEmail").focus();
+      }
+
+      function closeLetterPopup(remember = true) {
+        letterPopup.classList.remove("is-visible");
+        letterPopup.setAttribute("aria-hidden", "true");
+        if (remember) {
+          writeLetterStorage(localStorage, letterStorageKey, String(Date.now()));
+        }
+      }
+
+      window.setTimeout(showLetterPopup, letterDelay);
+
+      letterClose.addEventListener("click", () => closeLetterPopup());
+      letterPopup.addEventListener("click", (event) => {
+        if (event.target === letterPopup) {
+          closeLetterPopup();
+        }
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && letterPopup.classList.contains("is-visible")) {
+          closeLetterPopup();
+        }
+      });
+
+      letterForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const data = new FormData(letterForm);
+        const payload = {
+          email: data.get("email").trim(),
+          firstName: data.get("firstName").trim(),
+          company: data.get("company").trim(),
+        };
+
+        letterStatus.textContent = "";
+        letterSubmit.disabled = true;
+        letterSubmit.textContent = "Sending";
+
+        try {
+          const response = await fetch("/api/subscribe", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+          const result = await response.json();
+
+          if (!response.ok) {
+            throw new Error(result.error || "The letter list could not be joined.");
+          }
+
+          letterStatus.textContent = "You are on the list. Letters will find you soon.";
+          writeLetterStorage(localStorage, letterStorageKey, String(Date.now()));
+          window.setTimeout(() => closeLetterPopup(false), 1400);
+          letterForm.reset();
+        } catch (error) {
+          letterStatus.textContent = error.message;
+        } finally {
+          letterSubmit.disabled = false;
+          letterSubmit.textContent = "Send Me Letters";
+        }
+      });
 
       render();
     </script>
