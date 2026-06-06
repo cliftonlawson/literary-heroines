@@ -41,6 +41,14 @@
           },
           {
             "@type": "Question",
+            "name": "What are all the possible quiz results?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "There are nine possible Literary Heroines results: Elizabeth Bennet, Jane Bennet, Emma Woodhouse, Anne Elliot, Marianne Dashwood, Elinor Dashwood, Jane Eyre, Catherine Earnshaw, and Jo March. Each result has a full character portrait, quote, book context, and shareable result page."
+            }
+          },
+          {
+            "@type": "Question",
             "name": "How is this different from Myers-Briggs or the Enneagram?",
             "acceptedAnswer": {
               "@type": "Answer",
@@ -378,6 +386,18 @@
         line-height: 1.7;
       }
 
+      .faq-answer a {
+        color: rgb(230 201 156);
+        text-decoration: underline;
+        text-decoration-color: rgb(230 201 156 / 0.42);
+        text-underline-offset: 0.16em;
+      }
+
+      .faq-answer a:hover {
+        color: rgb(255 252 245);
+        text-decoration-color: currentColor;
+      }
+
       .footer {
         border-top: 1px solid rgb(177 128 69 / 0.18);
         background: rgb(15 12 9);
@@ -496,6 +516,23 @@
                 classic literary heroines. Instead of sorting you by a workplace type or a
                 clinical label, it looks at temperament, convictions, emotional patterns, and
                 the way you move through love, conflict, grief, courage, and freedom.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-question">What are all the possible quiz results?</summary>
+              <p class="faq-answer">
+                There are nine possible Literary Heroines results:
+                <a href="results/elizabeth-bennet">Elizabeth Bennet</a>,
+                <a href="results/jane-bennet">Jane Bennet</a>,
+                <a href="results/emma-woodhouse">Emma Woodhouse</a>,
+                <a href="results/anne-elliot">Anne Elliot</a>,
+                <a href="results/marianne-dashwood">Marianne Dashwood</a>,
+                <a href="results/elinor-dashwood">Elinor Dashwood</a>,
+                <a href="results/jane-eyre">Jane Eyre</a>,
+                <a href="results/catherine-earnshaw">Catherine Earnshaw</a>, and
+                <a href="results/jo-march">Jo March</a>. Each result has a full character
+                portrait, quote, book context, and shareable result page.
               </p>
             </details>
 
