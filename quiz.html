@@ -158,15 +158,34 @@
         color: rgb(255 255 255 / 0.76);
       }
 
+      .nav-menu {
+        display: none;
+        align-items: center;
+        gap: clamp(1rem, 2.5vw, 2rem);
+        margin-left: auto;
+      }
+
       .nav-link {
         color: rgb(255 255 255 / 0.78);
         font-size: 0.72rem;
         letter-spacing: 0.24em;
         text-transform: uppercase;
+        transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
       }
 
       .nav-link:hover {
         color: white;
+      }
+
+      .nav-action {
+        border: 1px solid rgb(255 255 255 / 0.42);
+        padding: 0.58rem 1rem;
+        color: white;
+      }
+
+      .nav-action:hover {
+        background: white;
+        color: var(--ink);
       }
 
       .quiz-hero {
@@ -997,6 +1016,10 @@
       }
 
       @media (min-width: 860px) {
+        .nav-menu {
+          display: flex;
+        }
+
         .quiz-layout {
           grid-template-columns: minmax(16rem, 24rem) minmax(0, 1fr);
           align-items: start;
@@ -1064,7 +1087,13 @@
           Literary
           <span>Heroines</span>
         </a>
-        <a class="nav-link" href="#test" id="heroNavLink">Take the Quiz</a>
+        <nav class="nav-menu" aria-label="Primary navigation">
+          <a class="nav-link" href="results.html">Results</a>
+          <a class="nav-link" href="novels.html">Novels</a>
+          <a class="nav-link" href="faq.html">FAQ</a>
+          <a class="nav-link" href="contact.html">Contact</a>
+        </nav>
+        <a class="nav-link nav-action" href="#test" id="heroNavLink">Take the Quiz</a>
       </div>
     </header>
 
