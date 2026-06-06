@@ -49,9 +49,15 @@
     h2 { margin: 0 0 1.5rem; color: var(--black); font-size: clamp(2.5rem, 5vw, 4.8rem); font-weight: 500; letter-spacing: 0; line-height: 0.95; }
     .result-entry p { margin: 0 0 1.45rem; }
     .result-quote { margin: 2.2rem 0; padding: 1.45rem 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); color: var(--accent); font-size: clamp(1.7rem, 3vw, 2.5rem); font-style: italic; line-height: 1.25; }
+    .related-results { margin-top: clamp(3rem, 6vw, 5rem); padding-top: 2rem; border-top: 1px solid var(--line); }
+    .related-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .related-link { display: block; min-height: 7rem; padding: 1rem; border: 1px solid var(--line); text-decoration: none; }
+    .related-link span { display: block; color: var(--accent); font-family: Inter, sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    .related-link strong { display: block; margin-top: 0.5rem; color: var(--black); font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 500; line-height: 0.95; }
+    .related-link:hover { background: rgba(255, 255, 255, 0.2); }
     .result-footer { margin-top: clamp(3rem, 6vw, 5rem); padding-top: 2rem; border-top: 1px solid var(--line); text-align: center; }
     .site-footer { border-top: 1px solid var(--line); color: var(--muted); text-transform: none; letter-spacing: 0; }
-    @media (max-width: 820px) { body { font-size: 1.15rem; } .site-header, .site-footer { align-items: flex-start; flex-direction: column; } .nav { justify-content: flex-start; } .hero-inner { grid-template-columns: 1fr; min-height: 0; } h1 { max-width: 100%; } .portrait-wrap { max-width: 340px; } .actions { align-items: stretch; flex-direction: column; } .button { width: 100%; } }
+    @media (max-width: 820px) { body { font-size: 1.15rem; } .site-header, .site-footer { align-items: flex-start; flex-direction: column; } .nav { justify-content: flex-start; } .hero-inner { grid-template-columns: 1fr; min-height: 0; } h1 { max-width: 100%; } .portrait-wrap { max-width: 340px; } .actions { align-items: stretch; flex-direction: column; } .button { width: 100%; } .related-grid { grid-template-columns: 1fr; } }
   </style>
   <script type="application/ld+json">{
   "@context": "https://schema.org",
@@ -131,6 +137,19 @@
           <p>There is also the matter of your spine, which tends to be underestimated. When something genuinely matters to you — when a real line has been crossed — your position becomes immovable in a way that catches people off guard. There is no argument, no declaration, no raised voice. There is only the quiet fact that you are not going to move, and eventually everyone in the room understands that this particular conversation has reached its end.</p>
           <p>What makes you who you are, more than anything else, is the effect your presence has on the people around you. In your company, people feel that they are good — not because you flatter them or tell them what they want to hear, but because you find the genuine thing in them worth finding and give it your full attention. It is a gift you offer instinctively, and one whose weight you have probably never fully understood.</p>
     </article>
+    <section class="related-results" aria-labelledby="related-results-title">
+      <p class="section-kicker" id="related-results-title">Explore More Results</p>
+      <div class="related-grid">
+        <a class="related-link" href="elizabeth-bennet">
+          <span>Pride &amp; Prejudice · 1813</span>
+          <strong>Elizabeth Bennet</strong>
+        </a>
+        <a class="related-link" href="emma-woodhouse">
+          <span>Emma · 1815</span>
+          <strong>Emma Woodhouse</strong>
+        </a>
+      </div>
+    </section>
     <div class="result-footer">
       <p>This result is part of the Literary Heroines quiz, a classic literature personality quiz inspired by Austen, Bronte, Alcott, and the women on the page.</p>
       <div class="actions" aria-label="More ways to explore"><a class="button" href="../quiz">Find Your Result</a><a class="button secondary" href="../results.html">All Results</a><a class="button secondary" href="../faq">Quiz FAQ</a></div>
