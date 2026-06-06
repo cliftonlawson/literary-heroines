@@ -1047,6 +1047,10 @@
         return url.toString();
       }
 
+      function shareResultUrl(winnerId) {
+        return new URL(`results/${RESULT_SLUGS[winnerId]}.html`, window.location.origin).toString();
+      }
+
       function sharedResultId() {
         const value = new URLSearchParams(window.location.search).get("result");
         if (!value) return null;
@@ -1336,8 +1340,24 @@
           </div>
         `;
         document.getElementById("shareButton").addEventListener("click", async () => {
-          const url = resultUrl(winner.id);
+          const url = shareResultUrl(winner.id);
           const status = document.getElementById("shareStatus");
+          const shareData = {
+            title: `I got ${winner.n} on the Literary Heroines quiz`,
+            text: detail.summary || detail.lead,
+            url,
+          };
+
+          if (navigator.share && (!navigator.canShare || navigator.canShare(shareData))) {
+            try {
+              await navigator.share(shareData);
+              status.textContent = "Share sheet opened.";
+              return;
+            } catch (error) {
+              if (error.name === "AbortError") return;
+            }
+          }
+
           try {
             await navigator.clipboard.writeText(url);
             status.textContent = "Share link copied.";
