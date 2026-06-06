@@ -758,6 +758,134 @@
         font-size: 0.76rem;
       }
 
+      .share-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 80;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: rgb(24 20 15 / 0.42);
+        padding: 1.25rem;
+      }
+
+      .share-modal.is-visible {
+        display: flex;
+      }
+
+      .share-card {
+        position: relative;
+        width: min(100%, 58rem);
+        max-height: min(46rem, calc(100vh - 2.5rem));
+        display: grid;
+        grid-template-columns: minmax(13rem, 0.85fr) minmax(0, 1.15fr);
+        overflow: auto;
+        border: 1px solid rgb(77 62 42 / 0.2);
+        background: linear-gradient(135deg, rgb(250 246 235), rgb(238 226 201));
+        box-shadow: 0 2rem 5rem rgb(24 20 15 / 0.24);
+      }
+
+      .share-art {
+        min-height: 100%;
+        background: rgb(255 255 255 / 0.28);
+        padding: clamp(0.85rem, 2vw, 1.35rem);
+      }
+
+      .share-art img {
+        width: 100%;
+        height: 100%;
+        min-height: 24rem;
+        object-fit: cover;
+      }
+
+      .share-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: clamp(2rem, 4vw, 3.5rem);
+      }
+
+      .share-title {
+        margin: 0.8rem 0 0;
+        color: rgb(54 48 43);
+        font-family: var(--font-serif);
+        font-size: clamp(2.6rem, 6vw, 5.5rem);
+        font-weight: 300;
+        line-height: 0.92;
+      }
+
+      .share-title span {
+        display: block;
+        color: var(--result-color, var(--sage-deep));
+      }
+
+      .share-copy {
+        margin: 1.4rem 0 0;
+        color: var(--ink-soft);
+        font-family: var(--font-serif);
+        font-size: clamp(1.02rem, 1.8vw, 1.28rem);
+        line-height: 1.55;
+      }
+
+      .share-link {
+        margin-top: 1.5rem;
+        border-top: 1px solid rgb(77 62 42 / 0.14);
+        border-bottom: 1px solid rgb(77 62 42 / 0.14);
+        padding: 0.85rem 0;
+        color: var(--muted-foreground);
+        font-size: 0.75rem;
+        line-height: 1.5;
+        overflow-wrap: anywhere;
+      }
+
+      .share-modal-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        margin-top: 1.5rem;
+      }
+
+      .share-modal-button,
+      .share-close {
+        border: 1px solid rgb(77 62 42 / 0.2);
+        background: transparent;
+        color: var(--ink);
+        cursor: pointer;
+        font-size: 0.72rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .share-modal-button {
+        min-height: 3.65rem;
+        padding: 0.95rem 1.25rem;
+      }
+
+      .share-modal-button.primary {
+        border-color: var(--ink);
+        background: var(--ink);
+        color: var(--paper);
+      }
+
+      .share-close {
+        position: absolute;
+        top: 0.85rem;
+        right: 0.85rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        padding: 0;
+        border-radius: 999px;
+        background: rgb(250 246 235 / 0.82);
+        letter-spacing: 0;
+      }
+
+      .share-modal-status {
+        min-height: 1.2rem;
+        margin: 1rem 0 0;
+        color: var(--muted-foreground);
+        font-size: 0.78rem;
+      }
+
       .footer {
         border-top: 1px solid rgb(77 62 42 / 0.12);
         background: rgb(248 242 229 / 0.72);
@@ -788,6 +916,20 @@
         margin: 0;
         color: rgb(86 72 63 / 0.82);
         font-size: 0.82rem;
+      }
+
+      @media (max-width: 859px) {
+        .share-card {
+          grid-template-columns: 1fr;
+        }
+
+        .share-art {
+          max-height: 24rem;
+        }
+
+        .share-art img {
+          min-height: 18rem;
+        }
       }
 
       @media (min-width: 860px) {
@@ -897,6 +1039,10 @@
       </div>
     </main>
 
+    <div class="share-modal" id="shareModal" role="dialog" aria-modal="true" aria-labelledby="shareModalTitle" aria-hidden="true">
+      <div class="share-card" id="shareCard"></div>
+    </div>
+
     <footer class="footer">
       <div class="footer-inner">
         <p class="footer-brand">Literary <em>Heroines</em></p>
@@ -969,6 +1115,8 @@
       const heroCopy = document.getElementById("heroCopy");
       const heroNavLink = document.getElementById("heroNavLink");
       const resultPanel = document.getElementById("resultPanel");
+      const shareModal = document.getElementById("shareModal");
+      const shareCard = document.getElementById("shareCard");
       const questionCount = document.getElementById("questionCount");
       const questionTitle = document.getElementById("questionTitle");
       const questionNote = document.getElementById("questionNote");
@@ -1049,6 +1197,78 @@
 
       function shareResultUrl(winnerId) {
         return new URL(`results/${RESULT_SLUGS[winnerId]}`, window.location.origin).toString();
+      }
+
+      async function copyShareLink(url, status) {
+        try {
+          await navigator.clipboard.writeText(url);
+          status.textContent = "Share link copied.";
+        } catch {
+          window.prompt("Copy your result link:", url);
+          status.textContent = "Share link ready.";
+        }
+      }
+
+      async function openNativeShare(shareData, fallbackStatus) {
+        if (navigator.share && (!navigator.canShare || navigator.canShare(shareData))) {
+          try {
+            await navigator.share(shareData);
+            fallbackStatus.textContent = "Share sheet opened.";
+            return true;
+          } catch (error) {
+            if (error.name === "AbortError") return true;
+          }
+        }
+
+        return false;
+      }
+
+      function closeShareModal() {
+        shareModal.classList.remove("is-visible");
+        shareModal.setAttribute("aria-hidden", "true");
+        shareCard.innerHTML = "";
+      }
+
+      function openShareModal(winner, detail) {
+        const url = shareResultUrl(winner.id);
+        const summary = detail.summary || detail.lead;
+        const shareData = {
+          title: `I got ${winner.n} on the Literary Heroines quiz`,
+          text: summary,
+          url,
+        };
+
+        shareCard.innerHTML = `
+          <button class="share-close" type="button" id="shareClose" aria-label="Close share preview">×</button>
+          <div class="share-art" aria-hidden="true">
+            <img src="${RESULT_IMAGES[winner.id]}" alt="" width="960" height="1200" />
+          </div>
+          <div class="share-content">
+            <p class="eyebrow">Share Your Result</p>
+            <h2 class="share-title" id="shareModalTitle">I got <span>${escapeHtml(winner.n)}</span></h2>
+            <p class="share-copy">${escapeHtml(summary)}</p>
+            <p class="share-link">${escapeHtml(url)}</p>
+            <div class="share-modal-actions">
+              <button class="share-modal-button primary" type="button" id="shareNativeButton">Share</button>
+              <button class="share-modal-button" type="button" id="shareCopyButton">Copy Link</button>
+            </div>
+            <p class="share-modal-status" id="shareModalStatus" aria-live="polite"></p>
+          </div>
+        `;
+
+        const modalStatus = document.getElementById("shareModalStatus");
+        document.getElementById("shareClose").addEventListener("click", closeShareModal);
+        document.getElementById("shareNativeButton").addEventListener("click", async () => {
+          const shared = await openNativeShare(shareData, modalStatus);
+          if (!shared) await copyShareLink(url, modalStatus);
+        });
+        document.getElementById("shareCopyButton").addEventListener("click", () => {
+          copyShareLink(url, modalStatus);
+        });
+
+        shareModal.classList.add("is-visible");
+        shareModal.setAttribute("aria-hidden", "false");
+        document.getElementById("shareNativeButton").focus();
       }
 
       function sharedResultId() {
@@ -1339,32 +1559,10 @@
             <span class="share-status" id="shareStatus"></span>
           </div>
         `;
-        document.getElementById("shareButton").addEventListener("click", async () => {
-          const url = shareResultUrl(winner.id);
+        document.getElementById("shareButton").addEventListener("click", () => {
           const status = document.getElementById("shareStatus");
-          const shareData = {
-            title: `I got ${winner.n} on the Literary Heroines quiz`,
-            text: detail.summary || detail.lead,
-            url,
-          };
-
-          if (navigator.share && (!navigator.canShare || navigator.canShare(shareData))) {
-            try {
-              await navigator.share(shareData);
-              status.textContent = "Share sheet opened.";
-              return;
-            } catch (error) {
-              if (error.name === "AbortError") return;
-            }
-          }
-
-          try {
-            await navigator.clipboard.writeText(url);
-            status.textContent = "Share link copied.";
-          } catch {
-            window.prompt("Copy your result link:", url);
-            status.textContent = "Share link ready.";
-          }
+          status.textContent = "";
+          openShareModal(winner, detail);
         });
         document.getElementById("restartButton").addEventListener("click", () => {
           state.index = 0;
@@ -1410,6 +1608,16 @@
 
       document.getElementById("footerYear").textContent =
         `© ${new Date().getFullYear()} · A love letter to the women on the page`;
+
+      shareModal.addEventListener("click", (event) => {
+        if (event.target === shareModal) closeShareModal();
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && shareModal.classList.contains("is-visible")) {
+          closeShareModal();
+        }
+      });
 
       renderHeroineChips();
       renderReturnBanner();
