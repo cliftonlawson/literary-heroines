@@ -574,10 +574,22 @@
 
       .portrait {
         position: relative;
+        display: block;
+        width: 100%;
+        border: 0;
         overflow: hidden;
         aspect-ratio: 4 / 5;
         background: rgb(255 255 255 / 0.38);
         padding: clamp(0.5rem, 0.85vw, 0.8rem);
+      }
+
+      .portrait-button {
+        cursor: pointer;
+      }
+
+      .portrait-button:focus-visible {
+        outline: 2px solid var(--sage-deep);
+        outline-offset: 4px;
       }
 
       .portrait::after {
@@ -1384,13 +1396,16 @@
       const dots = document.getElementById("dots");
       const heroineCount = document.getElementById("heroineCount");
 
-      function cardMarkup(heroine, active) {
+      function cardMarkup(heroine, active, clickOffset) {
         const imageClass = heroine.fit === "contain" ? "fit-contain" : "";
+        const clickLabel = active
+          ? `Show the next heroine after ${heroine.name}`
+          : `Show ${heroine.name}`;
         return `
           <article class="heroine-card${active ? " is-active" : ""}">
-            <div class="portrait">
+            <button type="button" class="portrait portrait-button" data-carousel-offset="${clickOffset}" aria-label="${clickLabel}">
               <img class="${imageClass}" src="${heroine.image}" alt="Portrait of ${heroine.name}" loading="lazy" width="768" height="1024" />
-            </div>
+            </button>
             <div class="card-text">
               <p class="eyebrow trait">${heroine.trait}</p>
               <h3 class="heroine-name">${heroine.name}</h3>
@@ -1408,10 +1423,13 @@
         });
 
         desktopCards.innerHTML = visible
-          .map(({ heroine, active }) => cardMarkup(heroine, active))
+          .map(({ heroine, active }, visibleIndex) => {
+            const offset = visibleIndex - 1;
+            return cardMarkup(heroine, active, offset === 0 ? 1 : offset);
+          })
           .join("");
 
-        mobileCard.innerHTML = cardMarkup(heroines[index], true);
+        mobileCard.innerHTML = cardMarkup(heroines[index], true, 1);
         heroineCount.textContent = `${index + 1} / ${total}`;
 
         dots.innerHTML = heroines
@@ -1425,6 +1443,12 @@
           button.addEventListener("click", () => {
             index = Number(button.dataset.index);
             render();
+          });
+        });
+
+        document.querySelectorAll(".portrait-button").forEach((button) => {
+          button.addEventListener("click", () => {
+            go(Number(button.dataset.carouselOffset));
           });
         });
       }
