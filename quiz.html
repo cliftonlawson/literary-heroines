@@ -1199,14 +1199,49 @@
         return new URL(`results/${RESULT_SLUGS[winnerId]}`, window.location.origin).toString();
       }
 
+      function copyWithSelection(url) {
+        const textArea = document.createElement("textarea");
+        textArea.value = url;
+        textArea.setAttribute("readonly", "");
+        textArea.style.position = "fixed";
+        textArea.style.top = "-9999px";
+        textArea.style.left = "-9999px";
+        document.body.appendChild(textArea);
+        textArea.select();
+        textArea.setSelectionRange(0, url.length);
+
+        let copied = false;
+        try {
+          copied = document.execCommand("copy");
+        } finally {
+          document.body.removeChild(textArea);
+        }
+
+        return copied;
+      }
+
       async function copyShareLink(url, status) {
         try {
-          await navigator.clipboard.writeText(url);
-          status.textContent = "Share link copied.";
+          if (navigator.clipboard?.writeText) {
+            await navigator.clipboard.writeText(url);
+            status.textContent = "Share link copied.";
+            return;
+          }
         } catch {
-          window.prompt("Copy your result link:", url);
-          status.textContent = "Share link ready.";
+          // Fall through to the selection-based copy for stricter browsers.
         }
+
+        try {
+          if (copyWithSelection(url)) {
+            status.textContent = "Share link copied.";
+            return;
+          }
+        } catch {
+          // Some browsers disable selection-based copying from modal contexts.
+        }
+
+        window.prompt("Copy your result link:", url);
+        status.textContent = "Share link ready.";
       }
 
       async function openNativeShare(shareData, fallbackStatus) {
@@ -1262,8 +1297,8 @@
           const shared = await openNativeShare(shareData, modalStatus);
           if (!shared) await copyShareLink(url, modalStatus);
         });
-        document.getElementById("shareCopyButton").addEventListener("click", () => {
-          copyShareLink(url, modalStatus);
+        document.getElementById("shareCopyButton").addEventListener("click", async () => {
+          await copyShareLink(url, modalStatus);
         });
 
         shareModal.classList.add("is-visible");
