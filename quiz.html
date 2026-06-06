@@ -1048,7 +1048,7 @@
       }
 
       function shareResultUrl(winnerId) {
-        return new URL(`results/${RESULT_SLUGS[winnerId]}.html`, window.location.origin).toString();
+        return new URL(`results/${RESULT_SLUGS[winnerId]}`, window.location.origin).toString();
       }
 
       function sharedResultId() {
