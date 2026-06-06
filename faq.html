@@ -244,6 +244,43 @@
         color: var(--ink);
       }
 
+      .mobile-menu {
+        position: relative;
+      }
+
+      .mobile-menu summary {
+        list-style: none;
+        color: rgb(255 252 245);
+        font-size: 0.7rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .mobile-menu summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .mobile-menu-panel {
+        position: absolute;
+        top: calc(100% + 0.85rem);
+        right: 0;
+        display: grid;
+        gap: 0.85rem;
+        min-width: 12rem;
+        padding: 1rem;
+        background: rgb(18 14 11 / 0.95);
+        border: 1px solid rgb(255 252 245 / 0.18);
+        box-shadow: 0 1rem 2rem rgb(0 0 0 / 0.22);
+      }
+
+      .mobile-menu-panel a {
+        color: rgb(255 252 245 / 0.86);
+        font-size: 0.72rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
       .faq-hero {
         min-height: clamp(24rem, 46vh, 34rem);
         display: flex;
@@ -436,6 +473,10 @@
           display: flex;
         }
 
+        .mobile-menu {
+          display: none;
+        }
+
         .footer-inner {
           flex-direction: row;
         }
@@ -489,6 +530,17 @@
         </nav>
 
         <a href="quiz.html" class="nav-cta">Take the Quiz</a>
+        <details class="mobile-menu">
+          <summary>Menu</summary>
+          <nav class="mobile-menu-panel" aria-label="Mobile navigation">
+            <a href="quiz.html">The Quiz</a>
+            <a href="index.html#heroines">Heroines</a>
+            <a href="results.html">Results</a>
+            <a href="novels.html">Novels</a>
+            <a href="faq.html">FAQ</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </details>
       </div>
     </header>
 

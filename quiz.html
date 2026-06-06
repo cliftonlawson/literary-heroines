@@ -188,6 +188,44 @@
         color: var(--ink);
       }
 
+      .mobile-menu {
+        position: relative;
+        margin-left: auto;
+      }
+
+      .mobile-menu summary {
+        list-style: none;
+        color: white;
+        font-size: 0.72rem;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .mobile-menu summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .mobile-menu-panel {
+        position: absolute;
+        top: calc(100% + 0.85rem);
+        right: 0;
+        display: grid;
+        gap: 0.85rem;
+        min-width: 12rem;
+        padding: 1rem;
+        background: rgb(24 20 15 / 0.95);
+        border: 1px solid rgb(255 255 255 / 0.18);
+        box-shadow: 0 1rem 2rem rgb(0 0 0 / 0.22);
+      }
+
+      .mobile-menu-panel a {
+        color: rgb(255 255 255 / 0.86);
+        font-size: 0.72rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
       .quiz-hero {
         position: relative;
         min-height: min(48rem, 92vh);
@@ -1002,6 +1040,10 @@
       }
 
       @media (max-width: 859px) {
+        .nav-action {
+          display: none;
+        }
+
         .share-card {
           grid-template-columns: 1fr;
         }
@@ -1018,6 +1060,10 @@
       @media (min-width: 860px) {
         .nav-menu {
           display: flex;
+        }
+
+        .mobile-menu {
+          display: none;
         }
 
         .quiz-layout {
@@ -1094,6 +1140,16 @@
           <a class="nav-link" href="contact.html">Contact</a>
         </nav>
         <a class="nav-link nav-action" href="#test" id="heroNavLink">Take the Quiz</a>
+        <details class="mobile-menu">
+          <summary>Menu</summary>
+          <nav class="mobile-menu-panel" aria-label="Mobile navigation">
+            <a href="#test">Take the Quiz</a>
+            <a href="results.html">Results</a>
+            <a href="novels.html">Novels</a>
+            <a href="faq.html">FAQ</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </details>
       </div>
     </header>
 
