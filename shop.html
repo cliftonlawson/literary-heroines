@@ -148,7 +148,7 @@
       .shop-hero-layout {
         display: grid;
         gap: clamp(2rem, 6vw, 5rem);
-        align-items: end;
+        align-items: center;
       }
 
       .eyebrow {
@@ -185,19 +185,15 @@
       }
 
       .featured-card {
-        border: 1px solid rgb(77 62 42 / 0.12);
-        background: rgb(255 252 245 / 0.72);
-        padding: clamp(1rem, 2vw, 1.3rem);
+        width: 100%;
       }
 
       .featured-art {
         aspect-ratio: 3 / 2;
-        background:
-          linear-gradient(rgb(255 255 255 / 0.28), rgb(236 224 204 / 0.52)),
-          rgb(241 228 198 / 0.8);
         display: grid;
         place-items: center;
         overflow: hidden;
+        box-shadow: 0 1.4rem 3.4rem rgb(55 44 31 / 0.18);
       }
 
       .featured-art img {
@@ -439,7 +435,7 @@
         }
 
         .shop-hero-layout {
-          grid-template-columns: minmax(0, 1fr) minmax(19rem, 24rem);
+          grid-template-columns: minmax(0, 0.86fr) minmax(28rem, 42rem);
         }
 
         .product-grid {
