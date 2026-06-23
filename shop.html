@@ -8,16 +8,16 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <link rel="manifest" href="site.webmanifest" />
     <meta name="theme-color" content="#6b7661" />
-    <title>Literary Heroines Puzzles | Classic Heroine Jigsaw Puzzles</title>
+    <title>Literary Heroines Shop | Classic Heroine Puzzles & T-Shirts</title>
     <meta
       name="description"
-      content="Shop Literary Heroines jigsaw puzzles featuring Elizabeth Bennet, Anne Elliot, Jane Eyre, Jo March, and more classic literary heroines."
+      content="Shop Literary Heroines jigsaw puzzles and T-shirts featuring Elizabeth Bennet, Anne Elliot, Jane Eyre, Jo March, and more classic literary heroines."
     />
     <link rel="canonical" href="https://literaryheroines.com/shop" />
-    <meta property="og:title" content="Literary Heroines Puzzles | Classic Heroine Jigsaw Puzzles" />
+    <meta property="og:title" content="Literary Heroines Shop | Classic Heroine Puzzles & T-Shirts" />
     <meta
       property="og:description"
-      content="Artful jigsaw puzzles for readers who love Austen, Bronte, Alcott, and classic literary heroines."
+      content="Artful puzzles and literary T-shirts for readers who love Austen, Bronte, Alcott, and classic heroines."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://literaryheroines.com/shop" />
@@ -28,10 +28,10 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Literary Heroines Puzzles | Classic Heroine Jigsaw Puzzles" />
+    <meta name="twitter:title" content="Literary Heroines Shop | Classic Heroine Puzzles & T-Shirts" />
     <meta
       name="twitter:description"
-      content="Artful jigsaw puzzles for readers who love Austen, Bronte, Alcott, and classic literary heroines."
+      content="Artful puzzles and literary T-shirts for readers who love Austen, Bronte, Alcott, and classic heroines."
     />
     <meta name="twitter:image" content="https://literaryheroines.com/assets/share/shop-puzzles.png?v=20260622-shop" />
     <meta name="twitter:image:alt" content="Anne Elliot literary heroine puzzle on a table with tea and candles" />
@@ -466,15 +466,15 @@
       <section class="shop-hero">
         <div class="shop-hero-layout">
           <div>
-            <p class="eyebrow">The Puzzle Collection</p>
+            <p class="eyebrow">The Shop Collection</p>
             <h1 class="shop-title">
               Piece together
               <em>your heroine.</em>
             </h1>
             <p class="shop-copy">
-              Artful jigsaw puzzles for the women who found themselves somewhere between
-              a muddy hem, a stormy moor, a quiet letter, and a page they could not stop
-              rereading.
+              Artful puzzles and literary T-shirts for the women who found themselves
+              somewhere between a muddy hem, a stormy moor, a quiet letter, and a page
+              they could not stop rereading.
             </p>
           </div>
 
@@ -491,6 +491,7 @@
       <section class="shop-toolbar" aria-label="Shop filters">
         <div class="filter-strip">
           <button class="filter-button is-active" type="button" data-filter="All">All</button>
+          <button class="filter-button" type="button" data-filter="T-Shirts">T-Shirts</button>
           <button class="filter-button" type="button" data-filter="Pride & Prejudice">Pride &amp; Prejudice</button>
           <button class="filter-button" type="button" data-filter="Austen">Austen</button>
           <button class="filter-button" type="button" data-filter="Bronte">Bronte</button>
@@ -501,7 +502,7 @@
       <section class="shop-section">
         <div class="product-grid" id="productGrid" aria-live="polite"></div>
         <p class="integration-note">
-          Checkout opens through Shopify, with puzzle production and fulfillment handled
+          Checkout opens through Shopify, with production and fulfillment handled
           by Printify.
         </p>
 
@@ -559,13 +560,13 @@
               <p class="product-copy">${product.description}</p>
               <div class="product-meta" aria-label="${product.title} details">
                 <span class="product-pill">${product.book}</span>
-                <span class="product-pill">${product.pieceCount}</span>
+                <span class="product-pill">${product.itemDetail || product.pieceCount}</span>
                 <span class="product-pill">${product.author}</span>
               </div>
               <div class="product-footer">
                 <span class="price">${product.price}</span>
                 ${productLink}
-                <a class="buy-button" data-product-id="${product.id}" ${buttonAttributes}>Shop Puzzle</a>
+                <a class="buy-button" data-product-id="${product.id}" ${buttonAttributes}>${product.ctaLabel || "Shop Puzzle"}</a>
               </div>
             </div>
           </article>
