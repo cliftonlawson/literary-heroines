@@ -402,7 +402,7 @@
       .result-callout h2 {
         margin: 0;
         font-family: var(--font-serif);
-        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        font-size: clamp(2.5rem, 4vw, 4.5rem);
         font-weight: 300;
         line-height: 1;
       }
@@ -473,9 +473,9 @@
               <em>your heroine.</em>
             </h1>
             <p class="shop-copy">
-              Artful puzzles and literary T-shirts for the women who found themselves
-              somewhere between a muddy hem, a stormy moor, a quiet letter, and a page
-              they could not stop rereading.
+              Artful <strong>puzzles</strong> and literary <strong>T-shirts</strong>
+              for the women who found themselves somewhere between a muddy hem, a stormy
+              moor, a quiet letter, and a page they could not stop rereading.
             </p>
           </div>
 
@@ -493,6 +493,7 @@
         <div class="filter-strip">
           <button class="filter-button is-active" type="button" data-filter="All">All</button>
           <button class="filter-button" type="button" data-filter="T-Shirts">T-Shirts</button>
+          <button class="filter-button" type="button" data-filter="Puzzles">Puzzles</button>
           <button class="filter-button" type="button" data-filter="Pride & Prejudice">Pride &amp; Prejudice</button>
           <button class="filter-button" type="button" data-filter="Austen">Austen</button>
           <button class="filter-button" type="button" data-filter="Bronte">Bronte</button>
@@ -508,16 +509,16 @@
         </p>
 
         <aside class="result-callout">
-          <h2>Not sure which puzzle belongs to you?</h2>
+          <h2>Not Sure Which Heroine To Bring Home?</h2>
           <p>
-            Take the quiz, meet your literary heroine, then come back for the puzzle with
+            Take the quiz, meet your literary heroine, then come back for the item with
             your name quietly written all over it.
           </p>
           <a class="callout-button" href="quiz.html">Take the Quiz</a>
         </aside>
       </section>
     </main>
-    <script src="assets/shop-products.js?v=20260625-shirts"></script>
+    <script src="assets/shop-products.js?v=20260625-shop-filters"></script>
     <script>
       const productGrid = document.querySelector("#productGrid");
       const filterButtons = [...document.querySelectorAll("[data-filter]")];
