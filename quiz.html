@@ -822,6 +822,19 @@
         font-size: 0.76rem;
       }
 
+      .score-row a {
+        color: inherit;
+        text-decoration: underline;
+        text-decoration-color: rgb(77 62 42 / 0.28);
+        text-underline-offset: 0.2em;
+        transition: color 180ms ease, text-decoration-color 180ms ease;
+      }
+
+      .score-row a:hover {
+        color: var(--result-color, var(--sage-deep));
+        text-decoration-color: currentColor;
+      }
+
       .score-track {
         height: 0.4rem;
         background: rgb(77 62 42 / 0.12);
@@ -1745,7 +1758,7 @@
                       const width = Math.round((character.pct / maxPercent) * 100);
                       return `
                         <div class="score-row">
-                          <span>${character.n}</span>
+                          <a href="results/${RESULT_SLUGS[character.id]}">${character.n}</a>
                           <span class="score-track"><span class="score-fill" style="width:${width}%;background:${character.id === winner.id ? character.cl : "var(--sage-deep)"}"></span></span>
                           <span>${percent}%</span>
                         </div>
