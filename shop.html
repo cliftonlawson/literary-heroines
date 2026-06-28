@@ -141,6 +141,49 @@
         text-transform: uppercase;
       }
 
+      .mobile-menu {
+        position: relative;
+        margin-left: auto;
+      }
+
+      .mobile-menu summary {
+        list-style: none;
+        color: var(--ink-soft);
+        font-size: 0.7rem;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .mobile-menu summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .mobile-menu-panel {
+        position: absolute;
+        top: calc(100% + 0.85rem);
+        right: 0;
+        display: grid;
+        gap: 0.85rem;
+        min-width: 12rem;
+        padding: 1rem;
+        background: rgb(244 236 219 / 0.98);
+        border: 1px solid rgb(77 62 42 / 0.14);
+        box-shadow: 0 1rem 2rem rgb(55 44 31 / 0.14);
+      }
+
+      .mobile-menu-panel a,
+      .mobile-menu-panel span {
+        color: var(--ink-soft);
+        font-size: 0.72rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .mobile-menu-panel span {
+        color: var(--sage-deep);
+      }
+
       .shop-hero {
         width: min(100%, 88rem);
         margin: 0 auto;
@@ -436,6 +479,10 @@
           display: flex;
         }
 
+        .mobile-menu {
+          display: none;
+        }
+
         .shop-hero-layout {
           grid-template-columns: minmax(0, 0.86fr) minmax(28rem, 42rem);
         }
@@ -459,6 +506,16 @@
           <a href="results.html" class="nav-link">Results</a>
           <a href="contact.html" class="nav-link">Contact</a>
         </nav>
+        <details class="mobile-menu">
+          <summary>Menu</summary>
+          <nav class="mobile-menu-panel" aria-label="Mobile navigation">
+            <a href="index.html">Home</a>
+            <a href="quiz.html">The Quiz</a>
+            <a href="results.html">Results</a>
+            <span aria-current="page">Shop</span>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </details>
       </div>
     </header>
 
