@@ -193,9 +193,23 @@
         color: var(--ink);
       }
 
+
+      .mobile-shop-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+        border: 1px solid rgb(255 255 255 / 0.42);
+        border-radius: 999px;
+        padding: 0.52rem 0.82rem;
+        color: white;
+        font-size: 0.68rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
       .mobile-menu {
         position: relative;
-        margin-left: auto;
       }
 
       .mobile-menu summary {
@@ -1062,6 +1076,10 @@
           display: none;
         }
 
+        .mobile-shop-link {
+          display: inline-flex;
+        }
+
         .share-card {
           grid-template-columns: 1fr;
         }
@@ -1080,6 +1098,7 @@
           display: flex;
         }
 
+        .mobile-shop-link,
         .mobile-menu {
           display: none;
         }
@@ -1159,6 +1178,7 @@
           <a class="nav-link" href="contact.html">Contact</a>
         </nav>
         <a class="nav-link nav-action" href="#test" id="heroNavLink">Take the Quiz</a>
+        <a class="mobile-shop-link" href="shop.html">Shop</a>
         <details class="mobile-menu">
           <summary>Menu</summary>
           <nav class="mobile-menu-panel" aria-label="Mobile navigation">
