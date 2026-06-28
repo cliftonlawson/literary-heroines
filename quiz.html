@@ -1374,6 +1374,42 @@
         clearProgress();
       }
 
+      function trackQuizCompletion(result, winner) {
+        const trackingKey = `literaryHeroines.quizCompletionTracked.${result.winner}.${result.answerIds.join("-")}`;
+        if (localStorage.getItem(trackingKey)) return;
+
+        const payload = {
+          winnerId: winner.id,
+          resultName: winner.n,
+          topResults: result.ranked.slice(0, 3).map((character) => ({
+            id: character.id,
+            name: character.n,
+            percent: Math.round(character.pct),
+          })),
+        };
+
+        localStorage.setItem(trackingKey, "true");
+
+        try {
+          const body = JSON.stringify(payload);
+          if (navigator.sendBeacon) {
+            const sent = navigator.sendBeacon("/api/quiz-complete", new Blob([body], { type: "application/json" }));
+            if (sent) return;
+          }
+
+          fetch("/api/quiz-complete", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body,
+            keepalive: true,
+          }).catch(() => {
+            localStorage.removeItem(trackingKey);
+          });
+        } catch {
+          localStorage.removeItem(trackingKey);
+        }
+      }
+
       function resultUrl(winnerId) {
         const url = new URL(window.location.href);
         url.search = "";
@@ -1708,7 +1744,10 @@
         const detail = resultDetailFor(winner);
         const maxPercent = Math.max(...result.ranked.map((character) => character.pct), 1);
 
-        if (persist) saveResult(result);
+        if (persist) {
+          saveResult(result);
+          trackQuizCompletion(result, winner);
+        }
         if (updateUrl) window.history.replaceState(null, "", resultUrl(winner.id));
 
         quizShell.classList.add("is-result-mode");
