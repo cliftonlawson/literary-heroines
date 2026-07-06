@@ -257,11 +257,11 @@
         min-height: 100vh;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         overflow: hidden;
-        padding: 8rem 1.5rem 5rem;
+        padding: 8rem 1.5rem 5.5rem;
         background-image: url("assets/hero-countryside.webp");
-        background-position: center;
+        background-position: 58% center;
         background-size: cover;
       }
 
@@ -269,34 +269,17 @@
         content: "";
         position: absolute;
         inset: 0;
-        background: rgb(52 45 34 / 0.55);
-      }
-
-      .decor-line {
-        display: none;
-        position: absolute;
-        top: 8rem;
-        left: 50%;
-        width: 42%;
-        height: 1px;
-        background: rgb(255 255 255 / 0.3);
-        pointer-events: none;
-      }
-
-      .decor-line.left {
-        transform: translateX(-110%);
-      }
-
-      .decor-line.right {
-        transform: translateX(10%);
+        background:
+          linear-gradient(90deg, rgb(23 21 18 / 0.74), rgb(23 21 18 / 0.42) 48%, rgb(23 21 18 / 0.18)),
+          linear-gradient(0deg, rgb(23 21 18 / 0.28), transparent 44%);
       }
 
       .hero-content {
         position: relative;
         z-index: 10;
-        width: min(100%, 56rem);
+        width: min(100%, 80rem);
         margin: 0 auto;
-        text-align: center;
+        text-align: left;
       }
 
       .eyebrow {
@@ -313,9 +296,10 @@
       }
 
       .hero-title {
-        margin-top: 2.5rem;
-        font-size: clamp(3.55rem, 14vw, 6rem);
-        line-height: 1.05;
+        max-width: 9ch;
+        margin-top: 2rem;
+        font-size: clamp(4.15rem, 15vw, 6.4rem);
+        line-height: 0.94;
         color: white;
       }
 
@@ -325,39 +309,40 @@
       }
 
       .hero-copy {
-        width: min(100%, 36rem);
-        margin: 2.5rem auto 0;
-        color: rgb(255 255 255 / 0.85);
-        font-size: 1rem;
-        line-height: 1.7;
+        width: min(100%, 34rem);
+        margin-top: 2rem;
+        color: rgb(255 255 255 / 0.82);
+        font-size: 1.02rem;
+        line-height: 1.65;
       }
 
       .hero-actions {
-        margin-top: 3rem;
+        margin-top: 2.5rem;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: 1.5rem;
+        align-items: flex-start;
+        gap: 1rem;
       }
 
       .hero-button {
         display: inline-flex;
         align-items: center;
         gap: 1rem;
-        border: 1px solid rgb(255 255 255 / 0.8);
-        background: rgb(255 255 255 / 0.1);
-        padding: 1rem 2.5rem;
-        color: white;
+        border: 1px solid rgb(255 252 245 / 0.96);
+        background: rgb(255 252 245 / 0.96);
+        padding: 1.05rem 2.1rem;
+        color: rgb(38 33 28);
         font-size: 0.7rem;
-        letter-spacing: 0.35em;
+        letter-spacing: 0.24em;
         text-transform: uppercase;
-        backdrop-filter: blur(8px);
-        transition: background-color 180ms ease, border-color 180ms ease;
+        transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
       }
 
       .hero-button:hover {
         border-color: white;
-        background: rgb(255 255 255 / 0.2);
+        background: transparent;
+        color: white;
+        transform: translateY(-2px);
       }
 
       .hero-button span {
@@ -375,28 +360,12 @@
         color: rgb(255 255 255 / 0.7);
       }
 
-      .hero-signature {
-        position: absolute;
-        left: 50%;
-        bottom: 2rem;
-        z-index: 10;
-        transform: translateX(-50%);
-        width: max-content;
-        font-family: var(--font-serif);
-        font-size: 0.75rem;
-        font-style: italic;
-        letter-spacing: 0.18em;
-        color: rgb(255 255 255 / 0.6);
-      }
-
       .why-matters {
         position: relative;
         overflow: hidden;
-        background:
-          linear-gradient(180deg, rgb(250 247 240), rgb(244 236 224)),
-          var(--paper);
+        background: rgb(250 247 240);
         color: var(--ink);
-        padding: 4.75rem 0 5.2rem;
+        padding: 5.5rem 0 5.75rem;
       }
 
       .why-shell {
@@ -474,15 +443,17 @@
 
       .problem-grid {
         display: grid;
-        gap: 1.7rem;
-        margin-top: 1.6rem;
+        gap: 2.15rem;
+        margin-top: 0.25rem;
       }
 
       .problem-card {
         display: grid;
-        grid-template-columns: 4.6rem minmax(0, 1fr);
-        gap: 1.2rem;
+        grid-template-columns: 4.1rem minmax(0, 1fr);
+        gap: 1.25rem;
         align-items: start;
+        border-top: 1px solid rgb(77 62 42 / 0.14);
+        padding-top: 1.2rem;
       }
 
       .problem-number {
@@ -513,25 +484,10 @@
       .donation {
         position: relative;
         overflow: hidden;
-        background:
-          radial-gradient(circle at 50% 0%, rgb(255 255 255 / 0.56), transparent 34rem),
-          linear-gradient(180deg, rgb(244 236 224), rgb(250 247 240));
-        color: var(--ink);
+        background: rgb(37 33 29);
+        color: rgb(255 252 245);
         padding: 5.75rem 1.5rem 6rem;
         text-align: center;
-      }
-
-      .donation::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background-image:
-          linear-gradient(90deg, rgb(86 72 63 / 0.045) 1px, transparent 1px),
-          linear-gradient(rgb(86 72 63 / 0.035) 1px, transparent 1px);
-        background-size: 5.5rem 5.5rem;
-        mask-image: radial-gradient(circle at center, black 0%, transparent 72%);
-        opacity: 0.45;
-        pointer-events: none;
       }
 
       .donation-inner {
@@ -542,34 +498,34 @@
       }
 
       .donation .eyebrow {
-        color: rgb(117 75 66);
+        color: rgb(221 202 165 / 0.82);
         font-weight: 400;
       }
 
       .donation-title {
         margin-top: 1.45rem;
-        color: rgb(54 48 43);
+        color: rgb(255 252 245);
         font-size: clamp(3rem, 3.4vw, 6.8rem);
         line-height: 0.94;
       }
 
       .donation-title em {
         display: block;
-        color: rgb(123 83 68);
+        color: rgb(205 179 130);
         font-style: italic;
       }
 
       .donation-copy {
         width: min(100%, 43rem);
         margin: 2.25rem auto 0;
-        color: rgb(86 72 63);
+        color: rgb(255 252 245 / 0.76);
         font-size: clamp(1rem, 1.4vw, 1.12rem);
         line-height: 1.85;
       }
 
       .venmo-note {
         margin: 2.3rem auto 0;
-        color: rgb(117 75 66);
+        color: rgb(221 202 165 / 0.78);
         font-size: 0.78rem;
         font-weight: 400;
         letter-spacing: 0.24em;
@@ -579,8 +535,8 @@
       .venmo-link {
         display: inline-block;
         margin-top: 0.75rem;
-        border-bottom: 1px solid rgb(117 75 66 / 0.42);
-        color: rgb(54 48 43);
+        border-bottom: 1px solid rgb(221 202 165 / 0.48);
+        color: rgb(255 252 245);
         font-family: var(--font-serif);
         font-size: clamp(1.45rem, 2vw, 1.95rem);
         font-style: italic;
@@ -590,7 +546,7 @@
 
       .venmo-link:hover {
         border-color: currentColor;
-        color: rgb(123 83 68);
+        color: rgb(221 202 165);
       }
 
       .venmo-link:focus-visible {
@@ -1060,10 +1016,6 @@
           display: none;
         }
 
-        .decor-line {
-          display: block;
-        }
-
         .hero-title {
           font-size: clamp(6rem, 9vw, 8rem);
         }
@@ -1120,6 +1072,28 @@
           display: none;
         }
       }
+
+      @media (max-width: 520px) {
+        .hero {
+          min-height: 96svh;
+          padding: 7rem 1.2rem 4.5rem;
+          background-position: 64% center;
+        }
+
+        .hero-title {
+          font-size: clamp(3.45rem, 18vw, 4.2rem);
+        }
+
+        .hero-copy {
+          font-size: 0.98rem;
+        }
+
+        .hero-button {
+          width: 100%;
+          justify-content: center;
+          padding-inline: 1.4rem;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1160,9 +1134,6 @@
 
       <main>
         <section class="hero">
-          <div class="decor-line left" aria-hidden="true"></div>
-          <div class="decor-line right" aria-hidden="true"></div>
-
           <div class="hero-content">
             <p class="eyebrow">A Quiz for Women Who Read</p>
 
@@ -1175,9 +1146,8 @@
             </h1>
 
             <p class="hero-copy">
-              Are you Elizabeth's sharp wit, Jane Eyre's quiet conviction, or Jo March's
-              restless pen? Answer fifty thoughtful questions and meet the heroine the
-              page has been keeping for you.
+              Fifty questions about love, courage, judgment, grief, and freedom — written
+              for readers who know a fictional woman can tell the truth about a real one.
             </p>
 
             <div class="hero-actions">
@@ -1188,8 +1158,6 @@
               <p class="hero-note">Takes about 10-15 minutes · No email required</p>
             </div>
           </div>
-
-          <p class="hero-signature">~ est. for the bookish ~</p>
         </section>
 
         <section class="heroines" id="heroines">
@@ -1261,15 +1229,11 @@
               <div class="why-visual-column">
                 <div class="why-heading">
                   <p class="eyebrow why-kicker">Why This Matters</p>
-                  <h2 class="why-title">
-                    The Problems With Every
-                    <em>Personality Test You’ve Taken</em>
-                  </h2>
+                  <h2 class="why-title">What this quiz <em>refuses</em></h2>
                   <p class="why-intro">
-                    Personality tests are popular because they work: self-knowledge genuinely
-                    helps people communicate better, choose more wisely, and understand why
-                    they move through the world the way they do. But every existing test has a
-                    serious limitation.
+                    It is not a workplace type, a diagnosis, or a six-question sorting hat.
+                    It is a literary portrait: slower, stranger, and more interested in what
+                    you believe when the room goes quiet.
                   </p>
                 </div>
 
@@ -1282,12 +1246,11 @@
                 <article class="problem-card">
                   <span class="problem-number">I.</span>
                   <div>
-                    <h3 class="problem-title">Myers-Briggs Belongs to the Boardroom.</h3>
+                    <h3 class="problem-title">Not a boardroom type.</h3>
                     <p class="problem-copy">
-                      Designed for mid-century corporate hiring. It describes how you process
-                      information at work, not who you are when you're alone with a book at
-                      midnight. Literary Heroines asks about love, courage, grief, and freedom.
-                      Myers-Briggs has no category for any of those.
+                      The questions are not about how you manage meetings. They are about
+                      whether you trust your own judgment, what you do with longing, and what
+                      you will not trade away.
                     </p>
                   </div>
                 </article>
@@ -1295,11 +1258,11 @@
                 <article class="problem-card">
                   <span class="problem-number">II.</span>
                   <div>
-                    <h3 class="problem-title">The Enneagram Can Feel Like a Diagnosis.</h3>
+                    <h3 class="problem-title">Not a diagnosis.</h3>
                     <p class="problem-copy">
-                      It's profound but heavy. It maps your deepest wounds. Sometimes you don't
-                      want to confront your core trauma over brunch. Sometimes you want to be
-                      celebrated for who you are, not analyzed for what broke you.
+                      There is room here for sorrow and contradiction, but the point is not to
+                      reduce you to a wound. The result should feel like recognition, not an
+                      intake form.
                     </p>
                   </div>
                 </article>
@@ -1307,51 +1270,11 @@
                 <article class="problem-card">
                   <span class="problem-number">III.</span>
                   <div>
-                    <h3 class="problem-title">Pop Quizzes Don’t Take You Seriously.</h3>
+                    <h3 class="problem-title">Not a throwaway quiz.</h3>
                     <p class="problem-copy">
-                      Most character quizzes are six questions with obvious routing. Ours is
-                      fifty, designed to genuinely surprise you. Readers who've called
-                      themselves Elizabeth Bennet for twenty years sometimes discover they're
-                      actually Anne Elliot. The test earns that.
-                    </p>
-                  </div>
-                </article>
-
-                <article class="problem-card">
-                  <span class="problem-number">IV.</span>
-                  <div>
-                    <h3 class="problem-title">Most Tests Ask How You Behave. This One Asks What You Believe.</h3>
-                    <p class="problem-copy">
-                      What does love actually require of you? What would you never compromise?
-                      What do you reach for when your heart breaks? Those are harder questions
-                      than "are you an introvert or an extrovert," and they produce truer
-                      answers.
-                    </p>
-                  </div>
-                </article>
-
-                <article class="problem-card">
-                  <span class="problem-number">V.</span>
-                  <div>
-                    <h3 class="problem-title">These Characters Have Been Doing This Work for Two Hundred Years.</h3>
-                    <p class="problem-copy">
-                      This isn't a personality framework invented for a marketing deck. Austen,
-                      the Brontës, and Alcott created women so precisely drawn that readers have
-                      been finding themselves in them for centuries. The test draws on that
-                      literary depth rather than starting from scratch.
-                    </p>
-                  </div>
-                </article>
-
-                <article class="problem-card">
-                  <span class="problem-number">VI.</span>
-                  <div>
-                    <h3 class="problem-title">Your Result Is a Portrait, Not a Label.</h3>
-                    <p class="problem-copy">
-                      Not a four-letter code. Not a number on a circle. A heroine, a world, a
-                      wardrobe, a defining moment from her story, and a full breakdown of how
-                      much of each character lives inside you. Something you'd actually want to
-                      share.
+                      The route is fifty questions long because the result has to earn your
+                      trust. You may arrive where you expected, or find that another heroine
+                      has been waiting under the surface.
                     </p>
                   </div>
                 </article>
@@ -1364,14 +1287,13 @@
           <div class="donation-inner">
             <p class="eyebrow">Always free, always will be.</p>
             <h2 class="donation-title" id="donation-title">
-              But if you enjoyed it, buy us a
+              If it meant something, buy us a
               <em>cup of tea?</em>
             </h2>
             <p class="donation-copy">
-              No subscriptions. No paywalls. We built Literary Heroines because the right
-              story can make a person feel less alone. If your result surprised you,
-              delighted you, or gave you a truer name for something inside yourself, a small
-              contribution helps keep the quiz free for the next reader who needs it.
+              No subscriptions. No paywalls. Just a reader-made project kept alive by people
+              who believe the right story can make someone feel less alone. A small
+              contribution helps keep the quiz open for the next person who needs it.
             </p>
             <p class="venmo-note">Venmo a cup of tea</p>
             <a class="venmo-link" href="https://venmo.com/graceandlove" aria-label="Support Literary Heroines on Venmo at graceandlove">
