@@ -363,9 +363,11 @@
       .why-matters {
         position: relative;
         overflow: hidden;
-        background: rgb(250 247 240);
+        background:
+          linear-gradient(180deg, rgb(250 247 240), rgb(244 236 224)),
+          var(--paper);
         color: var(--ink);
-        padding: 5.5rem 0 5.75rem;
+        padding: 4.75rem 0 5.2rem;
       }
 
       .why-shell {
@@ -443,17 +445,15 @@
 
       .problem-grid {
         display: grid;
-        gap: 2.15rem;
-        margin-top: 0.25rem;
+        gap: 1.7rem;
+        margin-top: 1.6rem;
       }
 
       .problem-card {
         display: grid;
-        grid-template-columns: 4.1rem minmax(0, 1fr);
-        gap: 1.25rem;
+        grid-template-columns: 4.6rem minmax(0, 1fr);
+        gap: 1.2rem;
         align-items: start;
-        border-top: 1px solid rgb(77 62 42 / 0.14);
-        padding-top: 1.2rem;
       }
 
       .problem-number {
@@ -1229,11 +1229,15 @@
               <div class="why-visual-column">
                 <div class="why-heading">
                   <p class="eyebrow why-kicker">Why This Matters</p>
-                  <h2 class="why-title">What this quiz <em>refuses</em></h2>
+                  <h2 class="why-title">
+                    The Problems With Every
+                    <em>Personality Test You’ve Taken</em>
+                  </h2>
                   <p class="why-intro">
-                    It is not a workplace type, a diagnosis, or a six-question sorting hat.
-                    It is a literary portrait: slower, stranger, and more interested in what
-                    you believe when the room goes quiet.
+                    Personality tests are popular because they work: self-knowledge genuinely
+                    helps people communicate better, choose more wisely, and understand why
+                    they move through the world the way they do. But every existing test has a
+                    serious limitation.
                   </p>
                 </div>
 
@@ -1246,11 +1250,12 @@
                 <article class="problem-card">
                   <span class="problem-number">I.</span>
                   <div>
-                    <h3 class="problem-title">Not a boardroom type.</h3>
+                    <h3 class="problem-title">Myers-Briggs Belongs to the Boardroom.</h3>
                     <p class="problem-copy">
-                      The questions are not about how you manage meetings. They are about
-                      whether you trust your own judgment, what you do with longing, and what
-                      you will not trade away.
+                      Designed for mid-century corporate hiring. It describes how you process
+                      information at work, not who you are when you're alone with a book at
+                      midnight. Literary Heroines asks about love, courage, grief, and freedom.
+                      Myers-Briggs has no category for any of those.
                     </p>
                   </div>
                 </article>
@@ -1258,11 +1263,11 @@
                 <article class="problem-card">
                   <span class="problem-number">II.</span>
                   <div>
-                    <h3 class="problem-title">Not a diagnosis.</h3>
+                    <h3 class="problem-title">The Enneagram Can Feel Like a Diagnosis.</h3>
                     <p class="problem-copy">
-                      There is room here for sorrow and contradiction, but the point is not to
-                      reduce you to a wound. The result should feel like recognition, not an
-                      intake form.
+                      It's profound but heavy. It maps your deepest wounds. Sometimes you don't
+                      want to confront your core trauma over brunch. Sometimes you want to be
+                      celebrated for who you are, not analyzed for what broke you.
                     </p>
                   </div>
                 </article>
@@ -1270,11 +1275,51 @@
                 <article class="problem-card">
                   <span class="problem-number">III.</span>
                   <div>
-                    <h3 class="problem-title">Not a throwaway quiz.</h3>
+                    <h3 class="problem-title">Pop Quizzes Don’t Take You Seriously.</h3>
                     <p class="problem-copy">
-                      The route is fifty questions long because the result has to earn your
-                      trust. You may arrive where you expected, or find that another heroine
-                      has been waiting under the surface.
+                      Most character quizzes are six questions with obvious routing. Ours is
+                      fifty, designed to genuinely surprise you. Readers who've called
+                      themselves Elizabeth Bennet for twenty years sometimes discover they're
+                      actually Anne Elliot. The test earns that.
+                    </p>
+                  </div>
+                </article>
+
+                <article class="problem-card">
+                  <span class="problem-number">IV.</span>
+                  <div>
+                    <h3 class="problem-title">Most Tests Ask How You Behave. This One Asks What You Believe.</h3>
+                    <p class="problem-copy">
+                      What does love actually require of you? What would you never compromise?
+                      What do you reach for when your heart breaks? Those are harder questions
+                      than "are you an introvert or an extrovert," and they produce truer
+                      answers.
+                    </p>
+                  </div>
+                </article>
+
+                <article class="problem-card">
+                  <span class="problem-number">V.</span>
+                  <div>
+                    <h3 class="problem-title">These Characters Have Been Doing This Work for Two Hundred Years.</h3>
+                    <p class="problem-copy">
+                      This isn't a personality framework invented for a marketing deck. Austen,
+                      the Brontës, and Alcott created women so precisely drawn that readers have
+                      been finding themselves in them for centuries. The test draws on that
+                      literary depth rather than starting from scratch.
+                    </p>
+                  </div>
+                </article>
+
+                <article class="problem-card">
+                  <span class="problem-number">VI.</span>
+                  <div>
+                    <h3 class="problem-title">Your Result Is a Portrait, Not a Label.</h3>
+                    <p class="problem-copy">
+                      Not a four-letter code. Not a number on a circle. A heroine, a world, a
+                      wardrobe, a defining moment from her story, and a full breakdown of how
+                      much of each character lives inside you. Something you'd actually want to
+                      share.
                     </p>
                   </div>
                 </article>
