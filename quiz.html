@@ -1166,15 +1166,6 @@
       }
 
       @media (min-width: 1024px) {
-        .nav-menu {
-          display: flex;
-        }
-
-        .mobile-shop-link,
-        .mobile-menu {
-          display: none;
-        }
-
         .quiz-layout {
           grid-template-columns: minmax(16rem, 24rem) minmax(0, 1fr);
           align-items: start;
@@ -1215,6 +1206,17 @@
           flex-direction: row;
         }
       }
+
+      @media (min-width: 1180px) {
+        .nav-menu {
+          display: flex;
+        }
+
+        .mobile-shop-link,
+        .mobile-menu {
+          display: none;
+        }
+      }
     </style>
     <script type="application/ld+json">{
   "@context": "https://schema.org",
@@ -1243,6 +1245,8 @@
           <span>Heroines</span>
         </a>
         <nav class="nav-menu" aria-label="Primary navigation">
+          <a class="nav-link" href="#test">The Quiz</a>
+          <a class="nav-link" href="index.html#heroines">Heroines</a>
           <a class="nav-link" href="results.html">Results</a>
           <a class="nav-link" href="shop.html">Shop</a>
           <a class="nav-link" href="novels.html">Novels</a>
@@ -1254,7 +1258,8 @@
         <details class="mobile-menu">
           <summary>Menu</summary>
           <nav class="mobile-menu-panel" aria-label="Mobile navigation">
-            <a href="#test">Take the Quiz</a>
+            <a href="#test">The Quiz</a>
+            <a href="index.html#heroines">Heroines</a>
             <a href="results.html">Results</a>
             <a href="shop.html">Shop</a>
             <a href="novels.html">Novels</a>

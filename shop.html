@@ -141,9 +141,23 @@
         text-transform: uppercase;
       }
 
+      .mobile-shop-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: 1.1rem;
+        border: 1px solid rgb(77 62 42 / 0.22);
+        border-radius: 999px;
+        padding: 0.52rem 0.82rem;
+        color: var(--ink-soft);
+        font-size: 0.68rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
       .mobile-menu {
         position: relative;
-        margin-left: auto;
       }
 
       .mobile-menu summary {
@@ -475,20 +489,23 @@
       }
 
       @media (min-width: 1024px) {
-        .nav-links {
-          display: flex;
-        }
-
-        .mobile-menu {
-          display: none;
-        }
-
         .shop-hero-layout {
           grid-template-columns: minmax(0, 0.86fr) minmax(28rem, 42rem);
         }
 
         .product-grid {
           grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      @media (min-width: 1180px) {
+        .nav-links {
+          display: flex;
+        }
+
+        .mobile-shop-link,
+        .mobile-menu {
+          display: none;
         }
       }
     </style>
@@ -500,19 +517,25 @@
           <span class="brand-main">Literary</span>
           <span class="brand-sub">Heroines</span>
         </a>
-        <nav class="nav-links" aria-label="Shop navigation">
-          <a href="index.html" class="nav-link">Home</a>
+        <nav class="nav-links" aria-label="Primary navigation">
           <a href="quiz.html" class="nav-link">The Quiz</a>
+          <a href="index.html#heroines" class="nav-link">Heroines</a>
           <a href="results.html" class="nav-link">Results</a>
+          <a href="shop.html" class="nav-link">Shop</a>
+          <a href="novels.html" class="nav-link">Novels</a>
+          <a href="faq.html" class="nav-link">FAQ</a>
           <a href="contact.html" class="nav-link">Contact</a>
         </nav>
+        <a href="shop.html" class="mobile-shop-link">Shop</a>
         <details class="mobile-menu">
           <summary>Menu</summary>
           <nav class="mobile-menu-panel" aria-label="Mobile navigation">
-            <a href="index.html">Home</a>
             <a href="quiz.html">The Quiz</a>
+            <a href="index.html#heroines">Heroines</a>
             <a href="results.html">Results</a>
-            <span aria-current="page">Shop</span>
+            <a href="shop.html">Shop</a>
+            <a href="novels.html">Novels</a>
+            <a href="faq.html">FAQ</a>
             <a href="contact.html">Contact</a>
           </nav>
         </details>
