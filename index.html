@@ -257,11 +257,11 @@
         min-height: 100vh;
         display: flex;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: center;
         overflow: hidden;
-        padding: 8rem 1.5rem 5.5rem;
+        padding: 8rem 1.5rem 5rem;
         background-image: url("assets/hero-countryside.webp");
-        background-position: 58% center;
+        background-position: center;
         background-size: cover;
       }
 
@@ -269,17 +269,34 @@
         content: "";
         position: absolute;
         inset: 0;
-        background:
-          linear-gradient(90deg, rgb(23 21 18 / 0.74), rgb(23 21 18 / 0.42) 48%, rgb(23 21 18 / 0.18)),
-          linear-gradient(0deg, rgb(23 21 18 / 0.28), transparent 44%);
+        background: rgb(52 45 34 / 0.55);
+      }
+
+      .decor-line {
+        display: none;
+        position: absolute;
+        top: 8rem;
+        left: 50%;
+        width: 42%;
+        height: 1px;
+        background: rgb(255 255 255 / 0.3);
+        pointer-events: none;
+      }
+
+      .decor-line.left {
+        transform: translateX(-110%);
+      }
+
+      .decor-line.right {
+        transform: translateX(10%);
       }
 
       .hero-content {
         position: relative;
         z-index: 10;
-        width: min(100%, 80rem);
+        width: min(100%, 56rem);
         margin: 0 auto;
-        text-align: left;
+        text-align: center;
       }
 
       .eyebrow {
@@ -296,10 +313,9 @@
       }
 
       .hero-title {
-        max-width: 9ch;
-        margin-top: 2rem;
-        font-size: clamp(4.15rem, 15vw, 6.4rem);
-        line-height: 0.94;
+        margin-top: 2.5rem;
+        font-size: clamp(3.55rem, 14vw, 6rem);
+        line-height: 1.05;
         color: white;
       }
 
@@ -309,40 +325,39 @@
       }
 
       .hero-copy {
-        width: min(100%, 34rem);
-        margin-top: 2rem;
-        color: rgb(255 255 255 / 0.82);
-        font-size: 1.02rem;
-        line-height: 1.65;
+        width: min(100%, 36rem);
+        margin: 2.5rem auto 0;
+        color: rgb(255 255 255 / 0.85);
+        font-size: 1rem;
+        line-height: 1.7;
       }
 
       .hero-actions {
-        margin-top: 2.5rem;
+        margin-top: 3rem;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
+        align-items: center;
+        gap: 1.5rem;
       }
 
       .hero-button {
         display: inline-flex;
         align-items: center;
         gap: 1rem;
-        border: 1px solid rgb(255 252 245 / 0.96);
-        background: rgb(255 252 245 / 0.96);
-        padding: 1.05rem 2.1rem;
-        color: rgb(38 33 28);
+        border: 1px solid rgb(255 255 255 / 0.8);
+        background: rgb(255 255 255 / 0.1);
+        padding: 1rem 2.5rem;
+        color: white;
         font-size: 0.7rem;
-        letter-spacing: 0.24em;
+        letter-spacing: 0.35em;
         text-transform: uppercase;
-        transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+        backdrop-filter: blur(8px);
+        transition: background-color 180ms ease, border-color 180ms ease;
       }
 
       .hero-button:hover {
         border-color: white;
-        background: transparent;
-        color: white;
-        transform: translateY(-2px);
+        background: rgb(255 255 255 / 0.2);
       }
 
       .hero-button span {
@@ -358,6 +373,20 @@
         font-size: 0.875rem;
         font-style: italic;
         color: rgb(255 255 255 / 0.7);
+      }
+
+      .hero-signature {
+        position: absolute;
+        left: 50%;
+        bottom: 2rem;
+        z-index: 10;
+        transform: translateX(-50%);
+        width: max-content;
+        font-family: var(--font-serif);
+        font-size: 0.75rem;
+        font-style: italic;
+        letter-spacing: 0.18em;
+        color: rgb(255 255 255 / 0.6);
       }
 
       .why-matters {
@@ -484,10 +513,25 @@
       .donation {
         position: relative;
         overflow: hidden;
-        background: rgb(37 33 29);
-        color: rgb(255 252 245);
+        background:
+          radial-gradient(circle at 50% 0%, rgb(255 255 255 / 0.56), transparent 34rem),
+          linear-gradient(180deg, rgb(244 236 224), rgb(250 247 240));
+        color: var(--ink);
         padding: 5.75rem 1.5rem 6rem;
         text-align: center;
+      }
+
+      .donation::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(90deg, rgb(86 72 63 / 0.045) 1px, transparent 1px),
+          linear-gradient(rgb(86 72 63 / 0.035) 1px, transparent 1px);
+        background-size: 5.5rem 5.5rem;
+        mask-image: radial-gradient(circle at center, black 0%, transparent 72%);
+        opacity: 0.45;
+        pointer-events: none;
       }
 
       .donation-inner {
@@ -498,34 +542,34 @@
       }
 
       .donation .eyebrow {
-        color: rgb(221 202 165 / 0.82);
+        color: rgb(117 75 66);
         font-weight: 400;
       }
 
       .donation-title {
         margin-top: 1.45rem;
-        color: rgb(255 252 245);
+        color: rgb(54 48 43);
         font-size: clamp(3rem, 3.4vw, 6.8rem);
         line-height: 0.94;
       }
 
       .donation-title em {
         display: block;
-        color: rgb(205 179 130);
+        color: rgb(123 83 68);
         font-style: italic;
       }
 
       .donation-copy {
         width: min(100%, 43rem);
         margin: 2.25rem auto 0;
-        color: rgb(255 252 245 / 0.76);
+        color: rgb(86 72 63);
         font-size: clamp(1rem, 1.4vw, 1.12rem);
         line-height: 1.85;
       }
 
       .venmo-note {
         margin: 2.3rem auto 0;
-        color: rgb(221 202 165 / 0.78);
+        color: rgb(117 75 66);
         font-size: 0.78rem;
         font-weight: 400;
         letter-spacing: 0.24em;
@@ -535,8 +579,8 @@
       .venmo-link {
         display: inline-block;
         margin-top: 0.75rem;
-        border-bottom: 1px solid rgb(221 202 165 / 0.48);
-        color: rgb(255 252 245);
+        border-bottom: 1px solid rgb(117 75 66 / 0.42);
+        color: rgb(54 48 43);
         font-family: var(--font-serif);
         font-size: clamp(1.45rem, 2vw, 1.95rem);
         font-style: italic;
@@ -546,7 +590,7 @@
 
       .venmo-link:hover {
         border-color: currentColor;
-        color: rgb(221 202 165);
+        color: rgb(123 83 68);
       }
 
       .venmo-link:focus-visible {
@@ -1016,8 +1060,12 @@
           display: none;
         }
 
+        .decor-line {
+          display: block;
+        }
+
         .hero-title {
-          font-size: clamp(6rem, 5vw, 8rem);
+          font-size: clamp(6rem, 9vw, 8rem);
         }
 
         .hero-copy {
@@ -1072,28 +1120,6 @@
           display: none;
         }
       }
-
-      @media (max-width: 520px) {
-        .hero {
-          min-height: 96svh;
-          padding: 7rem 1.2rem 4.5rem;
-          background-position: 64% center;
-        }
-
-        .hero-title {
-          font-size: clamp(3.45rem, 18vw, 4.2rem);
-        }
-
-        .hero-copy {
-          font-size: 0.98rem;
-        }
-
-        .hero-button {
-          width: 100%;
-          justify-content: center;
-          padding-inline: 1.4rem;
-        }
-      }
     </style>
   </head>
   <body>
@@ -1134,6 +1160,9 @@
 
       <main>
         <section class="hero">
+          <div class="decor-line left" aria-hidden="true"></div>
+          <div class="decor-line right" aria-hidden="true"></div>
+
           <div class="hero-content">
             <p class="eyebrow">A Quiz for Women Who Read</p>
 
@@ -1146,8 +1175,9 @@
             </h1>
 
             <p class="hero-copy">
-              Fifty questions about love, courage, judgment, grief, and freedom — written
-              for readers who know a fictional woman can tell the truth about a real one.
+              Are you Elizabeth's sharp wit, Jane Eyre's quiet conviction, or Jo March's
+              restless pen? Answer fifty thoughtful questions and meet the heroine the
+              page has been keeping for you.
             </p>
 
             <div class="hero-actions">
@@ -1158,6 +1188,8 @@
               <p class="hero-note">Takes about 10-15 minutes · No email required</p>
             </div>
           </div>
+
+          <p class="hero-signature">~ est. for the bookish ~</p>
         </section>
 
         <section class="heroines" id="heroines">
@@ -1332,13 +1364,14 @@
           <div class="donation-inner">
             <p class="eyebrow">Always free, always will be.</p>
             <h2 class="donation-title" id="donation-title">
-              If it meant something, buy us a
+              But if you enjoyed it, buy us a
               <em>cup of tea?</em>
             </h2>
             <p class="donation-copy">
-              No subscriptions. No paywalls. Just a reader-made project kept alive by people
-              who believe the right story can make someone feel less alone. A small
-              contribution helps keep the quiz open for the next person who needs it.
+              No subscriptions. No paywalls. We built Literary Heroines because the right
+              story can make a person feel less alone. If your result surprised you,
+              delighted you, or gave you a truer name for something inside yourself, a small
+              contribution helps keep the quiz free for the next reader who needs it.
             </p>
             <p class="venmo-note">Venmo a cup of tea</p>
             <a class="venmo-link" href="https://venmo.com/graceandlove" aria-label="Support Literary Heroines on Venmo at graceandlove">
